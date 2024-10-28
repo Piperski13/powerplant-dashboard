@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const app = express();
-const db = require('./queries.js')
+const db = require('./controllers/queries.js')
 
 app.use(bodyParser.json())
 app.use(
