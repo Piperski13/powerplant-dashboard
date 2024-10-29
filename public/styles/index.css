@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+}
+body {
+  background-color: aquamarine;
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+label {
+  padding-bottom: 1.5em;
+}
+input {
+  width: 50%;
+  height: 1.5em;
+  margin-bottom: 1.5rem;
+}
+h2 {
+  text-align: center;
+  padding: 20px 0;
+}
+a {
+  text-decoration: none;
+  color: black;
+}
+#header-section-form {
+  width: 25%;
+  background-color: beige;
+}
+.header-section-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-bottom: 15px;
+}
+.form-style {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.link-view-style {
+  padding-left: 10px;
+}
+.form-submit-button {
+  margin-bottom: 10px;
+}

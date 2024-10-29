@@ -10,9 +10,8 @@ app.use(
   })
 )
 
-app.get('/', (req,res) =>{
-  res.json({info: 'NEP API'})
-});
+app.use(express.static('public'));
+
 
 app.use('/records',recordRouter);
 
