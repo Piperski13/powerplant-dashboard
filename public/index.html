@@ -3,64 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/index.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back" />
-    <title>Add Records</title>
+    <title>Login</title>
   </head>
   <body>
-    <header>
-      <section>
-        <a href="./View/recordsView.html"><div class="header-section-link">
-          <span class="material-symbols-outlined">
-            arrow_back
-            </span>
-            <p class="link-view-style">Lista svih evidencija</p>
-        </div>
-      </a>
-      </section>
-      <section id="header-section-form">
-        <h2>Unos Evidencije Elektrana</h2>
-        <form id="create-form" class="form-style">
-          <label for="nazivelektrane">Naziv Elektrane</label>
-          <input
-            type="text"
-            name="nazivelektrane"
-            placeholder="JKP"
-            required
-          />
-          <label for="mesto">Mesto</label>
-          <input
-            type="text"
-            name="mesto"
-            placeholder="Beograd"
-            required
-          />
-          <label for="adresa">Adresa</label>
-          <input
-            type="text"
-            name="adresa"
-            placeholder="Beograd"
-            required
-          />
-          <label for="datumpustanjaurad">Datum puštanja u rad</label>
-          <input
-            type="date"
-            name="datumpustanjaurad"
-            placeholder="2024-10-11"
-            required
-          />
-          <label for="sifravrstepogona">Šifra vrste pogona</label>
-          <input
-            type="number"
-            name="sifravrstepogona"
-            placeholder="0"
-            required
-          />
-          <button type="submit" class="form-submit-button">Dodaj Evidenciju</button>
-        </form>
-      </section>
-    </header>
-    
-    <script src="./scripts/create.js"></script>
+    <h1>Login page:</h1>
+    <form action="/login" method="post">
+      <input name="username" placeholder="username" />
+      <input name="password" type="password" placeholder="password" />
+      <button type="submit">Login</button>
+    </form>
   </body>
 </html>
