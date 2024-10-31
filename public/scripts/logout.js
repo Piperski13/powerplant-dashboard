@@ -11,7 +11,7 @@ async function logoutFunction() {
       credentials: "include", // Ensures cookies are sent with the request
     });
     if (response.ok) {
-      window.location.href = "/index.html"; // Redirect to index.html after logout
+      window.location.href = "/"; // Redirect to index.html after logout
     } else {
       console.error("Logout failed");
     }

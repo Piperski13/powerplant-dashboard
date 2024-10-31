@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const app = express();
@@ -21,6 +22,10 @@ app.use(
 app.use(cookieParser());
 
 app.use(express.static("public"));
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "./View/index.html"));
+});
 
 app.use("/records", recordRouter);
 

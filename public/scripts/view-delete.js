@@ -22,8 +22,21 @@ async function fetchRecords() {
   });
 }
 async function deleteRecord(id) {
-  await fetch(`/records/${id}`, {
-    method: "DELETE",
-  });
-  fetchRecords();
+  try {
+    const response = await fetch(`/records/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+
+    if (response.status === 401) {
+      window.location.href = "/";
+    } else if (response.ok) {
+      console.log("Record deleted successfully");
+      fetchRecords();
+    } else {
+      console.error("Error deleting record");
+    }
+  } catch (error) {
+    console.error("Network error:", error);
+  }
 }

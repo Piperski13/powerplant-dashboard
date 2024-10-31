@@ -19,7 +19,7 @@ const loginAuth = async (req, res) => {
 
   delete user.password;
 
-  const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "1h" });
+  const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "1s" });
 
   res.cookie("token", token);
 
@@ -27,6 +27,6 @@ const loginAuth = async (req, res) => {
 };
 const logout = (req, res) => {
   res.clearCookie("token");
-  res.redirect("/index.html");
+  res.redirect("/");
 };
 module.exports = { loginAuth, logout };
