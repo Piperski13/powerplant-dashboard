@@ -6,8 +6,8 @@ const router = express.Router();
 router
   .route("/")
   .get(recordController.getAllRecords)
-  .post(recordController.addRecord);
-// .post(cookieJwtAuth, recordController.addRecord); // Adding middleware here
+  .post(cookieJwtAuth,recordController.addRecord);
+
 router
   .route("/:id")
   .get(recordController.getRecord)
