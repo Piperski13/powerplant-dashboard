@@ -25,7 +25,7 @@ app.use(cookieParser());
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "./View/index.html"));
+  res.sendFile(path.join(__dirname,"public", "login.html"));
 });
 
 app.get("/addRecordPage", cookieJwtAuth, (req, res) => {

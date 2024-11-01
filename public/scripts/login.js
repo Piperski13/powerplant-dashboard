@@ -1,3 +1,18 @@
+window.onload = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const error = urlParams.get("error");
+  if (error === "login") {
+    const username = document.getElementById("username");
+    const password = document.getElementById("password");
+    const msg = document.querySelector(".invalid-msg");
+
+    username.classList.add("username-error");
+    password.classList.add("password-error");
+    msg.classList.remove("hidden");
+  }
+};
+
 document.getElementById("login-form-js").addEventListener("submit", (e) => {
   e.preventDefault();
 
@@ -23,7 +38,7 @@ async function loginPostAuth(loginAuthObject) {
     if (response.ok) {
       window.location.href = "/View/recordsView.html";
     } else if (response.status === 403) {
-      window.location.href = "/";
+      window.location.href = "/?error=login";
     } else {
       console.error(`Unexpected response: ${response.status}`);
     }
