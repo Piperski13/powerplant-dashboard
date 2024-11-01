@@ -18,7 +18,7 @@ const loginAuth = async (req, res) => {
   const { username, password } = req.body;
 
   const user = await getUser(username);
-  console.log(user);
+
   if (!user) {
     return res.status(403).json({
       error: "invalid login",

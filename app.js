@@ -3,6 +3,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const app = express();
+const cookieJwtAuth = require("./public/scripts/middleware/cookieJwtAuth.js");
 const recordRouter = require("./routes/recordRoutes.js");
 const loginRouter = require("./routes/loginRoutes.js");
 
@@ -25,6 +26,10 @@ app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "./View/index.html"));
+});
+
+app.get("/addRecordPage", cookieJwtAuth, (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "addRecord.html"));
 });
 
 app.use("/records", recordRouter);
