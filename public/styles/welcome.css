@@ -4,13 +4,11 @@
   box-sizing: border-box;
 }
 
-body{
+body {
   background-color: #0e152f;
-  color: white;
-}
-
-main {
+  color: #0e152f;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 }
