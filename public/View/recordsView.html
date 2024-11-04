@@ -3,30 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../styles/navbar.css" />
     <link rel="stylesheet" href="../styles/recordView.css" />
     <title>CRUD</title>
   </head>
   <body>
-    <h1>Lista evidencija elektrana:</h1>
-    <h4><a href="/addRecordPage" id="add-record-js">Stranica za dodavanje evidencija</a></h4>
-    <button id="logout-js">Logout</button>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Naziv Elektrane</th>
-          <th>Mesto</th>
-          <th>Adresa</th>
-          <th>Datum Puštanja u Rad</th>
-          <th>Šifra Vrste Pogona</th>
-          <th>Obriši</th>
-        </tr>
-      </thead>
-      <tbody id="records-table"></tbody>
-    </table>
-
-    <form action="" method="post"></form>
-
+    <header id="main-box">
+      <nav>
+        <div class="sidebar">
+          <a href="#home">Home</a>
+          <a href="/recordsViewPage" id="view-records-js">View All Records</a>
+          <a href="/addRecordPage" id="add-record-js">Add Record</a>
+          <a id="logout-js" class="logout-style" href="#">Logout</a>
+        </div>
+      </nav>
+      <table>
+        <caption>
+          Lista Evidencija Elektrana
+        </caption>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Naziv Elektrane</th>
+            <th>Mesto</th>
+            <th>Adresa</th>
+            <th>Datum Puštanja u Rad</th>
+            <th>Šifra Vrste Pogona</th>
+            <th>Obriši</th>
+          </tr>
+        </thead>
+        <tbody id="records-table"></tbody>
+      </table>
+    </header>
     <script src="../scripts/view-delete.js"></script>
     <script src="../scripts/logout.js"></script>
   </body>
