@@ -3,52 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./styles/addRecord.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=arrow_back" />
+    <link rel="stylesheet" href="./styles/navbar.css" />
+    <link rel="stylesheet" href="./styles/addRecord.css" />
     <title>Add Records</title>
   </head>
   <body>
-    <header>
-      <section>
-        <a href="./View/recordsView.html"><div class="header-section-link">
-          <span class="material-symbols-outlined">
-            arrow_back
-            </span>
-            <p class="link-view-style">Lista svih evidencija</p>
+    <header id="main-box">
+      <nav>
+        <div class="sidebar">
+          <a href="#home">Home</a>
+          <a href="/recordsViewPage" id="view-records-js">View All Records</a>
+          <a href="/addRecordPage" id="add-record-js">Add Record</a>
+          <a id="logout-js" class="logout-style" href="#">Logout</a>
         </div>
-      </a>
-      </section>
+      </nav>
       <section id="header-section-form">
         <h2>Unos Evidencije Elektrana</h2>
         <form id="create-form" class="form-style">
           <label for="nazivelektrane">Naziv Elektrane</label>
-          <input
-            type="text"
-            name="nazivelektrane"
-            placeholder="JKP"
-            required
-          />
+          <input type="text" name="nazivelektrane" placeholder="JKP" required />
           <label for="mesto">Mesto</label>
-          <input
-            type="text"
-            name="mesto"
-            placeholder="Beograd"
-            required
-          />
+          <input type="text" name="mesto" placeholder="Beograd" required />
           <label for="adresa">Adresa</label>
-          <input
-            type="text"
-            name="adresa"
-            placeholder="Beograd"
-            required
-          />
-          <label for="datumpustanjaurad">Datum puštanja u rad</label>
-          <input
-            type="date"
-            name="datumpustanjaurad"
-            placeholder="2024-10-11"
-            required
-          />
+          <input type="text" name="adresa" placeholder="Beograd" required />
           <label for="sifravrstepogona">Šifra vrste pogona</label>
           <input
             type="number"
@@ -56,11 +33,21 @@
             placeholder="0"
             required
           />
-          <button type="submit" class="form-submit-button">Dodaj Evidenciju</button>
+          <label for="datumpustanjaurad">Datum puštanja u rad</label>
+          <input
+            type="date"
+            name="datumpustanjaurad"
+            placeholder="Select Date"
+            required
+          />
+          <div class="submit-row">
+            <button type="submit" class="form-submit-button">Add Record</button>
+          </div>
         </form>
       </section>
     </header>
-    
+
     <script src="./scripts/create.js"></script>
+    <script src="./scripts/logout.js"></script>
   </body>
 </html>
