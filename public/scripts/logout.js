@@ -10,6 +10,12 @@ document.getElementById("add-record-js").addEventListener("click", (e) => {
   redirectAddPage();
 });
 
+document.getElementById("view-records-js").addEventListener("click", (e) => {
+  e.preventDefault();
+
+  redirectViewPage();
+});
+
 async function logoutFunction() {
   try {
     const response = await fetch("/login/logout", {
@@ -34,6 +40,24 @@ async function redirectAddPage() {
 
     if (response.ok) {
       window.location.href = "/addRecordPage";
+    } else if (response.status === 401) {
+      window.location.href = "/";
+    } else {
+      console.error("Unexpected response:", response.status);
+    }
+  } catch (error) {
+    console.error(`Error Catch: ${error}`);
+  }
+}
+async function redirectViewPage() {
+  try {
+    const response = await fetch("/recordsViewPage", {
+      method: "GET",
+      credentials: "include",
+    });
+
+    if (response.ok) {
+      window.location.href = "/recordsViewPage";
     } else if (response.status === 401) {
       window.location.href = "/";
     } else {

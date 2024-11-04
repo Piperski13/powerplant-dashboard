@@ -36,7 +36,7 @@ async function loginPostAuth(loginAuthObject) {
     });
 
     if (response.ok) {
-      window.location.href = "/View/recordsView.html";
+      window.location.href = "/welcome.html";
     } else if (response.status === 403) {
       window.location.href = "/?error=login";
     } else {

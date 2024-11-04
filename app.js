@@ -32,6 +32,10 @@ app.get("/addRecordPage", cookieJwtAuth, (req, res) => {
   res.sendFile(path.join(__dirname, "public", "addRecord.html"));
 });
 
+app.get("/recordsViewPage", cookieJwtAuth, (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "View/recordsView.html"));
+});
+
 app.use("/records", recordRouter);
 
 app.use("/login", loginRouter);

@@ -34,6 +34,7 @@ input::placeholder {
   height: 27em;
   width: 25em;
   border: 3px solid #00abed;
+  border-radius: 39px;
 }
 .login-form {
   display: flex;
@@ -58,6 +59,8 @@ input::placeholder {
 }
 .login-div {
   background-color: #00abed;
+  border-radius: 30px 30px 0 0;
+
   padding: 20px 0;
   width: 100%;
   text-align: center;
