@@ -1,0 +1,38 @@
+/* Sidebar container */
+.sidebar {
+  width: 250px;
+  height: 500px;
+  border: 3px solid #00abed;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 5px;
+}
+
+/* Sidebar links */
+.sidebar a {
+  padding: 15px 20px;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  transition: background 0.3s;
+}
+
+.sidebar a:hover {
+  background-color: #00abed;
+}
+
+/* Main content */
+.main-content {
+  margin-left: 250px; /* Same width as the sidebar */
+  padding: 20px;
+}
+
+.logout-style {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  text-align: left;
+}
