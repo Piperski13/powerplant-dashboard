@@ -29,7 +29,8 @@ async function deleteRecord(id) {
     });
 
     if (response.status === 401) {
-      window.location.href = "/";
+      // window.location.href = "/";
+      
     } else if (response.ok) {
       console.log("Record deleted successfully");
       fetchRecords();

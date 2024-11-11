@@ -32,7 +32,11 @@ const getAllRecords = (req,res) =>{
     if (error){
       throw error;
     }
-    res.status(201).send(`Record added with ID: ${results.rows[0].id}`)
+    const addedRecord = results.rows[0];
+    res.status(201).json({
+      message: `Record added with ID: ${addedRecord.id}`,
+      sifravrstepogona: addedRecord.sifravrstepogona
+    });
   })
  }
 
