@@ -3,30 +3,53 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle"
+    />
+    <link rel="stylesheet" href="../styles/navbar.css" />
     <link rel="stylesheet" href="../styles/recordView.css" />
     <title>CRUD</title>
   </head>
   <body>
-    <h1>Lista evidencija elektrana:</h1>
-    <h4><a href="/addRecordPage" id="add-record-js">Stranica za dodavanje evidencija</a></h4>
-    <button id="logout-js">Logout</button>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Naziv Elektrane</th>
-          <th>Mesto</th>
-          <th>Adresa</th>
-          <th>Datum Puštanja u Rad</th>
-          <th>Šifra Vrste Pogona</th>
-          <th>Obriši</th>
-        </tr>
-      </thead>
-      <tbody id="records-table"></tbody>
-    </table>
-
-    <form action="" method="post"></form>
-
+    <header id="main-box">
+      <nav>
+        <div class="sidebar">
+          <a href="./welcome.html">Home</a>
+          <a href="/recordsViewPage" id="view-records-js">View All Records</a>
+          <a href="/addRecordPage" id="add-record-js">Add Record</a>
+          <div class="logout-style">
+            <div class="user-dropdown">
+              <span class="username-logged">
+                <span class="material-symbols-outlined icon"> account_circle </span>
+                <span id="logged-user-js" class="logged-user"></span>
+              </span>
+              <div class="dropdown-content">
+                <a href="#" id="logout-js">Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <table>
+        <caption>
+          Lista Evidencija Elektrana
+        </caption>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Naziv Elektrane</th>
+            <th>Mesto</th>
+            <th>Adresa</th>
+            <th>Datum Puštanja u Rad</th>
+            <th>Šifra Vrste Pogona</th>
+            <th>Obriši</th>
+          </tr>
+        </thead>
+        <tbody id="records-table"></tbody>
+      </table>
+    </header>
+    <script src="./scripts/decodedToken.js"></script>
     <script src="../scripts/view-delete.js"></script>
     <script src="../scripts/logout.js"></script>
   </body>

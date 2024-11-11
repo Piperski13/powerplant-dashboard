@@ -16,7 +16,7 @@ async function fetchRecords() {
         <td>${record.adresa}</td>
         <td>${record.datumpustanjaurad}</td>
         <td>${record.sifravrstepogona}</td>
-        <td><button onclick="deleteRecord(${record.id})">Delete</button></td>
+        <td><button class="delete-record" onclick="deleteRecord(${record.id})">Delete</button></td>
     `;
     recordsTable.appendChild(row);
   });
