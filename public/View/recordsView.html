@@ -3,6 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle"
+    />
     <link rel="stylesheet" href="../styles/navbar.css" />
     <link rel="stylesheet" href="../styles/recordView.css" />
     <title>CRUD</title>
@@ -14,7 +18,17 @@
           <a href="./welcome.html">Home</a>
           <a href="/recordsViewPage" id="view-records-js">View All Records</a>
           <a href="/addRecordPage" id="add-record-js">Add Record</a>
-          <a id="logout-js" class="logout-style" href="#">Logout</a>
+          <div class="logout-style">
+            <div class="user-dropdown">
+              <span class="username-logged">
+                <span class="material-symbols-outlined icon"> account_circle </span>
+                <span id="logged-user-js" class="logged-user"></span>
+              </span>
+              <div class="dropdown-content">
+                <a href="#" id="logout-js">Logout</a>
+              </div>
+            </div>
+          </div>
         </div>
       </nav>
       <table>
@@ -35,6 +49,7 @@
         <tbody id="records-table"></tbody>
       </table>
     </header>
+    <script src="./scripts/decodedToken.js"></script>
     <script src="../scripts/view-delete.js"></script>
     <script src="../scripts/logout.js"></script>
   </body>

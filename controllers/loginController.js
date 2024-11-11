@@ -35,7 +35,7 @@ const loginAuth = async (req, res) => {
 
   res.cookie("token", token);
 
-  return res.redirect("/View/recordsView.html");
+  return res.status(200).json({ message: "Login successful" });
 };
 
 const logout = (req, res) => {
