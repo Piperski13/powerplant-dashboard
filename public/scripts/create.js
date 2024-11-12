@@ -14,6 +14,14 @@ document
       });
 
       if (response.ok ) {
+        const data = await response.json();
+        const sifravrstepogona = data.sifravrstepogona
+
+        await fetch('/api/increment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ sifravrstepogona }),
+        });
         window.location.href = "View/recordsView.html";
       }
       else if (response.status === 401){

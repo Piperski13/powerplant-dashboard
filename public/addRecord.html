@@ -21,7 +21,9 @@
           <div class="logout-style">
             <div class="user-dropdown">
               <span class="username-logged">
-                <span class="material-symbols-outlined icon"> account_circle </span>
+                <span class="material-symbols-outlined icon">
+                  account_circle
+                </span>
                 <span id="logged-user-js" class="logged-user"></span>
               </span>
               <div class="dropdown-content">
@@ -41,12 +43,11 @@
           <label for="adresa">Adresa</label>
           <input type="text" name="adresa" placeholder="Beograd" required />
           <label for="sifravrstepogona">Šifra vrste pogona</label>
-          <input
-            type="number"
-            name="sifravrstepogona"
-            placeholder="0"
-            required
-          />
+          <select name="sifravrstepogona" id="sifravrstepogona" required>
+            <option value="0">Voda</option>
+            <option value="1">Vetar</option>
+            <option value="2">Ugalj</option>
+          </select>
           <label for="datumpustanjaurad">Datum puštanja u rad</label>
           <input
             type="date"

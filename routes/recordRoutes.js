@@ -6,12 +6,14 @@ const router = express.Router();
 router
   .route("/")
   .get(recordController.getAllRecords)
-  .post(cookieJwtAuth,recordController.addRecord);
+  .post(cookieJwtAuth, recordController.addRecord);
 
 router
-  .route("/:id")
+  .route("/user/:id")
   .get(recordController.getRecord)
   .delete(cookieJwtAuth, recordController.deleteRecord)
   .put(recordController.updateRecord);
+
+router.route("/type").get(recordController.getTotalRecords);
 
 module.exports = router;

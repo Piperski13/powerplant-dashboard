@@ -15,7 +15,7 @@ async function fetchUserData() {
     
       const loggedUserElement = document.getElementById("logged-user-js");
       if (loggedUserElement) {
-        loggedUserElement.innerHTML = `${userData.username} ${userData.username}`;
+        loggedUserElement.innerHTML = `${userData.lastname} ${userData.username}`;
       }
     } else {
       window.location.href = "/";

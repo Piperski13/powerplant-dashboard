@@ -6,8 +6,10 @@ const jwt = require("jsonwebtoken");
 require('dotenv').config('./.env');
 const app = express();
 const cookieJwtAuth = require("./public/scripts/middleware/cookieJwtAuth.js");
+
 const recordRouter = require("./routes/recordRoutes.js");
 const loginRouter = require("./routes/loginRoutes.js");
+const incDecRouter = require("./routes/incDecRoutes.js");
 
 app.use(bodyParser.json());
 app.use(
@@ -41,6 +43,8 @@ app.get("/recordsViewPage", cookieJwtAuth, (req, res) => {
 app.use("/records", recordRouter);
 
 app.use("/login", loginRouter);
+
+app.use("/api", incDecRouter);
 
 app.get('/user-data', (req,res)=>{
 

@@ -16,7 +16,6 @@ body {
 table {
   width: 60%;
   border-collapse: collapse;
-  margin: 20px 100px 0 0;
   font-size: 16px;
   text-align: left;
   background-color: #f9f9f9;
@@ -33,6 +32,7 @@ thead {
 th,
 td {
   padding: 12px 15px;
+  text-align: center;
 }
 
 th {
@@ -79,6 +79,28 @@ caption {
   color: #333;
 }
 #main-box {
-  align-items: baseline;
+  align-items: flex-end;
   justify-content: right;
+  overflow: auto;
+  flex-direction: column;
 }
+
+.div-tables-section{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+/* Small table start */
+#small-table{
+  width: 275px;
+}
+.table-text-bellow{
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+.small-table-caption{
+  font-size: 23px;
+}
+/* Small table end */
