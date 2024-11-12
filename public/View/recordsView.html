@@ -15,7 +15,7 @@
     <header id="main-box">
       <nav>
         <div class="sidebar">
-          <a href="./welcome.html">Home</a>
+          <a href="../welcome.html">Home</a>
           <a href="/recordsViewPage" id="view-records-js">View All Records</a>
           <a href="/addRecordPage" id="add-record-js">Add Record</a>
           <div class="logout-style">
@@ -31,23 +31,41 @@
           </div>
         </div>
       </nav>
-      <table>
-        <caption>
-          Lista Evidencija Elektrana
-        </caption>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Naziv Elektrane</th>
-            <th>Mesto</th>
-            <th>Adresa</th>
-            <th>Datum Puštanja u Rad</th>
-            <th>Šifra Vrste Pogona</th>
-            <th>Obriši</th>
-          </tr>
-        </thead>
-        <tbody id="records-table"></tbody>
-      </table>
+      <div class="div-tables-section">
+        <table id="small-table">
+          <caption class="small-table-caption">
+            Ukupan Broj Evidencija
+          </caption>
+          <thead>
+            <tr>
+              <th>Voda</th>
+              <th>Vetar</th>
+              <th>Ugalj</th>
+            </tr>
+          </thead>
+          <tbody id="types-table">
+          
+          </tbody>
+        </table>
+        <p class="table-text-bellow">*max records per type = 10</p>
+        <table>
+          <caption>
+            Lista Evidencija Elektrana
+          </caption>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Naziv Elektrane</th>
+              <th>Mesto</th>
+              <th>Adresa</th>
+              <th>Datum Puštanja u Rad</th>
+              <th>Šifra Vrste Pogona</th>
+              <th>Obriši</th>
+            </tr>
+          </thead>
+          <tbody id="records-table"></tbody>
+        </table>
+      </div>
     </header>
     <script src="../scripts/decodedToken.js"></script>
     <script src="../scripts/view-delete.js"></script>

@@ -14,7 +14,6 @@ document
       });
 
       if (response.ok ) {
-        // window.location.href = "View/recordsView.html";
         const data = await response.json();
         const sifravrstepogona = data.sifravrstepogona
 
@@ -23,7 +22,7 @@ document
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ sifravrstepogona }),
         });
-        
+        window.location.href = "View/recordsView.html";
       }
       else if (response.status === 401){
         window.location.href = "/";

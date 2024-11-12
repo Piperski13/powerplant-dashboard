@@ -1,5 +1,11 @@
-document.addEventListener("DOMContentLoaded", () => {
-  fetchRecords();
+document.addEventListener("DOMContentLoaded", async () => {
+  try {
+    await fetchRecords();
+    await fetchTotalRecords();
+    console.log("Both data fetched successfully.");
+  } catch (error) {
+    console.error("Error fetching data:", error);
+  }
 });
 
 async function fetchRecords() {
@@ -21,9 +27,35 @@ async function fetchRecords() {
     recordsTable.appendChild(row);
   });
 }
+async function fetchTotalRecords() {
+  console.log("Fetching total records...");
+  const response = await fetch("/records/type");
+  if (!response.ok) {
+    console.error("Error fetching /records/type:", response.statusText);
+    return;
+  }
+  const data = await response.json();
+  console.log("Fetched total records data:", data);
+  console.log(data[0].naziv); //voda
+  console.log(data[0].ukupanbrojelektrana); //2
+
+  const result = data.map(item => ({ ukupanbrojelektrana: item.ukupanbrojelektrana }));
+
+  const recordsTable = document.getElementById("types-table");
+  recordsTable.innerHTML = "";
+
+  result.forEach((record) => {
+    const row = document.createElement("th");
+    row.innerHTML = `
+          <td>${record.ukupanbrojelektrana}</td>
+      `;
+    recordsTable.appendChild(row);
+  });
+}
+
 async function deleteRecord(id) {
   try {
-    const response = await fetch(`/records/${id}`, {
+    const response = await fetch(`/records/user/${id}`, {
       method: "DELETE",
       credentials: "include",
     });
@@ -34,12 +66,11 @@ async function deleteRecord(id) {
     if (response.status === 401) {
       window.location.href = "/";
     } else if (response.ok) {
-      
-      const response = await fetch('/api/decrement', {
+      const response = await fetch("/api/decrement", {
         method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({sifravrstepogona})
-      })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sifravrstepogona }),
+      });
 
       console.log("Record deleted successfully");
       fetchRecords();
