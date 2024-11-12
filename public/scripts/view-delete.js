@@ -28,10 +28,19 @@ async function deleteRecord(id) {
       credentials: "include",
     });
 
+    const data = await response.json();
+    const sifravrstepogona = data.sifravrstepogona;
+
     if (response.status === 401) {
-      // window.location.href = "/";
-      
+      window.location.href = "/";
     } else if (response.ok) {
+      
+      const response = await fetch('/api/decrement', {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({sifravrstepogona})
+      })
+
       console.log("Record deleted successfully");
       fetchRecords();
     } else {

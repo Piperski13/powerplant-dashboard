@@ -42,11 +42,21 @@ const getAllRecords = (req,res) =>{
 
  const deleteRecord = (req,res) =>{
   const id = parseInt(req.params.id);
-  pool.query('DELETE FROM evidencijaelektrana WHERE id=$1',[id], (error,results)=>{
+  pool.query('DELETE FROM evidencijaelektrana WHERE id=$1 RETURNING *',[id], (error,results)=>{
     if(error){
       throw error;
     }
-    res.status(200).send(`Sucssesfully deleted record with ID:${id}`)
+
+    if(results.rowCount === 0){
+      res.status(404).json({ message: `Record with ${id} was not found `})
+    }
+
+    const deletedRecord = results.rows[0];
+
+    res.status(200).json({
+      message: `Deleted Record with ID ${id}`,
+      sifravrstepogona: deletedRecord.sifravrstepogona
+    })
   })
  }
 
