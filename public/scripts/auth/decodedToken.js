@@ -1,6 +1,6 @@
 async function fetchUserData() {
   try {
-    const response = await fetch("/user-data", {
+    const response = await fetch("/login/user-data", {
       method: "GET",
       credentials: "include",
     });

@@ -34,11 +34,8 @@ async function fetchTotalRecords() {
     console.error("Error fetching /records/type:", response.statusText);
     return;
   }
+  
   const data = await response.json();
-  console.log("Fetched total records data:", data);
-  console.log(data[0].naziv); //voda
-  console.log(data[0].ukupanbrojelektrana); //2
-
   const result = data.map(item => ({ ukupanbrojelektrana: item.ukupanbrojelektrana }));
 
   const recordsTable = document.getElementById("types-table");
@@ -73,7 +70,8 @@ async function deleteRecord(id) {
       });
 
       console.log("Record deleted successfully");
-      fetchRecords();
+      await fetchRecords();
+      await fetchTotalRecords();
     } else {
       console.error("Error deleting record");
     }

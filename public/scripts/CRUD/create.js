@@ -27,6 +27,16 @@ document
       else if (response.status === 401){
         window.location.href = "/";
       }
+      else if (response.status === 400){
+        const data = await response.json();
+
+        const label = document.querySelector('.sifravrstepogona-js');
+        const select = document.querySelector('.sifravrstepogona-select-js');
+        label.innerHTML = data.message;
+
+        label.classList.add("invalid-msg");
+        select.classList.add("dropdown-limit");
+      }
       else{
         console.error("Unexpected response:", response.status);
       }
