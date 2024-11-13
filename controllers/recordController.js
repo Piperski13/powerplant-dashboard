@@ -11,15 +11,6 @@ const getAllRecords = (req, res) => {
     }
   );
 };
-const getTotalRecords = (req, res) => {
-  pool.query("SELECT * FROM vrstapogona", (error, results) => {
-    if (error) {
-      console.error("Error in test query:", error);
-      return res.status(500).json({ error: "Test query failed" });
-    }
-    res.status(200).json(results.rows);
-  });
-};
 
 const getRecord = (req, res) => {
   const id = parseInt(req.params.id);
@@ -96,11 +87,23 @@ const updateRecord = (req, res) => {
   );
 };
 
+// small table (vrstapogona) START
+const getPowerPlants = (req, res) => {
+  pool.query("SELECT * FROM vrstapogona ORDER BY sifra ASC;", (error, results) => {
+    if (error) {
+      console.error("Error in test query:", error);
+      return res.status(500).json({ error: "Get Power Plants query failed" });
+    }
+    res.status(200).json(results.rows);
+  });
+};
+// small table (vrstapogona) END
+
 module.exports = {
   getAllRecords,
   getRecord,
   addRecord,
   deleteRecord,
   updateRecord,
-  getTotalRecords,
+  getPowerPlants
 };

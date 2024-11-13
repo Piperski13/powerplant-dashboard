@@ -1,12 +1,13 @@
 const express = require("express");
 const recordController = require("../controllers/recordController.js");
 const cookieJwtAuth = require("../public/scripts/middleware/cookieJwtAuth.js");
+const businessRuleMiddleware = require("../public/scripts/middleware/businessRule.js");
 const router = express.Router();
 
 router
   .route("/")
   .get(recordController.getAllRecords)
-  .post(cookieJwtAuth, recordController.addRecord);
+  .post(cookieJwtAuth, businessRuleMiddleware, recordController.addRecord);
 
 router
   .route("/user/:id")
@@ -14,6 +15,8 @@ router
   .delete(cookieJwtAuth, recordController.deleteRecord)
   .put(recordController.updateRecord);
 
-router.route("/type").get(recordController.getTotalRecords);
+router
+  .route("/type")
+  .get(recordController.getPowerPlants)
 
 module.exports = router;

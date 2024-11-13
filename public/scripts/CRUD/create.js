@@ -27,6 +27,9 @@ document
       else if (response.status === 401){
         window.location.href = "/";
       }
+      else if (response.status === 400){
+        //have to write something to inform user that limit has been reached, css js red borders
+      }
       else{
         console.error("Unexpected response:", response.status);
       }
