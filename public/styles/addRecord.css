@@ -84,3 +84,11 @@ a {
   display: flex;
   justify-content: center;
 }
+/* business rule start  */
+.dropdown-limit {
+  border: 2px solid red;
+}
+.invalid-msg {
+  color: red;
+}
+/* business rule end */

@@ -10,7 +10,7 @@ async function businessRuleMiddleware(req, res, next) {
     if (total < 9) {
       return next();
     } else {
-      return res.status(400).json({ message: "Limit for vrstapogona reached" });
+      return res.status(400).json({ message: "Limit for vrsta pogona reached *max = 10" });
     }
   } catch (error) {
     console.error("Unexpected error in businessRuleMiddleware:", error);
