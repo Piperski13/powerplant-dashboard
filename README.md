@@ -75,9 +75,9 @@ Ensure you have these installed:
 
 2. The server will start on `http://localhost:3000` by default.
 
-## API Endpoints
+# API Endpoints
 
-# Router /records:
+## Router /records:
 ------------------------ 
 | Method | Endpoint                 | Description                                     |
 | ------ | ------------------------ | ------------------------------------------------|
@@ -88,7 +88,7 @@ Ensure you have these installed:
 | DELETE | `/records/user/:id`      | Delete a record by ID                           |
 | GET    | `/records/type`          | Get all power plants from the table vrstapogona |
 
-# Router /login:
+## Router /login:
 ------------------------ 
 | Method | Endpoint                 | Description                                     |
 | ------ | ------------------------ | ------------------------------------------------|
@@ -96,7 +96,7 @@ Ensure you have these installed:
 | GET    | `/login/logout`          | Logs out user / clears cookie                   |
 | GET    | `/user-data`             | Retrieves user data from cookie                 |
 
-# Router /api:
+## Router /api:
 ------------------------ 
 | Method | Endpoint                 | Description                                             |
 | ------ | ------------------------ | --------------------------------------------------------|
@@ -112,14 +112,14 @@ The `evidencijaelektrane` table stores information about power plants.
 
 ### Attributes:
 
-| Column Name              | Data Type               | Constraints                       | Description                                |
+| Column Name             | Data Type              | Constraints                      | Description                                |
 |-------------------------|------------------------|----------------------------------|--------------------------------------------|
 | id                      | integer                | NOT NULL, PRIMARY KEY            | Unique identifier for each record          |
-| nazivelektrane         | character varying(100) | NOT NULL                         | Name of the power plant                    |
+| nazivelektrane          | character varying(100) | NOT NULL                         | Name of the power plant                    |
 | mesto                   | character varying(100) | NOT NULL                         | Location of the power plant                |
 | adresa                  | character varying(50)  | NOT NULL                         | Address of the power plant                 |
-| datumpustanjaurad      | date                   | NOT NULL                         | Date the power plant was put into operation|
-| sifravrstepogona       | integer                | NOT NULL                         | Foreign key referencing VrstaPogona table  |
+| datumpustanjaurad       | date                   | NOT NULL                         | Date the power plant was put into operation|
+| sifravrstepogona        | integer                | NOT NULL                         | Foreign key referencing VrstaPogona table  |
 
 ### Foreign Key Constraints:
 
@@ -130,3 +130,43 @@ The `evidencijaelektrane` table stores information about power plants.
     - ON UPDATE CASCADE
     - ON DELETE RESTRICT
 
+## Table: VrstaPogona ( vrstapogona )
+
+The `vrstapogona` table stores information about type power plants as well as the total number of active power plants.
+This table is 'support-table' for our main table evidencijaelektrana
+
+### Attributes:
+
+| Column Name             | Data Type              | Constraints                      | Description                                |
+|-------------------------|------------------------|----------------------------------|--------------------------------------------|
+| sifra                   | integer                | NOT NULL, PRIMARY KEY            | Unique identifier for each power-plant     |
+| naziv                   | character varying(100) | NOT NULL                         | Name of the power plant                    |
+| ukupanbrojelektrana     | character varying(100) | NOT NULL                         | Total number of power-plants               |
+
+- The values are predefined and user has option of choosing from the dropdown element for these three types of power plants while trying to create a Record of power plant :
+  
+INSERT INTO "VrstaPogona" (Sifra, Naziv, UkupanBrojElektrana) VALUES ('0', 'Voda', 0);
+INSERT INTO "VrstaPogona" (Sifra, Naziv, UkupanBrojElektrana) VALUES ('1', 'Vetar', 0);
+INSERT INTO "VrstaPogona" (Sifra, Naziv, UkupanBrojElektrana) VALUES ('2', 'Ugalj', 0);
+
+## Table: korisnik ( korisnik )
+
+The `korisnik` table stores information about user of the application
+
+### Attributes:
+
+| Column Name             | Data Type              | Constraints                      | Description                                |
+|-------------------------|------------------------|----------------------------------|--------------------------------------------|
+| idkorisnika             | integer                | NOT NULL, PRIMARY KEY            | Unique identifier for each power-plant     |
+| prezime                 | character varying(50)  | NOT NULL                         | Name of the power plant                    |
+| ime                     | character varying(40)  | NOT NULL                         | Total number of power-plants               |
+| email                   | character varying(50)  | NOT NULL, PRIMARY KEY            | Unique identifier for each power-plant     |
+| korisnickoime           | character varying(30)  | NOT NULL                         | Name of the power plant                    |
+| sifra                   | character varying(30)  | NOT NULL                         | Total number of power-plants               |
+| urlslike                | character varying(250) | NOT NULL, PRIMARY KEY            | Unique identifier for each power-plant     |
+| statusucesca            | character varying(30)  | NOT NULL                         | Name of the power plant                    |                              
+
+- Using SQL Shell, create user:
+
+INSERT INTO "KORISNIK" (PREZIME, IME, EMAIL, KORISNICKOIME, SIFRA, URLSLIKE, STATUSUCESCA) 
+VALUES ('Пиперски', 'Алекса', 'mr.alexpiperski@gmail.com', 'aleksap', 'ap', 'admin.jpg', 'admin');
