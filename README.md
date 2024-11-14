@@ -1,16 +1,21 @@
-# Node.js Express PostgreSQL CRUD API with JWT Auth
+# Node.js Express PostgreSQL CRUD API with JWT Auth / Vanilla Frontend
 
-A CRUD API built with Node.js, Express, and PostgreSQL for managing records in a sample database. Login Auth
+A CRUD API built with Node.js, Express, and PostgreSQL for managing records in a sample database. JWT is used for authentication user from database
 
 ## Features
 
 - **Create, Read, Update, and Delete** records
+- Authentication of user via JWT / protected routes - fetching data from the user table
 - RESTful endpoints for interacting with PostgreSQL tables
+- Real-time updatable HTML - fetching data from the logged user
 - Organized codebase using MVC architecture (Models, Views, Controllers)
+- Middleware for checking business rule - fetching data from support table to check if limit is reached
 - Centralized error handling
 
 ## Technologies
 
+- **HTML/CSS**: Markup and styling languages
+- **JavaScript**: Programming language, dynamic content
 - **Node.js**: JavaScript runtime
 - **Express.js**: Web framework for Node.js
 - **PostgreSQL**: Relational database
@@ -30,14 +35,14 @@ Ensure you have these installed:
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/Piperski13/node-api-postgres.git
+    git clone https://github.com/Piperski13/node-fullstack-postgres
 
     ```
 
 2. Navigate into the project directory:
 
     ```bash
-    cd node-api-postgres
+    cd node-fullstack-postgres
     ```
 
 3. Install dependencies:
@@ -56,7 +61,8 @@ Ensure you have these installed:
     DB_HOST,
     DB_DATABASE,
     DB_PASSWORD,
-    DB_PORT
+    DB_PORT,
+    JWT_SECRET
     ```
     
 ### Running the API
@@ -71,13 +77,31 @@ Ensure you have these installed:
 
 ## API Endpoints
 
-| Method | Endpoint               | Description           |
-| ------ | ----------------------- | --------------------- |
-| POST   | `/api/records`          | Create a new record   |
-| GET    | `/api/records`          | Retrieve all records  |
-| GET    | `/api/records/:id`      | Retrieve a single record by ID |
-| PUT    | `/api/records/:id`      | Update a record by ID |
-| DELETE | `/api/records/:id`      | Delete a record by ID |
+# Router /records:
+------------------------ 
+| Method | Endpoint                 | Description                                     |
+| ------ | ------------------------ | ------------------------------------------------|
+| POST   | `/records`               | Create a new record                             |
+| GET    | `/records`               | Retrieve all records                            |
+| GET    | `/records/user/:id`      | Retrieve a single record by ID                  |
+| PUT    | `/records/user/:id`      | Update a record by ID                           |
+| DELETE | `/records/user/:id`      | Delete a record by ID                           |
+| GET    | `/records/type`          | Get all power plants from the table vrstapogona |
+
+# Router /login:
+------------------------ 
+| Method | Endpoint                 | Description                                     |
+| ------ | ------------------------ | ------------------------------------------------|
+| POST   | `/login`                 | Logs user if password != false                  |
+| GET    | `/login/logout`          | Logs out user / clears cookie                   |
+| GET    | `/user-data`             | Retrieves user data from cookie                 |
+
+# Router /api:
+------------------------ 
+| Method | Endpoint                 | Description                                             |
+| ------ | ------------------------ | --------------------------------------------------------|
+| POST   | `/api/increment`         | Increments total records of certain type of power plant |
+| POST   | `/api/decrement`         | Decrements total records of certain type of power plant |
 
 
 # Database: energetika
