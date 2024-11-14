@@ -145,9 +145,9 @@ This table is 'support-table' for our main table evidencijaelektrana
 
 - The values are predefined and user has option of choosing from the dropdown element for these three types of power plants while trying to create a Record of power plant :
   
-INSERT INTO "VrstaPogona" (Sifra, Naziv, UkupanBrojElektrana) VALUES ('0', 'Voda', 0);
-INSERT INTO "VrstaPogona" (Sifra, Naziv, UkupanBrojElektrana) VALUES ('1', 'Vetar', 0);
-INSERT INTO "VrstaPogona" (Sifra, Naziv, UkupanBrojElektrana) VALUES ('2', 'Ugalj', 0);
+INSERT INTO "VrstaPogona" (Sifra, Naziv, UkupanBrojElektrana) VALUES ('0', 'Voda', 0);<br>
+INSERT INTO "VrstaPogona" (Sifra, Naziv, UkupanBrojElektrana) VALUES ('1', 'Vetar', 0);<br>
+INSERT INTO "VrstaPogona" (Sifra, Naziv, UkupanBrojElektrana) VALUES ('2', 'Ugalj', 0);<br>
 
 ## Table: korisnik ( korisnik )
 
@@ -168,5 +168,14 @@ The `korisnik` table stores information about user of the application
 
 - Using SQL Shell, create user:
 
-INSERT INTO "KORISNIK" (PREZIME, IME, EMAIL, KORISNICKOIME, SIFRA, URLSLIKE, STATUSUCESCA) 
-VALUES ('Пиперски', 'Алекса', 'mr.alexpiperski@gmail.com', 'aleksap', 'ap', 'admin.jpg', 'admin');
+INSERT INTO korisnik (PREZIME, IME, EMAIL, KORISNICKOIME, SIFRA, URLSLIKE, STATUSUCESCA)<br> 
+VALUES ('Пиперски', 'Алекса', 'mr.alexpiperski@gmail.com', 'aleksap', 'ap', 'admin.jpg', 'admin');<br>
+
+# Middleware
+
+In this project, two middleware functions are implemented:
+
+- **cookieJwtToken**: This middleware checks if the user's token is valid and not expired. It ensures that only authenticated users can access certain routes, providing an additional layer of security by automatically logging out users with invalid or expired tokens.
+
+- **bussinessRule**: This middleware is used when attempting to add a new record. It verifies that the current number of records does not exceed the maximum allowed limit (9). This prevents users from creating more records than the allowed threshold, maintaining data integrity.
+
