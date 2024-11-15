@@ -19,13 +19,17 @@ async function fetchRecords() {
   const recordsTable = document.getElementById("records-table");
   recordsTable.innerHTML = "";
   data.forEach((record) => {
+
+    const date = new Date(record.datumpustanjaurad); // Convert the ISO string to a Date object
+    const formattedDate = date.toISOString().split("T")[0]; // Extract 'YYYY-MM-DD'
+
     const row = document.createElement("tr");
     row.innerHTML = `
         <td>${record.id}</td>
         <td>${record.nazivelektrane}</td>
         <td>${record.mesto}</td>
         <td>${record.adresa}</td>
-        <td>${record.datumpustanjaurad}</td>
+        <td>${formattedDate}</td>
         <td>${record.sifravrstepogona}</td>
         <td><button class="update-record" onclick="redirectUpdate(${record.id})">Update</button></td>
         <td><button class="delete-record" onclick="deleteRecord(${record.id})">Delete</button></td>
