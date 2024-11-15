@@ -10,7 +10,7 @@ router
   .post(cookieJwtAuth, businessRuleMiddleware, recordController.addRecord);
 
 router
-  .route("/user/:id")
+  .route("/record/:id")
   .get(recordController.getRecord)
   .delete(cookieJwtAuth, recordController.deleteRecord)
   .put(recordController.updateRecord);

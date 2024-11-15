@@ -15,7 +15,7 @@ const getAllRecords = (req, res) => {
 const getRecord = (req, res) => {
   const id = parseInt(req.params.id);
   pool.query(
-    "SELECT * FROM evidencijaelektrana WHERE id=$1",
+    "SELECT * FROM evidencijaelektrana WHERE id=$1;",
     [id],
     (error, results) => {
       if (error) {
@@ -82,7 +82,10 @@ const updateRecord = (req, res) => {
       if (error) {
         throw error;
       }
-      res.status(200).send(`Record updated with ID: ${id}`);
+      res.status(200).json({
+        message: `Record with ID: ${id} updated sucessfully`,
+        sifravrstepogona: sifravrstepogona
+      })
     }
   );
 };
