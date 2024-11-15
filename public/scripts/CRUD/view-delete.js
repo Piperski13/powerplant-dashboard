@@ -8,6 +8,11 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 });
 
+async function redirectUpdate(updateId) {
+  const id = updateId;
+  window.location.href = `/updateRecord.html?id=${id}`;
+}
+
 async function fetchRecords() {
   const response = await fetch("/records/");
   const data = await response.json();
@@ -22,6 +27,7 @@ async function fetchRecords() {
         <td>${record.adresa}</td>
         <td>${record.datumpustanjaurad}</td>
         <td>${record.sifravrstepogona}</td>
+        <td><button class="update-record" onclick="redirectUpdate(${record.id})">Update</button></td>
         <td><button class="delete-record" onclick="deleteRecord(${record.id})">Delete</button></td>
     `;
     recordsTable.appendChild(row);
@@ -52,7 +58,7 @@ async function fetchTotalRecords() {
 
 async function deleteRecord(id) {
   try {
-    const response = await fetch(`/records/user/${id}`, {
+    const response = await fetch(`/records/record/${id}`, {
       method: "DELETE",
       credentials: "include",
     });

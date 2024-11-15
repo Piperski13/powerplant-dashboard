@@ -7,7 +7,7 @@ async function businessRuleMiddleware(req, res, next) {
     const records = await getTotalRecordsOfPowerPlants(sifra);
     const total = records.length > 0 ? records[0].ukupanbrojelektrana : 0;
 
-    if (total < 9) {
+    if (total < 10) {
       return next();
     } else {
       return res.status(400).json({ message: "Limit for vrsta pogona reached *max = 10" });
