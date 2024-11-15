@@ -177,5 +177,5 @@ In this project, two middleware functions are implemented:
 
 - **cookieJwtToken**: This middleware checks if the user's token is valid and not expired. It ensures that only authenticated users can access certain routes, providing an additional layer of security by automatically logging out users with invalid or expired tokens.
 
-- **bussinessRule**: This middleware is used when attempting to add a new record. It verifies that the current number of records does not exceed the maximum allowed limit (9). This prevents users from creating more records than the allowed threshold, maintaining data integrity.
+- **bussinessRule**: This middleware is used when attempting to add a new record. It verifies that the current number of records does not exceed the maximum allowed limit (10). This prevents users from creating more records than the allowed threshold, maintaining data integrity.
 
