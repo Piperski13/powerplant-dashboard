@@ -1,6 +1,6 @@
 /* Sidebar container */
 .sidebar {
-  width: 250px;
+  width: 180px;
   height: 598px;
   background-color: #3b49e6;
   display: flex;
@@ -23,6 +23,12 @@ nav {
 #main-box {
   background-color: rgb(228, 228, 228);
   border: 3px solid #3b49e6d8;
+}
+.menu{
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
 }
 /* Sidebar links */
 .sidebar a {
@@ -58,10 +64,10 @@ nav {
   font-size: 18px;
   transition: 0.3s;
 }
-.active-background{
+.active-background {
   background-color: #00abed;
 }
-.logout-style:hover{
+.logout-style:hover {
   background-color: #00abed;
 }
 .user-dropdown {
@@ -92,17 +98,68 @@ nav {
   opacity: 0.5;
 }
 
-.username-logged{
+.username-logged {
   display: flex;
   align-items: center;
   justify-content: left;
 }
 
-.logged-user{
+.logged-user {
   padding-left: 7.5px;
 }
 
-.material-symbols-outlined{
+.material-symbols-outlined {
   font-size: 50px;
 }
 /* DROP DOWN END */
+
+/* responsive design start */
+
+/* hamburger menu start  */
+.hamburger {
+  display: none;
+  font-size: 40px;
+  color: #0e152f;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 35px;
+  z-index: 1;
+}
+.menu.hidden {
+  display: flex;
+}
+.sidebar.hidden {
+  width: 125px;
+  height: 598px;
+  background-color: #3b49e6;
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+}
+/* hamburger menu end  */
+
+@media (max-width: 1024px) {
+  .menu{
+    display: none;
+    margin-top: 50%;
+  }
+  .sidebar{
+    display: none;
+  }
+  .hamburger {
+    display: block;
+  }
+  .logged-user{
+    display: none;
+  }
+  .icon{
+    margin-left: 37px;
+  }
+  .dropdown-content{
+    min-width: 95px;
+    left: 14.5px
+  }
+}
+
+/* responsive design finish */
