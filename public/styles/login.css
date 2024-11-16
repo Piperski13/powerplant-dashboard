@@ -80,3 +80,19 @@ input::placeholder {
   display: none;
 }
 /* incorrect password finish */
+
+/* responsive design start */
+
+@media (max-width:430px) {
+  #form-section{
+    width: 15em;
+  }
+  input {
+    padding: 10px 16%;
+  }
+  .login-submit-btn{
+    padding: 13px 48%;
+  }
+}
+
+/* responsive design finish */

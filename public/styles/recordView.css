@@ -57,7 +57,8 @@ td:last-child {
   text-align: center;
 }
 
-.delete-record,.update-record {
+.delete-record,
+.update-record {
   padding: 6px 10px;
   color: #ffffff;
   border: none;
@@ -66,9 +67,9 @@ td:last-child {
   transition: background-color 0.2s;
 }
 .update-record {
-  background-color:#4caf50;
+  background-color: #4caf50;
 }
-.delete-record{
+.delete-record {
   background-color: #f44336;
 }
 
@@ -87,13 +88,14 @@ caption {
   color: #333;
 }
 #main-box {
+  display: flex;
   align-items: flex-end;
   justify-content: right;
   overflow: auto;
   flex-direction: column;
 }
 
-.div-tables-section{
+.div-tables-section {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -101,14 +103,105 @@ caption {
 }
 
 /* Small table start */
-#small-table{
+#small-table {
   width: 275px;
 }
-.table-text-bellow{
+.table-text-bellow {
   margin-top: 5px;
   margin-bottom: 20px;
 }
-.small-table-caption{
+.small-table-caption {
   font-size: 23px;
 }
 /* Small table end */
+
+/* responsive design finish */
+@media (max-width: 1000px) {
+  th {
+    font-size: 0.9em;
+  }
+  th,
+  td {
+    padding: 3px 6px;
+  }
+}
+@media (max-width: 716px) {
+  th,
+  td {
+    font-size: 0.7em;
+    padding: 3px;
+  }
+  .delete-record,
+  .update-record {
+    padding: 10px 3px;
+  }
+  .hamburger {
+    top: 5px;
+    left: 5px;
+  }
+}
+@media (max-width: 509px) {
+  table {
+    width: 100%;
+  }
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  thead {
+    display: none;
+  }
+
+  tr {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+  }
+
+  td {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border: none;
+  }
+
+  table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #main-box {
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  #small-table {
+    margin-top: 25px;
+    width: 55%;
+  }
+  caption,
+  .small-table-caption {
+    font-size: 20px;
+  }
+  th,
+  td {
+    font-size: 1.5em;
+    padding: 3px;
+  }
+  .delete-record,
+  .update-record {
+    padding: 10px 3px;
+  }
+}
+/* responsive design finish */
