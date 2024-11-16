@@ -36,7 +36,8 @@ input::placeholder {
 
 h2 {
   text-align: center;
-  padding-top: 40px;
+  padding-top: 30px;
+  padding-bottom: 35px;
 }
 a {
   text-decoration: none;
@@ -60,6 +61,7 @@ a {
 .form-style {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .form-style label {
   text-align: left;
@@ -92,3 +94,33 @@ a {
   color: red;
 }
 /* business rule end */
+
+/* responsive desing start  */
+@media (max-width: 768px) {
+  h2 {
+    font-size: 17px;
+    padding-bottom: 17px;
+  }
+  .form-submit-button {
+    padding: 15px;
+  }
+  label {
+    padding-bottom: 1em;
+  }
+  input,
+  select {
+    width: 50%;
+    padding: 8px 15px;
+  }
+}
+@media (max-width: 500px) {
+  input,
+  select {
+    width: 200px;
+  }
+  .hamburger{
+    top: 0;
+    left: 0;
+  }
+}
+/* responsive desing end  */

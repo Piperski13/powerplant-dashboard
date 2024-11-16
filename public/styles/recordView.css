@@ -141,6 +141,9 @@ caption {
   }
 }
 @media (max-width: 509px) {
+  table {
+    width: 100%;
+  }
   table,
   thead,
   tbody,
@@ -173,12 +176,6 @@ caption {
     border: none;
   }
 
-  td::before {
-    content: attr(data-label);
-    font-weight: bold;
-    text-transform: capitalize;
-    margin-right: 10px;
-  }
   table {
     display: flex;
     flex-direction: column;
@@ -189,7 +186,7 @@ caption {
     align-items: center;
     justify-content: space-evenly;
   }
-  #small-table{
+  #small-table {
     margin-top: 25px;
     width: 55%;
   }
@@ -199,7 +196,7 @@ caption {
   }
   th,
   td {
-    font-size: 0.7em;
+    font-size: 1.5em;
     padding: 3px;
   }
   .delete-record,
