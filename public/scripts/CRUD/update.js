@@ -7,8 +7,13 @@ let oldPlant;
 window.onload = async () => {
   try {
     const response = await fetch(`/records/record/${recordId}`);
+
     if (!response.ok) throw new Error("Failed to fetch record");
     const records = await response.json();
+
+    if (records.length === 0) {
+      throw new Error("No records found.");
+    }
 
     const record = records[0];
 
