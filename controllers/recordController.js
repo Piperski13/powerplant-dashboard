@@ -75,24 +75,33 @@ const deleteRecord = async (req, res) => {
   }
 };
 
-const updateRecord = (req, res) => {
-  const id = parseInt(req.params.id);
-  const { nazivelektrane, mesto, adresa, datumpustanjaurad, sifravrstepogona } =
-    req.body;
+const updateRecord = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+    const {
+      nazivelektrane,
+      mesto,
+      adresa,
+      datumpustanjaurad,
+      sifravrstepogona,
+    } = req.body;
 
-  pool.query(
-    "UPDATE evidencijaelektrana Set nazivelektrane = $1, mesto = $2, adresa = $3, datumpustanjaurad = $4, sifravrstepogona = $5 WHERE id = $6",
-    [nazivelektrane, mesto, adresa, datumpustanjaurad, sifravrstepogona, id],
-    (error, results) => {
-      if (error) {
-        throw error;
-      }
-      res.status(200).json({
-        message: `Record with ID: ${id} updated sucessfully`,
-        sifravrstepogona: sifravrstepogona,
-      });
-    }
-  );
+    await Record.updateById({
+      id,
+      nazivelektrane,
+      mesto,
+      adresa,
+      datumpustanjaurad,
+      sifravrstepogona,
+    });
+
+    res.status(200).json({
+      message: `Record with ID: ${id} updated sucessfully`,
+      sifravrstepogona: sifravrstepogona,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
 // small table (vrstapogona) START

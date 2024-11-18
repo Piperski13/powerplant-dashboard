@@ -58,6 +58,31 @@ class Record {
       console.error("Error database query (deleteById): ", error.message);
     }
   }
+  static async updateById({
+    id,
+    nazivelektrane,
+    mesto,
+    adresa,
+    datumpustanjaurad,
+    sifravrstepogona,
+  }) {
+    try {
+      const query =
+        "UPDATE evidencijaelektrana Set nazivelektrane = $1, mesto = $2, adresa = $3, datumpustanjaurad = $4, sifravrstepogona = $5 WHERE id = $6";
+      const values = [
+        nazivelektrane,
+        mesto,
+        adresa,
+        datumpustanjaurad,
+        sifravrstepogona,
+        id,
+      ];
+
+      await pool.query(query, values);
+    } catch (error) {
+      console.error("Error database query (updateById): ", error.message);
+    }
+  }
 }
 
 module.exports = Record;
