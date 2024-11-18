@@ -1,14 +1,12 @@
 const pool = require("../config/db");
 const jwt = require("jsonwebtoken");
+const Login = require("../model/login.js")
 require("dotenv").config("../.env");
 
 const getUser = async (username) => {
   try {
-    const results = await pool.query(
-      "SELECT * FROM korisnik WHERE korisnickoime=$1",
-      [username]
-    );
-    return results.rows[0];
+    const result = await Login.getUsername(username);
+    return result;
   } catch (error) {
     console.error(error);
   }

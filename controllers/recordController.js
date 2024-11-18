@@ -1,4 +1,3 @@
-const pool = require("../config/db");
 const Record = require("../model/records.js");
 
 const getAllRecords = async (req, res) => {
