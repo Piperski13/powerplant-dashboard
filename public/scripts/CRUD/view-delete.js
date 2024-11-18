@@ -19,7 +19,6 @@ async function fetchRecords() {
   const recordsTable = document.getElementById("records-table");
   recordsTable.innerHTML = "";
   data.forEach((record) => {
-
     const date = new Date(record.datumpustanjaurad); // Convert the ISO string to a Date object
     const formattedDate = date.toISOString().split("T")[0]; // Extract 'YYYY-MM-DD'
 
@@ -44,9 +43,11 @@ async function fetchTotalRecords() {
     console.error("Error fetching /records/type:", response.statusText);
     return;
   }
-  
+
   const data = await response.json();
-  const result = data.map(item => ({ ukupanbrojelektrana: item.ukupanbrojelektrana }));
+  const result = data.map((item) => ({
+    ukupanbrojelektrana: item.ukupanbrojelektrana,
+  }));
 
   const recordsTable = document.getElementById("types-table");
   recordsTable.innerHTML = "";
