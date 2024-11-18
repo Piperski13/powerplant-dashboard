@@ -1,23 +1,55 @@
 const pool = require("../config/db");
 
-class Record{
-  static async add({nazivelektrane, mesto, adresa, datumpustanjaurad, sifravrstepogona}){
+class Record {
+  static async add({
+    nazivelektrane,
+    mesto,
+    adresa,
+    datumpustanjaurad,
+    sifravrstepogona,
+  }) {
+    try {
+      const query = `INSERT INTO evidencijaelektrana (nazivelektrane,mesto,adresa,datumpustanjaurad,sifravrstepogona) VALUES ($1,$2,$3,$4,$5) RETURNING *`;
 
-    const query = `INSERT INTO evidencijaelektrana (nazivelektrane,mesto,adresa,datumpustanjaurad,sifravrstepogona) VALUES ($1,$2,$3,$4,$5) RETURNING *`;
+      const value = [
+        nazivelektrane,
+        mesto,
+        adresa,
+        datumpustanjaurad,
+        sifravrstepogona,
+      ];
 
-    const value = [nazivelektrane, mesto, adresa, datumpustanjaurad, sifravrstepogona];
+      const { rows } = await pool.query(query, value);
 
-    const {rows} = await pool.query(query,value)
-
-    return rows[0] // return new record
+      return rows[0]; // return new record
+    } catch (error) {
+      console.error("Database query failed (add):", error.message);
+    }
   }
-  static async getAll(){
-    const query = `SELECT * FROM evidencijaelektrana ORDER BY id ASC`;
+  static async getAll() {
+    try {
+      const query = `SELECT * FROM evidencijaelektrana ORDER BY id ASC`;
 
-    const {rows} = await pool.query(query);
-    return rows;
+      const { rows } = await pool.query(query);
+      return rows;
+    } catch (error) {
+      console.error("Database query failed (getAll):", error.message);
+    }
+  }
+  static async getById(id) {
+    try {
+      const query = `SELECT * FROM evidencijaelektrana WHERE id=$1;`;
+      const value = [id];
+
+      const { rows } = await pool.query(query, value);
+      if(!rows){
+        throw new Error("ID DOESNT NOT EXIST");
+      }
+      return rows;
+    } catch (error) {
+      console.error("Error database query (getById): ",error.message);
+    }
   }
 }
-
 
 module.exports = Record;
