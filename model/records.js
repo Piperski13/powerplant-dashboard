@@ -42,12 +42,20 @@ class Record {
       const value = [id];
 
       const { rows } = await pool.query(query, value);
-      if(!rows){
-        throw new Error("ID DOESNT NOT EXIST");
-      }
       return rows;
     } catch (error) {
-      console.error("Error database query (getById): ",error.message);
+      console.error("Error database query (getById): ", error.message);
+    }
+  }
+  static async deleteById(id) {
+    try {
+      const query = "DELETE FROM evidencijaelektrana WHERE id=$1 RETURNING *";
+      const value = [id];
+
+      const { rows } = await pool.query(query, value);
+      return rows;
+    } catch (error) {
+      console.error("Error database query (deleteById): ", error.message);
     }
   }
 }

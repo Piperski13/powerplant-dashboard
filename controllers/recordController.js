@@ -25,7 +25,6 @@ const getRecord = async (req, res) => {
 
     const record = await Record.getById(id);
     res.status(200).json(record);
-    
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
@@ -57,28 +56,23 @@ const addRecord = async (req, res) => {
   }
 };
 
-const deleteRecord = (req, res) => {
-  const id = parseInt(req.params.id);
-  pool.query(
-    "DELETE FROM evidencijaelektrana WHERE id=$1 RETURNING *",
-    [id],
-    (error, results) => {
-      if (error) {
-        throw error;
-      }
+const deleteRecord = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
 
-      if (results.rowCount === 0) {
-        res.status(404).json({ message: `Record with ${id} was not found ` });
-      }
+    const results = await Record.deleteById(id);
 
-      const deletedRecord = results.rows[0];
-
-      res.status(200).json({
-        message: `Deleted Record with ID ${id}`,
-        sifravrstepogona: deletedRecord.sifravrstepogona,
-      });
+    if (results.rowCount === 0) {
+      res.status(404).json({ message: `Record with ${id} was not found ` });
     }
-  );
+    const deletedRecord = results[0];
+    res.status(200).json({
+      message: `Deleted Record with ID ${id}`,
+      sifravrstepogona: deletedRecord.sifravrstepogona,
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
 const updateRecord = (req, res) => {
