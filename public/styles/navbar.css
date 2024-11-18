@@ -141,6 +141,12 @@ nav {
 }
 /* hamburger menu end  */
 
+@media (max-width: 500px) {
+  .hamburger {
+    top: 0;
+    left: 0;
+  }
+}
 @media (max-width: 1439px) {
   .menu {
     display: none;
