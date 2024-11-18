@@ -1,16 +1,21 @@
 const pool = require("../config/db");
 const Record = require("../model/records.js");
 
-const getAllRecords = (req, res) => {
-  pool.query(
-    "SELECT * FROM evidencijaelektrana ORDER BY id ASC",
-    (error, results) => {
-      if (error) {
-        throw error;
-      }
-      res.status(200).json(results.rows);
+const getAllRecords = async (req, res) => {
+  try {
+    const allRecords = await Record.getAll();
+    res.status(200).json(allRecords);
+
+    if (!allRecords || allRecords.length === 0) {
+      return res.status(404).json({ message: "No records found." });
     }
-  );
+  } catch (error) {
+    console.error("Error fetching records:", error.message);
+    res.status(500).json({
+      error: "An error occurred while fetching records.",
+      details: error.message,
+    });
+  }
 };
 
 const getRecord = (req, res) => {

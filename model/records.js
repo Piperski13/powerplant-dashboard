@@ -11,6 +11,12 @@ class Record{
 
     return rows[0] // return new record
   }
+  static async getAll(){
+    const query = `SELECT * FROM evidencijaelektrana ORDER BY id ASC`;
+
+    const {rows} = await pool.query(query);
+    return rows;
+  }
 }
 
 
