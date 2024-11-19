@@ -1,4 +1,4 @@
-# Node.js Express PostgreSQL CRUD API with JWT Auth / Vanilla Frontend / Responsive Design
+# Node.js Express PostgreSQL CRUD (MVC) API with JWT Auth / Vanilla Frontend / Responsive Design
 
 A CRUD API built with Node.js, Express, and PostgreSQL for managing records in a sample database. 
 JWT is used for authentication user from database
