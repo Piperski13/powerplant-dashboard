@@ -17,4 +17,5 @@ router
 
 router.route("/type").get(recordController.getPowerPlants);
 
+
 module.exports = router;

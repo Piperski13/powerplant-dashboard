@@ -14,27 +14,37 @@ async function redirectUpdate(updateId) {
 }
 
 async function fetchRecords() {
-  const response = await fetch("/records/");
-  const data = await response.json();
-  const recordsTable = document.getElementById("records-table");
-  recordsTable.innerHTML = "";
-  data.forEach((record) => {
-    const date = new Date(record.datumpustanjaurad); // Convert the ISO string to a Date object
-    const formattedDate = date.toISOString().split("T")[0]; // Extract 'YYYY-MM-DD'
+  // Get the current URL's query string
+  const queryString = window.location.search;
 
-    const row = document.createElement("tr");
-    row.innerHTML = `
-        <td>${record.id}</td>
-        <td>${record.nazivelektrane}</td>
-        <td>${record.mesto}</td>
-        <td>${record.adresa}</td>
-        <td>${formattedDate}</td>
-        <td>${record.sifravrstepogona}</td>
-        <td><button class="update-record" onclick="redirectUpdate(${record.id})">Update</button></td>
-        <td><button class="delete-record" onclick="deleteRecord(${record.id})">Delete</button></td>
-    `;
-    recordsTable.appendChild(row);
-  });
+  // Parse the query string using URLSearchParams
+  const urlParams = new URLSearchParams(queryString);
+
+  // Get the specific parameter (e.g., 'name')
+  const name = urlParams.get("name"); // 'JKP'
+  if (!name) {
+    const response = await fetch("/records/");
+    const data = await response.json();
+    const recordsTable = document.getElementById("records-table");
+    recordsTable.innerHTML = "";
+    data.forEach((record) => {
+      const date = new Date(record.datumpustanjaurad); // Convert the ISO string to a Date object
+      const formattedDate = date.toISOString().split("T")[0]; // Extract 'YYYY-MM-DD'
+
+      const row = document.createElement("tr");
+      row.innerHTML = `
+          <td>${record.id}</td>
+          <td>${record.nazivelektrane}</td>
+          <td>${record.mesto}</td>
+          <td>${record.adresa}</td>
+          <td>${formattedDate}</td>
+          <td>${record.sifravrstepogona}</td>
+          <td><button class="update-record" onclick="redirectUpdate(${record.id})">Update</button></td>
+          <td><button class="delete-record" onclick="deleteRecord(${record.id})">Delete</button></td>
+      `;
+      recordsTable.appendChild(row);
+    });
+  }
 }
 async function fetchTotalRecords() {
   console.log("Fetching total records...");
@@ -74,7 +84,7 @@ async function deleteRecord(id) {
     if (response.status === 401) {
       window.location.href = "/";
     } else if (response.ok) {
-      const response = await fetch("/api/decrement", {
+      const response = await fetch("/plants/decrement", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sifravrstepogona }),

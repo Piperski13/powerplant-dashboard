@@ -10,6 +10,7 @@ const cookieJwtAuth = require("./public/scripts/middleware/cookieJwtAuth.js");
 const recordRouter = require("./routes/recordRoutes.js");
 const loginRouter = require("./routes/loginRoutes.js");
 const incDecRouter = require("./routes/incDecRoutes.js");
+const viewRouter = require("./routes/viewRoutes.js")
 
 app.use(bodyParser.json());
 app.use(
@@ -36,15 +37,13 @@ app.get("/addRecordPage", cookieJwtAuth, (req, res) => {
   res.sendFile(path.join(__dirname, "public", "addRecord.html"));
 });
 
-app.get("/recordsViewPage", cookieJwtAuth, (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "View/recordsView.html"));
-});
+app.use("/recordsViewPage", cookieJwtAuth, viewRouter );
 
 app.use("/records", recordRouter);
 
 app.use("/login", loginRouter);
 
-app.use("/api", incDecRouter);
+app.use("/plants", incDecRouter);
 
 
 module.exports = app;

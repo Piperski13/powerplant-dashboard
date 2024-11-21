@@ -18,7 +18,7 @@
         <span class="material-symbols-outlined hamburger">menu</span>
         <div class="sidebar">
           <div id="menu" class="menu">
-            <a href="./welcome.html">Home</a>
+            <a href="/welcome.html">Home</a>
             <a href="/recordsViewPage" id="view-records-js">View All Records</a>
             <a href="/addRecordPage" id="add-record-js">Add Record</a>
           </div>
@@ -53,6 +53,19 @@
         </table>
         <p class="table-text-bellow">*max records per type = 10</p>
         <table>
+          <form id="filter-form">
+            <label for="filter-name">Filter by Name</label>
+            <input
+              id="filter-name-input"
+              class="filter-name-input-class"
+              name="filter-name"
+              type="text"
+              placeholder="Naziv elektrane"
+            />
+            <div class="filter-submit">
+              <button type="submit" id="submit-filter" class="form-submit-filter">Filter</button>
+            </div>
+          </form>
           <caption>
             Lista Evidencija Elektrana
           </caption>
@@ -73,9 +86,10 @@
       </div>
     </header>
 
+    <script src="../scripts/filter/filter.js"></script>
     <script src="../scripts/hamburger_menu/toggleMenu.js"></script>
     <script src="../scripts/auth/decodedToken.js"></script>
-    <script src="../scripts/CRUD/view-delete.js"></script>
+    <script src="../scripts/crud/view-delete.js"></script>
     <script src="../scripts/auth/logout.js"></script>
   </body>
 </html>

@@ -97,12 +97,12 @@ Ensure you have these installed:
 | GET    | `/login/logout`          | Logs out user / clears cookie                   |
 | GET    | `/user-data`             | Retrieves user data from cookie                 |
 
-## Router /api:
+## Router /plants:
 ------------------------ 
 | Method | Endpoint                 | Description                                             |
 | ------ | ------------------------ | --------------------------------------------------------|
-| POST   | `/api/increment`         | Increments total records of certain type of power plant |
-| POST   | `/api/decrement`         | Decrements total records of certain type of power plant |
+| POST   | `/plants/increment`         | Increments total records of certain type of power plant |
+| POST   | `/plants/decrement`         | Decrements total records of certain type of power plant |
 
 
 # Database: energetika
