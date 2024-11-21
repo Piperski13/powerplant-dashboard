@@ -1,6 +1,6 @@
 const pool = require("../config/db");
 const jwt = require("jsonwebtoken");
-const Login = require("../model/login.js")
+const Login = require("../model/loginModel.js")
 require("dotenv").config("../.env");
 
 const getUser = async (username) => {

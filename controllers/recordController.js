@@ -1,4 +1,4 @@
-const Record = require("../model/records.js");
+const Record = require("../model/recordsModel.js");
 
 const getAllRecords = async (req, res) => {
   try {
