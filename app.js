@@ -11,6 +11,9 @@ const recordRouter = require("./routes/recordRoutes.js");
 const loginRouter = require("./routes/loginRoutes.js");
 const incDecRouter = require("./routes/incDecRoutes.js");
 
+//test
+const recordController = require("./controllers/recordController.js");
+
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
@@ -36,9 +39,9 @@ app.get("/addRecordPage", cookieJwtAuth, (req, res) => {
   res.sendFile(path.join(__dirname, "public", "addRecord.html"));
 });
 
-app.get("/recordsViewPage", cookieJwtAuth, (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "View/recordsView.html"));
-});
+// Serve the records view page and handle query parameters for filtering
+app.get("/recordsViewPage", cookieJwtAuth, recordController.filterRecords );
+
 
 app.use("/records", recordRouter);
 
