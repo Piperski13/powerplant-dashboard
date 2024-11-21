@@ -1,5 +1,4 @@
-const pool = require("../config/db");
-const Record = require("../model/records.js");
+const Record = require("../model/recordsModel.js");
 
 const getAllRecords = async (req, res) => {
   try {
@@ -105,17 +104,13 @@ const updateRecord = async (req, res) => {
 };
 
 // small table (vrstapogona) START
-const getPowerPlants = (req, res) => {
-  pool.query(
-    "SELECT * FROM vrstapogona ORDER BY sifra ASC;",
-    (error, results) => {
-      if (error) {
-        console.error("Error in test query:", error);
-        return res.status(500).json({ error: "Get Power Plants query failed" });
-      }
-      res.status(200).json(results.rows);
-    }
-  );
+const getPowerPlants = async (req, res) => {
+  try {
+    const allPlants = await Record.getAllPlants();
+    res.status(200).json(allPlants);
+  } catch (error) {
+    res.status(500).json({ error: "Get Power Plants query failed" });
+  }
 };
 // small table (vrstapogona) END
 
