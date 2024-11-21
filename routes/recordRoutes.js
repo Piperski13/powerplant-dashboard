@@ -11,12 +11,10 @@ router
 
 router
   .route("/record/:id")
-  .get(recordController.getRecord)
+  .get(cookieJwtAuth, recordController.getRecord)
   .delete(cookieJwtAuth, recordController.deleteRecord)
-  .put(recordController.updateRecord);
+  .put(cookieJwtAuth, recordController.updateRecord);
 
-router
-  .route("/type")
-  .get(recordController.getPowerPlants)
+router.route("/type").get(recordController.getPowerPlants);
 
 module.exports = router;
