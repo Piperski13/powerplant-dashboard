@@ -2,7 +2,7 @@ const View = require("../model/viewModel.js");
 const path = require("path");
 
 // record filtering START
-const filterRecords = async (req, res) => {
+const generateView = async (req, res) => {
   try {
     const name = req.query.name || ""; // Get the query parameter 'name'
 
@@ -139,4 +139,4 @@ const filterRecords = async (req, res) => {
 };
 // record filtering END
 
-module.exports = {filterRecords};
+module.exports = {generateView};
