@@ -11,7 +11,7 @@ JWT is used for authentication user from database
 - Real-time updatable HTML - fetching data from the logged user
 - Organized codebase using MVC architecture (Models, Views, Controllers)
 - Middleware for checking business rule - fetching data from support table to check if limit is reached
-- Filter for recrods View table
+- Filter input for recrods View table
 - Centralized error handling
 
 ## Technologies
