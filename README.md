@@ -11,6 +11,7 @@ JWT is used for authentication user from database
 - Real-time updatable HTML - fetching data from the logged user
 - Organized codebase using MVC architecture (Models, Views, Controllers)
 - Middleware for checking business rule - fetching data from support table to check if limit is reached
+- Filter for recrods View table
 - Centralized error handling
 
 ## Technologies
@@ -89,6 +90,13 @@ Ensure you have these installed:
 | DELETE | `/records/user/:id`      | Delete a record by ID                           |
 | GET    | `/records/type`          | Get all power plants from the table vrstapogona |
 
+## Router /recordsViewPage
+------------------------ 
+| Method | Endpoint                 | Description                                     |
+| ------ | ------------------------ | ------------------------------------------------|
+| POST   | `/recordsViewPage`       | Generate table for view ( filter logic added )  |
+
+
 ## Router /login:
 ------------------------ 
 | Method | Endpoint                 | Description                                     |
@@ -99,8 +107,8 @@ Ensure you have these installed:
 
 ## Router /plants:
 ------------------------ 
-| Method | Endpoint                 | Description                                             |
-| ------ | ------------------------ | --------------------------------------------------------|
+| Method | Endpoint                 | Description                                                |
+| ------ | ------------------------ | -----------------------------------------------------------|
 | POST   | `/plants/increment`         | Increments total records of certain type of power plant |
 | POST   | `/plants/decrement`         | Decrements total records of certain type of power plant |
 
