@@ -44,7 +44,7 @@ app.use("/records", recordRouter);
 
 app.use("/login", loginRouter);
 
-app.use("/api", incDecRouter);
+app.use("/plants", incDecRouter);
 
 
 module.exports = app;

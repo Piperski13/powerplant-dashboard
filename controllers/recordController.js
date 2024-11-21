@@ -1,5 +1,6 @@
 const Record = require("../model/recordsModel.js");
 
+// CRUD HANDLERS START
 const getAllRecords = async (req, res) => {
   try {
     const allRecords = await Record.getAll();
@@ -102,6 +103,7 @@ const updateRecord = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+// CRUD HANDLERS END
 
 // small table (vrstapogona) START
 const getPowerPlants = async (req, res) => {
@@ -114,6 +116,18 @@ const getPowerPlants = async (req, res) => {
 };
 // small table (vrstapogona) END
 
+// record filtering START
+const filterRecords = async (req, res) => {
+  try {
+    const filter = req.params.name;
+    const filteredData = await Record.filterData(filter);
+    res.status(200).json(filteredData);
+  } catch (error) {
+    res.status(500).json({ error: "Filter handeler failure" });
+  }
+};
+// record filtering END
+
 module.exports = {
   getAllRecords,
   getRecord,
@@ -121,4 +135,5 @@ module.exports = {
   deleteRecord,
   updateRecord,
   getPowerPlants,
+  filterRecords
 };

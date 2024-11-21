@@ -17,7 +17,7 @@ document
         const data = await response.json();
         const sifravrstepogona = data.sifravrstepogona
 
-        await fetch('/api/increment', {
+        await fetch('/plants/increment', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ sifravrstepogona }),

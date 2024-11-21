@@ -74,7 +74,7 @@ async function deleteRecord(id) {
     if (response.status === 401) {
       window.location.href = "/";
     } else if (response.ok) {
-      const response = await fetch("/api/decrement", {
+      const response = await fetch("/plants/decrement", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ sifravrstepogona }),
