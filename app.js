@@ -10,9 +10,7 @@ const cookieJwtAuth = require("./public/scripts/middleware/cookieJwtAuth.js");
 const recordRouter = require("./routes/recordRoutes.js");
 const loginRouter = require("./routes/loginRoutes.js");
 const incDecRouter = require("./routes/incDecRoutes.js");
-
-//test
-const recordController = require("./controllers/recordController.js");
+const viewRouter = require("./routes/viewRoutes.js")
 
 app.use(bodyParser.json());
 app.use(
@@ -39,9 +37,7 @@ app.get("/addRecordPage", cookieJwtAuth, (req, res) => {
   res.sendFile(path.join(__dirname, "public", "addRecord.html"));
 });
 
-// Serve the records view page and handle query parameters for filtering
-app.get("/recordsViewPage", cookieJwtAuth, recordController.filterRecords );
-
+app.use("/recordsViewPage", cookieJwtAuth, viewRouter );
 
 app.use("/records", recordRouter);
 
