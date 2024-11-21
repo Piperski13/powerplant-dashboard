@@ -1,7 +1,8 @@
 const pool = require("../config/db");
 
-function incrementRecord(sifravrstepogona,res) {
-  const sifra = sifravrstepogona;
+const incrementRecord =  async (req,res) =>{
+  const {sifravrstepogona} = req.body;
+  const sifra = sifravrstepogona
   pool.query(
     "UPDATE vrstapogona SET ukupanbrojelektrana = ukupanbrojelektrana + 1 WHERE sifra = $1 RETURNING *",
     [sifra],
@@ -16,8 +17,10 @@ function incrementRecord(sifravrstepogona,res) {
     }
   );
 }
-function decrementRecord(sifravrstepogona,res) {
-  const sifra = sifravrstepogona;
+
+const decrementRecord =  async (req,res) =>{
+  const {sifravrstepogona} = req.body;
+  const sifra = sifravrstepogona
   pool.query(
     "UPDATE vrstapogona SET ukupanbrojelektrana = ukupanbrojelektrana - 1 WHERE sifra = $1 RETURNING *",
     [sifra],
@@ -32,6 +35,7 @@ function decrementRecord(sifravrstepogona,res) {
     }
   );
 }
+
 module.exports = {
   incrementRecord,
   decrementRecord,

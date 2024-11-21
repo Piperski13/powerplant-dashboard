@@ -7,7 +7,6 @@ async function getTotalRecordsOfPowerPlants(sifra) {
       "SELECT ukupanbrojelektrana FROM vrstapogona WHERE sifra = $1;",
       [sifra]
     );
-    console.log(result);
     return result.rows; 
   } catch (error) {
     console.error("Error in getTotalRecordsOfPowerPlants query:", error);

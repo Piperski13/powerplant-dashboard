@@ -58,9 +58,6 @@ document
       if (response.ok) {
         const data = await response.json();
         const sifravrstepogona = data.sifravrstepogona;
-        console.log(data);
-        console.log(sifravrstepogona);
-        console.log(oldPlant);
 
         await fetch("/api/increment", {
           method: "POST",
