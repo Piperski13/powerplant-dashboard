@@ -86,19 +86,20 @@ const generateView = async (req, res) => {
               </table>
               <p class="table-text-bellow">*max records per type = 10</p>
               <table>
-                <form id="filter-form">
-                  <label for="filter-name">Filter by Name</label>
-                  <input
-                    id="filter-name-input"
-                    class="filter-name-input-class"
-                    name="filter-name"
-                    type="text"
-                    placeholder="Naziv elektrane"
-                  />
-                  <div class="filter-submit">
-                    <button type="submit" id="submit-filter" class="form-submit-filter">Filter</button>
-                  </div>
-                </form>
+                <div id="div-filter-form">
+                  <form id="filter-form">
+                    <input
+                      id="filter-name-input"
+                      class="filter-name-input-class"
+                      name="filter-name"
+                      type="text"
+                      placeholder="Search by Name"
+                    />
+                    <div class="filter-submit">
+                      <button type="submit" id="submit-filter" class="form-submit-filter">Filter</button>
+                    </div>
+                  </form>
+                </div>
                 <caption>
                   Lista Evidencija Elektrana
                 </caption>
@@ -139,4 +140,4 @@ const generateView = async (req, res) => {
 };
 // record filtering END
 
-module.exports = {generateView};
+module.exports = { generateView };
