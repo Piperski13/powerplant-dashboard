@@ -166,14 +166,14 @@ The `korisnik` table stores information about user of the application
 
 | Column Name             | Data Type              | Constraints                      | Description                                |
 |-------------------------|------------------------|----------------------------------|--------------------------------------------|
-| idkorisnika             | integer                | NOT NULL, PRIMARY KEY            | Unique identifier for each power-plant     |
-| prezime                 | character varying(50)  | NOT NULL                         | Name of the power plant                    |
-| ime                     | character varying(40)  | NOT NULL                         | Total number of power-plants               |
-| email                   | character varying(50)  | NOT NULL, PRIMARY KEY            | Unique identifier for each power-plant     |
-| korisnickoime           | character varying(30)  | NOT NULL                         | Name of the power plant                    |
-| sifra                   | character varying(30)  | NOT NULL                         | Total number of power-plants               |
-| urlslike                | character varying(250) | NOT NULL, PRIMARY KEY            | Unique identifier for each power-plant     |
-| statusucesca            | character varying(30)  | NOT NULL                         | Name of the power plant                    |                              
+| idkorisnika             | integer                | NOT NULL, PRIMARY KEY            | Unique identifier of the user              |
+| prezime                 | character varying(50)  | NOT NULL                         | User's last name                           |
+| ime                     | character varying(40)  | NOT NULL                         | User's first name                          |
+| email                   | character varying(50)  | NOT NULL, PRIMARY KEY            | User's email address                       |
+| korisnickoime           | character varying(30)  | NOT NULL                         | Username of the user                       |
+| sifra                   | character varying(30)  | NOT NULL                         | User's identification number               |
+| urlslike                | character varying(250) | NOT NULL, PRIMARY KEY            | URL of the user's picture                  |
+| statusucesca            | character varying(30)  | NOT NULL                         | User's status                              |                              
 
 - Using SQL Shell, create user:
 
