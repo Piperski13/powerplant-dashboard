@@ -1,6 +1,6 @@
 const pool = require("../config/db");
 const jwt = require("jsonwebtoken");
-const Login = require("../model/loginModel.js")
+const Login = require("../model/loginModel.js");
 require("dotenv").config("../.env");
 
 const getUser = async (username) => {
@@ -10,6 +10,10 @@ const getUser = async (username) => {
   } catch (error) {
     console.error(error);
   }
+};
+
+const showLogin = async (req, res) => {
+  res.render("login", { error: true });
 };
 
 const loginAuth = async (req, res) => {
@@ -33,7 +37,7 @@ const loginAuth = async (req, res) => {
 
   res.cookie("token", token);
 
-  return res.status(200).json({ message: "Login successful" });
+  res.render("welcome", { user: user });
 };
 
 const logout = (req, res) => {
@@ -58,4 +62,4 @@ const dynamicalHTML = async (req, res) => {
   }
 };
 
-module.exports = { loginAuth, logout, dynamicalHTML };
+module.exports = { loginAuth, showLogin, logout, dynamicalHTML };

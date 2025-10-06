@@ -17,31 +17,32 @@ document.getElementById("view-records-js").addEventListener("click", (e) => {
 });
 
 // DROP DOWN LOGIC START
-const userDropdown = document.querySelector('.user-dropdown');
-const dropdownContent = document.querySelector('.dropdown-content');
-const logoutDiv = document.querySelector('.logout-style');
+const userDropdown = document.querySelector(".user-dropdown");
+const dropdownContent = document.querySelector(".dropdown-content");
+const logoutDiv = document.querySelector(".logout-style");
 
 // Toggle the dropdown visibility on click
-userDropdown.addEventListener('click', (e) => {
+userDropdown.addEventListener("click", (e) => {
   e.stopPropagation(); // Prevents click from closing immediately
-  dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-  if(dropdownContent.style.display === 'block'){
-    logoutDiv.classList.add('active-background')
+  dropdownContent.style.display =
+    dropdownContent.style.display === "block" ? "none" : "block";
+  if (dropdownContent.style.display === "block") {
+    logoutDiv.classList.add("active-background");
   }
 });
 
 // Close the dropdown if clicking outside of it
-document.addEventListener('click', (e) => {
+document.addEventListener("click", (e) => {
   if (!userDropdown.contains(e.target)) {
-    dropdownContent.style.display = 'none';
-    logoutDiv.classList.remove('active-background');
+    dropdownContent.style.display = "none";
+    logoutDiv.classList.remove("active-background");
   }
 });
 // DROP DOWN LOGIC END
 
 async function logoutFunction() {
   try {
-    const response = await fetch("/login/logout", {
+    const response = await fetch("/logout", {
       method: "GET",
       credentials: "include", // Ensures cookies are sent with the request
     });

@@ -1,6 +1,6 @@
 async function fetchUserData() {
   try {
-    const response = await fetch("/login/user-data", {
+    const response = await fetch("/user-data", {
       method: "GET",
       credentials: "include",
     });
@@ -12,7 +12,7 @@ async function fetchUserData() {
       if (welcomeElement) {
         welcomeElement.innerHTML = `Welcome, ${userData.username}`;
       }
-    
+
       const loggedUserElement = document.getElementById("logged-user-js");
       if (loggedUserElement) {
         loggedUserElement.innerHTML = `${userData.lastname} ${userData.username}`;
