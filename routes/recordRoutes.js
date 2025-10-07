@@ -6,7 +6,6 @@ const router = express.Router();
 
 router
   .route("/")
-  .get(recordController.getAllRecords)
   .post(cookieJwtAuth, businessRuleMiddleware, recordController.addRecord);
 
 router
@@ -14,8 +13,5 @@ router
   .get(cookieJwtAuth, recordController.getRecord)
   .delete(cookieJwtAuth, recordController.deleteRecord)
   .put(cookieJwtAuth, recordController.updateRecord);
-
-router.route("/type").get(recordController.getPowerPlants);
-
 
 module.exports = router;

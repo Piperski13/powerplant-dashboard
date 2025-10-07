@@ -12,6 +12,16 @@ class View {
       console.error("Error database query (filterData): ", error.message);
     }
   }
+  static async getAllPlants() {
+    try {
+      const query = "SELECT * FROM vrstapogona ORDER BY sifra ASC;";
+
+      const { rows } = await pool.query(query);
+      return rows;
+    } catch (error) {
+      console.error("Error database query (getAllPlants): ", error.message);
+    }
+  }
 }
 
 module.exports = View;

@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- account, menu icons -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle,menu"
+    />
+
+    <link rel="stylesheet" href="/styles/navbar.css" />
+    <link rel="stylesheet" href="/styles/recordView.css" />
+
+    <title>CRUD</title>
+  </head>
+
+  <body>
+    <header id="main-box">
+      <nav>
+        <span class="material-symbols-outlined hamburger">menu</span>
+
+        <div class="sidebar">
+          <div id="menu" class="menu">
+            <a href="/viewPage/welcome">Home</a>
+            <a href="/viewPage/recordsViewPage" id="view-records-js"
+              >View All Records</a
+            >
+            <a href="/viewPage/addRecord" id="add-record-js">Add Record</a>
+          </div>
+
+          <div class="logout-style">
+            <div class="user-dropdown">
+              <span class="username-logged">
+                <span class="material-symbols-outlined icon">
+                  account_circle
+                </span>
+                <span id="logged-user-js" class="logged-user"
+                  ><%= user?.username || '' %></span
+                >
+              </span>
+              <div class="dropdown-content">
+                <a href="/logout" id="logout-js">Logout</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div class="div-tables-section">
+        <table id="small-table">
+          <caption class="small-table-caption">
+            Ukupan Broj Evidencija
+          </caption>
+          <thead>
+            <tr>
+              <th>Voda (0)</th>
+              <th>Vetar (1)</th>
+              <th>Ugalj (2)</th>
+            </tr>
+          </thead>
+          <tbody id="types-table">
+            <tr>
+            <% if (totalPlantsData && totalPlantsData.length > 0) { %> <%
+            totalPlantsData.forEach(item => { %>
+              <th><%= item.ukupanbrojelektrana %></th>
+            <% }) %> <% } else { %>
+            <tr>
+              <td colspan="3">No records found.</td>
+            </tr>
+            <% } %>
+            </tr>
+          </tbody>
+        </table>
+
+        <p class="table-text-bellow">*max records per type = 10</p>
+
+        <div id="div-filter-form">
+
+          <form action="/viewPage/recordsViewPage" method="GET" id="filter-form">
+            <input
+              id="name"
+              class="filter-name-input-class"
+              name="name"
+              type="text"
+              placeholder="Search by Name"
+              value="<%= name || '' %>"
+            />
+            <div class="filter-submit">
+              <button
+                type="submit"
+                id="submit-filter"
+                class="form-submit-filter"
+              >
+                Filter
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <table>
+          <caption>
+            Lista Evidencija Elektrana
+          </caption>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Naziv Elektrane</th>
+              <th>Mesto</th>
+              <th>Adresa</th>
+              <th>Datum Puštanja u Rad</th>
+              <th>Šifra Vrste Pogona</th>
+              <th>Ažuriraj</th>
+              <th>Obriši</th>
+            </tr>
+          </thead>
+          <tbody id="records-table">
+            <% if (data && data.length > 0) { %> <% data.forEach(record => { %>
+            <tr>
+              <td><%= record.id %></td>
+              <td><%= record.nazivelektrane %></td>
+              <td><%= record.mesto %></td>
+              <td><%= record.adresa %></td>
+              <td>
+                <%= new
+                Date(record.datumpustanjaurad).toISOString().split('T')[0] %>
+              </td>
+              <td><%= record.sifravrstepogona %></td>
+              <!-- <td>
+                <button
+                  class="update-record"
+                  onclick="redirectUpdate(<%= record.id %>)"
+                >
+                  Update
+                </button>
+              </td> -->
+              <td>
+                <form
+                  action="/update/<%= record.id %>"
+                  method="POST"
+                  style="display: inline"
+                >
+                  <button type="submit" class="update-record">Update</button>
+                </form>
+              </td>
+              <!-- 
+              <td>
+                <button
+                  class="delete-record"
+                  onclick="deleteRecord(<%= record.id %>)"
+                >
+                  Delete
+                </button>
+              </td> -->
+              <td>
+                <form
+                  action="/delete/<%= record.id %>"
+                  method="POST"
+                  style="display: inline"
+                >
+                  <button type="submit" class="delete-record">Delete</button>
+                </form>
+              </td>
+            </tr>
+            <% }) %> <% } else { %>
+            <tr>
+              <td colspan="8">No records found.</td>
+            </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </header>
+
+    <!-- Scripts -->
+    <script src="/scripts/hamburger_menu/toggleMenu.js"></script>
+    <script src="/scripts/auth/decodedToken.js"></script>
+    <script src="/scripts/crud/view-delete.js"></script>
+  </body>
+</html>
