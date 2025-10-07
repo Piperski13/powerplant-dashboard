@@ -4,5 +4,6 @@ const router = express.Router();
 
 router.route("/recordsViewPage").get(viewController.generateView);
 router.route("/welcome").get(viewController.showWelcome);
+router.route("/addRecord").get(viewController.showAddRecord);
 
 module.exports = router;

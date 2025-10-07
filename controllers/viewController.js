@@ -144,4 +144,7 @@ const showWelcome = async (req, res) => {
   res.render("welcome", { user: req.user });
 };
 
-module.exports = { generateView, showWelcome };
+const showAddRecord = async (req, res) => {
+  res.render("addRecord", { user: req.user });
+};
+module.exports = { generateView, showWelcome, showAddRecord };

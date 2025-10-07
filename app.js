@@ -36,16 +36,7 @@ app.set("view engine", "ejs");
 
 app.use("/", loginRouter);
 
-app.get("/addRecordPage", cookieJwtAuth, (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "addRecord.html"));
-});
-
-// app.use("/recordsViewPage", cookieJwtAuth, viewRouter);
 app.use("/viewPage", cookieJwtAuth, viewRouter);
-
-// router.get("/welcome", cookieJwtAuth, (req, res) => {
-//   res.render("welcome", { user: req.user });
-// });
 
 app.use("/records", recordRouter);
 
