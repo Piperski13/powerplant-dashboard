@@ -35,9 +35,9 @@ const loginAuth = async (req, res) => {
 
   const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-  res.cookie("token", token);
+  res.cookie("token", token, { httpOnly: true });
 
-  res.render("welcome", { user: user });
+  res.redirect("/viewPage/welcome");
 };
 
 const logout = (req, res) => {

@@ -34,22 +34,20 @@ app.use(express.static(path.join(__dirname, "public")));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
-//starting fix, need better route
-// app.get("/", (req, res) => {
-//   res.sendFile(path.join(__dirname, "public", "login.html"));
-// });
-
 app.use("/", loginRouter);
 
 app.get("/addRecordPage", cookieJwtAuth, (req, res) => {
   res.sendFile(path.join(__dirname, "public", "addRecord.html"));
 });
 
-app.use("/recordsViewPage", cookieJwtAuth, viewRouter);
+// app.use("/recordsViewPage", cookieJwtAuth, viewRouter);
+app.use("/viewPage", cookieJwtAuth, viewRouter);
+
+// router.get("/welcome", cookieJwtAuth, (req, res) => {
+//   res.render("welcome", { user: req.user });
+// });
 
 app.use("/records", recordRouter);
-
-// app.use("/login", loginRouter);
 
 app.use("/plants", incDecRouter);
 

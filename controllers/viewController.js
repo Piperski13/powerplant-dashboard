@@ -140,4 +140,8 @@ const generateView = async (req, res) => {
 };
 // record filtering END
 
-module.exports = { generateView };
+const showWelcome = async (req, res) => {
+  res.render("welcome", { user: req.user });
+};
+
+module.exports = { generateView, showWelcome };
