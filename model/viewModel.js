@@ -14,7 +14,17 @@ class View {
   }
   static async getAllPlants() {
     try {
-      const query = "SELECT * FROM vrstapogona ORDER BY sifra ASC;";
+      const query = `
+      SELECT 
+        v.sifra, 
+        v.naziv, 
+        COUNT(e.id) AS ukupanbrojelektrana
+      FROM vrstapogona v
+      LEFT JOIN evidencijaelektrana e
+        ON e.sifravrstepogona = v.sifra
+      GROUP BY v.sifra, v.naziv
+      ORDER BY v.sifra ASC;
+    `;
 
       const { rows } = await pool.query(query);
       return rows;

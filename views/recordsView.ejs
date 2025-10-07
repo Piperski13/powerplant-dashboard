@@ -55,9 +55,14 @@
           </caption>
           <thead>
             <tr>
-              <th>Voda (0)</th>
-              <th>Vetar (1)</th>
-              <th>Ugalj (2)</th>
+            <% if (totalPlantsData && totalPlantsData.length > 0) { %> <%
+            totalPlantsData.forEach(item => { %>
+              <th><%= item.naziv %> <%= item.sifra %></th>
+            <% }) %> <% } else { %>
+            <tr>
+              <td colspan="3">No records found.</td>
+            </tr>
+            <% } %>
             </tr>
           </thead>
           <tbody id="types-table">
@@ -155,7 +160,7 @@
               </td> -->
               <td>
                 <form
-                  action="/delete/<%= record.id %>"
+                  action="/records/delete/<%= record.id %>"
                   method="POST"
                   style="display: inline"
                 >
