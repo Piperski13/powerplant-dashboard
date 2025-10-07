@@ -49,11 +49,7 @@ const deleteRecord = async (req, res) => {
     if (results.rowCount === 0) {
       res.status(404).json({ message: `Record with ${id} was not found ` });
     }
-    const deletedRecord = results[0];
-    res.status(200).json({
-      message: `Deleted Record with ID ${id}`,
-      sifravrstepogona: deletedRecord.sifravrstepogona,
-    });
+    res.redirect("/viewPage/recordsViewPage");
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

@@ -38,7 +38,7 @@ app.use("/", loginRouter);
 
 app.use("/viewPage", cookieJwtAuth, viewRouter);
 
-app.use("/records", recordRouter);
+app.use("/records", cookieJwtAuth, recordRouter);
 
 app.use("/plants", incDecRouter);
 
