@@ -60,12 +60,15 @@ td:last-child {
 .delete-record,
 .update-record,
 .form-submit-filter {
-  padding: 6px 10px;
+  padding: 9px 14px;
   color: #ffffff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s;
+}
+.filter-submit {
+  text-align: center;
 }
 .update-record,
 .form-submit-filter {
@@ -131,9 +134,6 @@ input {
   border: 1px solid #ddd;
   border-radius: 5px;
   outline: none;
-}
-.form-submit-filter{
-  padding: 9px 14px;
 }
 /* Filter form End */
 
