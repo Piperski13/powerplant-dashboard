@@ -1,45 +1,31 @@
 const express = require("express");
 const path = require("node:path");
 const cookieParser = require("cookie-parser");
-const bodyParser = require("body-parser");
-const jwt = require("jsonwebtoken");
 require("dotenv").config("./.env");
+
 const app = express();
 const cookieJwtAuth = require("./public/scripts/middleware/cookieJwtAuth.js");
 
 const recordRouter = require("./routes/recordRoutes.js");
 const loginRouter = require("./routes/loginRoutes.js");
-const incDecRouter = require("./routes/incDecRoutes.js");
 const viewRouter = require("./routes/viewRoutes.js");
 
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
-
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
+// Built-in body parser
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(cookieParser());
 
-app.use(express.static("public"));
-
+// Serve static files
 app.use(express.static(path.join(__dirname, "public")));
 
+// EJS setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+// Routes
 app.use("/", loginRouter);
-
 app.use("/viewPage", cookieJwtAuth, viewRouter);
-
 app.use("/records", cookieJwtAuth, recordRouter);
-
-app.use("/plants", incDecRouter);
 
 module.exports = app;
