@@ -1,4 +1,5 @@
 const View = require("../model/viewModel.js");
+const Records = require("../model/recordsModel.js");
 const path = require("path");
 
 const generateView = async (req, res) => {
@@ -24,6 +25,22 @@ const showWelcome = async (req, res) => {
 };
 
 const showAddRecord = async (req, res) => {
-  res.render("addRecord", { user: req.user });
+  try {
+    const { id } = req.params;
+    let record = null;
+
+    if (id) {
+      record = await Records.getById(id);
+    }
+
+    res.render("addRecord", {
+      user: req.user,
+      record,
+    });
+  } catch (error) {
+    console.error("Error in showAddRecord:", error.message);
+    res.status(500).send("Internal Server Error");
+  }
 };
+
 module.exports = { generateView, showWelcome, showAddRecord };

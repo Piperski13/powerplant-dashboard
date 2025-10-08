@@ -1,4 +1,5 @@
 node_modules
 .env
 pssql.txt
+ejs.txt
 .vscode

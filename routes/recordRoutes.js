@@ -12,6 +12,7 @@ router
   .get(recordController.getRecord)
   .put(recordController.updateRecord);
 
+router.route("/update/:id").put(recordController.updateRecord);
 router.route("/delete/:id").post(recordController.deleteRecord);
 
 module.exports = router;

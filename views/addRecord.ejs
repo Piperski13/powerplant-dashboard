@@ -10,7 +10,7 @@
     />
     <link rel="stylesheet" href="/styles/navbar.css" />
     <link rel="stylesheet" href="/styles/addRecord.css" />
-    <title>Add Records</title>
+    <title><%= record ? "Update Record" : "Add Record" %></title>
   </head>
   <body>
     <header id="main-box">
@@ -40,7 +40,9 @@
         </div>
       </nav>
       <section id="header-section-form">
-        <h2>Unos Evidencije Elektrana</h2>
+        <h2><%= record ? "Ažuriraj Evidenciju Elektrane" : "Unos Evidencije Elektrana" %></h2>
+
+
         <form id="create-form" class="form-style">
           <label for="nazivelektrane">Naziv Elektrane</label>
           <input type="text" name="nazivelektrane" placeholder="JKP" required />

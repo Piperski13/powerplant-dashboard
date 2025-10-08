@@ -142,8 +142,8 @@
               </td> -->
               <td>
                 <form
-                  action="/update/<%= record.id %>"
-                  method="POST"
+                  action="/viewPage/addRecord/<%= record.id %>"
+                  method="GET"
                   style="display: inline"
                 >
                   <button type="submit" class="update-record">Update</button>
@@ -172,6 +172,5 @@
     <!-- Scripts -->
     <script src="/scripts/hamburger_menu/toggleMenu.js"></script>
     <script src="/scripts/auth/decodedToken.js"></script>
-    <script src="/scripts/crud/view-delete.js"></script>
   </body>
 </html>
