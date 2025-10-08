@@ -21,7 +21,6 @@ const generateView = async (req, res) => {
 };
 
 const showWelcome = async (req, res) => {
-  console.log("req.user: viewcontroler: ", req.user);
   res.render("welcome", { user: req.user });
 };
 
