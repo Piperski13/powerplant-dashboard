@@ -5,7 +5,7 @@ require("dotenv").config("../.env");
 
 const getUser = async (username) => {
   try {
-    const result = await Login.getUsername(username);
+    const result = await Login.getUserByUsername(username);
     return result;
   } catch (error) {
     console.error(error);
@@ -20,6 +20,7 @@ const loginAuth = async (req, res) => {
   const { username, password } = req.body;
 
   const user = await getUser(username);
+  console.log("user: ", user);
 
   if (!user) {
     return res.status(403).json({

@@ -30,7 +30,9 @@
                 <span class="material-symbols-outlined icon">
                   account_circle
                 </span>
-                <span id="logged-user-js" class="logged-user"></span>
+                <span id="logged-user-js" class="logged-user">
+                    <%= `${user.ime} ${user.prezime}` %>
+                </span>
               </span>
               <div class="dropdown-content">
                 <a href="/logout" id="logout-js">Logout</a>
@@ -80,6 +82,5 @@
     </header>
 
     <script src="/scripts/hamburger_menu/toggleMenu.js"></script>
-    <script src="/scripts/auth/decodedToken.js"></script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 const pool = require("../config/db");
 
 class Login {
-  static async getUsername(username) {
+  static async getUserByUsername(username) {
     try {
       const query = "SELECT * FROM korisnik WHERE korisnickoime=$1";
       const value = [username];

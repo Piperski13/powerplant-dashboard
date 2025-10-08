@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="/styles/welcome.css" />
     <link rel="stylesheet" href="/styles/navbar.css" />
 
-    <title>Welcome <%= user.username %></title>
+    <title>Welcome <%= user.ime %></title>
   </head>
 
   <body>
@@ -38,7 +38,7 @@
                   account_circle
                 </span>
                 <span id="logged-user-js" class="logged-user">
-                  <%= user.username %>
+                  <%= `${user.ime} ${user.prezime}` %>
                 </span>
               </span>
 
@@ -51,12 +51,11 @@
       </nav>
 
       <article>
-        <h1 id="welcome-js">Welcome<%= user.username %></h1>
+        <h1 id="welcome-js"><%= `Welcome, ${user.ime}` %></h1>
       </article>
     </header>
 
     <!-- Local Scripts -->
     <script src="/scripts/hamburger_menu/toggleMenu.js"></script>
-    <script src="/scripts/auth/decodedToken.js"></script>
   </body>
 </html>

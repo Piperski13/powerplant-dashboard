@@ -37,7 +37,7 @@
                   account_circle
                 </span>
                 <span id="logged-user-js" class="logged-user"
-                  ><%= user?.username || '' %></span
+                  ><%= `${user.ime} ${user.prezime}` %></span
                 >
               </span>
               <div class="dropdown-content">
@@ -171,6 +171,5 @@
 
     <!-- Scripts -->
     <script src="/scripts/hamburger_menu/toggleMenu.js"></script>
-    <script src="/scripts/auth/decodedToken.js"></script>
   </body>
 </html>
