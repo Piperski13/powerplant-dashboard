@@ -24,17 +24,14 @@ const addRecord = async (req, res) => {
       sifravrstepogona,
     } = req.body;
 
-    const newRecord = await Record.add({
+    await Record.add({
       nazivelektrane,
       mesto,
       adresa,
       datumpustanjaurad,
       sifravrstepogona,
     });
-    res.status(201).json({
-      message: `Record added with ID: ${newRecord.id}`,
-      sifravrstepogona: newRecord.sifravrstepogona,
-    });
+    res.redirect("/viewPage/recordsViewPage");
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
