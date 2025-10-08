@@ -1,4 +1,3 @@
-const pool = require("../config/db");
 const jwt = require("jsonwebtoken");
 const Login = require("../model/loginModel.js");
 require("dotenv").config("../.env");
@@ -45,21 +44,4 @@ const logout = (req, res) => {
   res.redirect("/");
 };
 
-const dynamicalHTML = async (req, res) => {
-  const token = req.cookies.token;
-
-  if (!token) {
-    return res.status(401).json({ error: "Unauthorized" });
-  }
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    res.json({
-      username: decoded.ime,
-      lastname: decoded.prezime,
-    });
-  } catch (error) {
-    res.status(401).json({ error: "Unauthorized" });
-  }
-};
-
-module.exports = { loginAuth, showLogin, logout, dynamicalHTML };
+module.exports = { loginAuth, showLogin, logout };

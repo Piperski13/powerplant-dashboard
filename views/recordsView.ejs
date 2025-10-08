@@ -132,14 +132,6 @@
                 Date(record.datumpustanjaurad).toISOString().split('T')[0] %>
               </td>
               <td><%= record.sifravrstepogona %></td>
-              <!-- <td>
-                <button
-                  class="update-record"
-                  onclick="redirectUpdate(<%= record.id %>)"
-                >
-                  Update
-                </button>
-              </td> -->
               <td>
                 <form
                   action="/viewPage/addRecord/<%= record.id %>"
@@ -169,7 +161,6 @@
       </div>
     </header>
 
-    <!-- Scripts -->
     <script src="/scripts/hamburger_menu/toggleMenu.js"></script>
   </body>
 </html>
