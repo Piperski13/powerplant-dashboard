@@ -1,16 +1,4 @@
 const Record = require("../model/recordsModel.js");
-const path = require("path");
-
-const getRecord = async (req, res) => {
-  try {
-    const id = parseInt(req.params.id);
-
-    const record = await Record.getById(id);
-    res.status(200).json(record);
-  } catch (error) {
-    res.status(500).json({ error: error.message });
-  }
-};
 
 const addRecord = async (req, res) => {
   try {
@@ -77,7 +65,6 @@ const updateRecord = async (req, res) => {
 };
 
 module.exports = {
-  getRecord,
   addRecord,
   deleteRecord,
   updateRecord,
