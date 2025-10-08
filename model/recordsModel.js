@@ -42,7 +42,7 @@ class Record {
       const value = [id];
 
       const { rows } = await pool.query(query, value);
-      return rows;
+      return rows[0] || null;
     } catch (error) {
       console.error("Error database query (getById): ", error.message);
     }

@@ -1,8 +1,6 @@
 const Record = require("../model/recordsModel.js");
 const path = require("path");
 
-// CRUD HANDLERS START
-
 const getRecord = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
@@ -72,15 +70,11 @@ const updateRecord = async (req, res) => {
       sifravrstepogona,
     });
 
-    res.status(200).json({
-      message: `Record with ID: ${id} updated sucessfully`,
-      sifravrstepogona: sifravrstepogona,
-    });
+    res.redirect("/viewPage/recordsViewPage");
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
-// CRUD HANDLERS END
 
 module.exports = {
   getRecord,
