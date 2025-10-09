@@ -4,7 +4,7 @@ const cookieParser = require("cookie-parser");
 require("dotenv").config("./.env");
 
 const app = express();
-const cookieJwtAuth = require("./public/scripts/middleware/cookieJwtAuth.js");
+const cookieJwtAuth = require("./middleware/cookieJwtAuth.js");
 
 const recordRouter = require("./routes/recordRoutes.js");
 const loginRouter = require("./routes/loginRoutes.js");

@@ -1,4 +1,4 @@
-const pool = require("../config/db");
+const pool = require("../db/pool");
 
 class View {
   static async filterData(filter) {
