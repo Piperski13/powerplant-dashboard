@@ -1,3 +1,4 @@
+# *Currently outdated readme - Refactor done recently - creating new readme in progress...
 # Node.js Express PostgreSQL CRUD (MVC) API with JWT Auth / Vanilla Frontend / Responsive Design
 
 A CRUD API built with Node.js, Express, and PostgreSQL for managing records in a sample database. 
