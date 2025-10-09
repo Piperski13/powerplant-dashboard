@@ -18,7 +18,7 @@
   </head>
 
   <body>
-    <header id="main-box">
+    <div id="main-box">
       <nav>
         <span class="material-symbols-outlined hamburger">menu</span>
 
@@ -49,11 +49,10 @@
           </div>
         </div>
       </nav>
-
       <article>
-        <h1 id="welcome-js"><%= `Welcome, ${user.ime}` %></h1>
+        <h1><%= `Welcome, ${user.ime}` %></h1>
       </article>
-    </header>
+    </div>
     <%- include("partials/footer.ejs") %>
     <script src="/scripts/hamburger_menu/toggleMenu.js"></script>
   </body>
