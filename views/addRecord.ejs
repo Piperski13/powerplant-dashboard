@@ -3,44 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <!-- account,menu icon bellow -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle,menu"
     />
-    <link rel="stylesheet" href="/styles/partials/navbar.css" />
+
+    <!-- Local Styles -->
     <link rel="stylesheet" href="/styles/addRecord.css" />
+    
     <title><%= record ? "Update Record" : "Add Record" %></title>
   </head>
   <body>
-    <header id="main-box">
-      <nav>
-        <span class="material-symbols-outlined hamburger">menu</span>
-        <div class="sidebar">
-          <div id="menu" class="menu">
-            <a href="/viewPage/welcome">Home</a>
-            <a href="/viewPage/recordsViewPage" id="view-records-js"
-              >View All Records</a
-            >
-            <a href="/viewPage/addRecord" id="add-record-js">Add Record</a>
-          </div>
-          <div class="logout-style">
-            <div class="user-dropdown">
-              <span class="username-logged">
-                <span class="material-symbols-outlined icon">
-                  account_circle
-                </span>
-                <span id="logged-user-js" class="logged-user">
-                    <%= `${user.ime} ${user.prezime}` %>
-                </span>
-              </span>
-              <div class="dropdown-content">
-                <a href="/logout" id="logout-js">Logout</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
+    <div id="main-box">
+        <%- include("partials/navbar.ejs") %>
       <section id="header-section-form">
         <h2>
           <%= record ? "Ažuriraj Evidenciju Elektrane" : "Unos Evidencije Elektrana" %>
@@ -79,7 +56,7 @@
           </div>
         </form>
       </section>
-    </header>
+    </div>
     <%- include("partials/footer.ejs") %>
 
     <script src="/scripts/hamburger_menu/toggleMenu.js"></script>
