@@ -1,4 +1,4 @@
-const pool = require("../config/db");
+const pool = require("../db/pool");
 
 class Record {
   static async add({
@@ -42,7 +42,7 @@ class Record {
       const value = [id];
 
       const { rows } = await pool.query(query, value);
-      return rows;
+      return rows[0] || null;
     } catch (error) {
       console.error("Error database query (getById): ", error.message);
     }
@@ -81,16 +81,6 @@ class Record {
       await pool.query(query, values);
     } catch (error) {
       console.error("Error database query (updateById): ", error.message);
-    }
-  }
-  static async getAllPlants() {
-    try {
-      const query = "SELECT * FROM vrstapogona ORDER BY sifra ASC;";
-
-      const { rows } = await pool.query(query);
-      return rows;
-    } catch (error) {
-      console.error("Error database query (getAllPlants): ", error.message);
     }
   }
 }

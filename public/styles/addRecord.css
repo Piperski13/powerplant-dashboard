@@ -9,6 +9,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   height: 100vh;
 }
 header {
@@ -118,7 +119,7 @@ a {
   select {
     width: 200px;
   }
-  .hamburger{
+  .hamburger {
     top: 0;
     left: 0;
   }

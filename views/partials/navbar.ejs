@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="/styles/partials/navbar.css" />
+<nav>
+  <span class="material-symbols-outlined hamburger">menu</span>
+
+  <div class="sidebar">
+    <div id="menu" class="menu">
+      <a href="/viewPage/welcome">Home</a>
+      <a href="/viewPage/recordsViewPage" id="view-records-js"
+        >View All Records</a
+      >
+      <a href="/viewPage/addRecord" id="add-record-js">Add Record</a>
+    </div>
+
+    <div class="logout-style">
+      <div class="user-dropdown">
+        <span class="username-logged">
+          <span class="material-symbols-outlined icon"> account_circle </span>
+          <span id="logged-user-js" class="logged-user">
+            <%= `${user.ime} ${user.prezime}` %>
+          </span>
+        </span>
+
+        <div class="dropdown-content">
+          <a href="/logout" id="logout-js">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

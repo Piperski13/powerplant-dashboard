@@ -115,9 +115,9 @@ Ensure you have these installed:
 
 # Database: energetika
 
-## Table: EvidencijaElektrane ( evidencijaelektrane )
+## Table: EvidencijaElektrane ( evidencijaelektrana )
 
-The `evidencijaelektrane` table stores information about power plants.
+The `evidencijaelektrana` table stores information about power plants.
 
 ### Attributes:
 

@@ -3,6 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Google Fonts -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle"
@@ -13,7 +15,9 @@
       href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./styles/login.css" />
+
+    <!-- Static CSS -->
+    <link rel="stylesheet" href="/styles/login.css" />
     <title>Login</title>
   </head>
   <body>
@@ -22,25 +26,33 @@
         <div class="login-div">
           <p class="login-div-text">HELLO USER!</p>
         </div>
-        <form id="login-form-js" class="login-form">
+
+        <form
+          id="login-form-js"
+          class="login-form"
+          action="/login"
+          method="POST"
+        >
           <span class="material-symbols-outlined icon"> account_circle </span>
-          <p class="invalid-msg hidden">Invalid username or password</p>
+
           <input
             id="username"
             name="username"
             type="text"
             placeholder="Username"
           />
+
           <input
             id="password"
             name="password"
             type="password"
             placeholder="Password"
           />
+
           <button type="submit" class="login-submit-btn">LOGIN</button>
         </form>
       </section>
+      <%- include("../partials/footer.ejs") %>
     </main>
-    <script src="./scripts/auth/login.js"></script>
   </body>
 </html>
