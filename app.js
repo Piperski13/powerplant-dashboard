@@ -20,7 +20,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 // EJS setup
-app.set("views", path.join(__dirname, "views"));
+app.set("views", path.join(__dirname, "views/pages"));
 app.set("view engine", "ejs");
 
 // Routes
