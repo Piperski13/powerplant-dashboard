@@ -51,7 +51,7 @@ a {
   display: flex;
   align-items: center;
   justify-content: right;
-  padding-left: 7em;
+  padding-right: 5em;
 }
 .header-section-link {
   display: flex;
@@ -112,10 +112,6 @@ a {
   select {
     width: 50%;
     padding: 8px 15px;
-  }
-
-  #main-box {
-    padding-left: 0px;
   }
 }
 @media (max-width: 500px) {

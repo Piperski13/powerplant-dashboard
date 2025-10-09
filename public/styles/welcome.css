@@ -13,3 +13,8 @@ body {
   flex-direction: column;
   height: 100vh;
 }
+#main-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
