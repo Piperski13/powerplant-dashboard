@@ -110,6 +110,15 @@ Ensure you have these installed:
 | POST   | `/login`                 | Logs in user, creates cookie, redirects to welcome page |
 | GET    | `/logout`                | Clears cookie, redirects to login page                  |
 
+## View router ' /viewPage ' :
+------------------------ 
+| Method | Endpoint                 | Description                                                |
+| ------ | ------------------------ | -----------------------------------------------------------|
+| GET   | `/welcome`                | Renders a welcome page, sends user object                  |
+| GET   | `/recordsViewPage`        | Renders a recordsView page, shows all data, data filtering |
+| GET   | `/addRecord`              | Renders a add record page                                  |
+| GET   | `/addRecord/:id`          | Renders a uppdate record page with populated data          |
+
 ## Router /records:
 ------------------------ 
 | Method | Endpoint                 | Description                                     |
@@ -120,13 +129,6 @@ Ensure you have these installed:
 | PUT    | `/records/user/:id`      | Update a record by ID                           |
 | DELETE | `/records/user/:id`      | Delete a record by ID                           |
 | GET    | `/records/type`          | Get all power plants from the table vrstapogona |
-
-## Router /recordsViewPage
------------------------- 
-| Method | Endpoint                 | Description                                     |
-| ------ | ------------------------ | ------------------------------------------------|
-| POST   | `/recordsViewPage`       | Generate table for view ( filter logic added )  |
-
 
 # Database: energetika
 
