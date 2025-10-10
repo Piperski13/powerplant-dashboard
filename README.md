@@ -1,28 +1,37 @@
 # *Currently outdated readme - Refactor done recently - creating new readme in progress...
-# Node.js Express PostgreSQL CRUD (MVC) API with JWT Auth / Vanilla Frontend / Responsive Design
+# Node.js Express PostgreSQL CRUD App (EJS Refactor · JWT Auth · MVC Architecture) | Responsive Design
 
-A CRUD API built with Node.js, Express, and PostgreSQL for managing records in a sample database. 
-JWT is used for authentication user from database
+Originally developed in 2024 as a Node.js + Express + PostgreSQL REST API with a Vanilla JS frontend,
+this project has now been completely refactored to use EJS templates for dynamic rendering.
+Unnecessary frontend fetch calls were removed, and the logic is now fully handled through server-side rendering and controllers for cleaner, more maintainable code.
 
-## Features
+## 🚀 Features 
 
-- **Create, Read, Update, and Delete** records
-- Authentication of user via JWT / protected routes - fetching data from the user table
-- RESTful endpoints for interacting with PostgreSQL tables
-- Real-time updatable HTML - fetching data from the logged user
-- Organized codebase using MVC architecture (Models, Views, Controllers)
-- Middleware for checking business rule - fetching data from support table to check if limit is reached
-- Filter input for recrods View table
-- Centralized error handling
+- **Full CRUD Functionality** - create, read, update, and delete records directly through EJS-rendered views
 
-## Technologies
+- **User Authentication via JWT** - protected routes using secure JWT validation middleware
 
-- **HTML/CSS**: Markup and styling languages
-- **JavaScript**: Programming language, dynamic content
-- **Node.js**: JavaScript runtime
-- **Express.js**: Web framework for Node.js
-- **PostgreSQL**: Relational database
-- **pg**: Node.js PostgreSQL client
+- **Server-Side Rendering (EJS)** - real-time data updates and dynamic pages based on logged-in user data
+
+- **PostgreSQL Integration** - all data operations handled through RESTful-style controllers and models
+
+- **Input Filtering** - filter and search records efficiently in the records view
+
+- **Centralized Error Handling** - consistent error responses across the app
+
+- **MVC Architecture** - clean structure separating logic, views, and data access layers
+
+- **Responsive Design** - layout optimized for both desktop and mobile
+
+## 🧩 Technologies
+
+- **EJS** - server-side templating for dynamic HTML rendering
+- **CSS** - styling language
+- **JavaScript (ES6)** - core language for backend logic and interactivity
+- **Node.js** - JavaScript runtime environment
+- **Express.js** - minimalist web framework for Node.js
+- **PostgreSQL** - relational database for data persistence
+- **pg** - official PostgreSQL client for Node.js
 
 ## Getting Started
 
