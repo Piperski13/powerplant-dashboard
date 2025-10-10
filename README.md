@@ -102,6 +102,14 @@ Ensure you have these installed:
 
 # API Endpoints
 
+## Login router ' / ' :
+------------------------ 
+| Method | Endpoint                 | Description                                             |
+| ------ | ------------------------ | --------------------------------------------------------|
+| GET    | `/`                      | Shows login page                                        |
+| POST   | `/login`                 | Logs in user, creates cookie, redirects to welcome page |
+| GET    | `/logout`                | Clears cookie, redirects to login page                  |
+
 ## Router /records:
 ------------------------ 
 | Method | Endpoint                 | Description                                     |
@@ -118,22 +126,6 @@ Ensure you have these installed:
 | Method | Endpoint                 | Description                                     |
 | ------ | ------------------------ | ------------------------------------------------|
 | POST   | `/recordsViewPage`       | Generate table for view ( filter logic added )  |
-
-
-## Router /login:
------------------------- 
-| Method | Endpoint                 | Description                                     |
-| ------ | ------------------------ | ------------------------------------------------|
-| POST   | `/login`                 | Logs user if password != false                  |
-| GET    | `/login/logout`          | Logs out user / clears cookie                   |
-| GET    | `/user-data`             | Retrieves user data from cookie                 |
-
-## Router /plants:
------------------------- 
-| Method | Endpoint                 | Description                                                |
-| ------ | ------------------------ | -----------------------------------------------------------|
-| POST   | `/plants/increment`         | Increments total records of certain type of power plant |
-| POST   | `/plants/decrement`         | Decrements total records of certain type of power plant |
 
 
 # Database: energetika
