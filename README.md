@@ -102,33 +102,30 @@ Ensure you have these installed:
 
 # API Endpoints
 
-## Login router ' / ' :
+## Login router ('/') 
 ------------------------ 
-| Method | Endpoint                 | Description                                             |
-| ------ | ------------------------ | --------------------------------------------------------|
-| GET    | `/`                      | Shows login page                                        |
-| POST   | `/login`                 | Logs in user, creates cookie, redirects to welcome page |
-| GET    | `/logout`                | Clears cookie, redirects to login page                  |
+| Method | Endpoint                 | Description                                                             |
+| ------ | ------------------------ | ------------------------------------------------------------------------|
+| GET    | `/`                      | Renders the login page                                                  |
+| POST   | `/login`                 | Authenticates the user, creates a cookie, and redirects to the welcome  |
+| GET    | `/logout`                | Clears the authentication cookie and redirects to the login page        |
 
-## View router ' /viewPage ' :
+## View router ('/viewPage')
 ------------------------ 
-| Method | Endpoint                 | Description                                                |
-| ------ | ------------------------ | -----------------------------------------------------------|
-| GET   | `/welcome`                | Renders a welcome page, sends user object                  |
-| GET   | `/recordsViewPage`        | Renders a recordsView page, shows all data, data filtering |
-| GET   | `/addRecord`              | Renders a add record page                                  |
-| GET   | `/addRecord/:id`          | Renders a uppdate record page with populated data          |
+| Method | Endpoint                 | Description                                                                  |
+| ------ | ------------------------ | -----------------------------------------------------------------------------|
+| GET   | `/welcome`                | Renders the welcome page and passes the logged-in user object                |
+| GET   | `/recordsViewPage`        | Renders the records view page, displaying all data with filter functionality |
+| GET   | `/addRecord`              | Renders the page for adding a new record                                     |
+| GET   | `/addRecord/:id`          | Renders the update record page with pre-filled data for the selected record  |
 
-## Router /records:
+## Record router ('/records')
 ------------------------ 
 | Method | Endpoint                 | Description                                     |
 | ------ | ------------------------ | ------------------------------------------------|
-| POST   | `/records`               | Create a new record                             |
-| GET    | `/records`               | Retrieve all records                            |
-| GET    | `/records/user/:id`      | Retrieve a single record by ID                  |
-| PUT    | `/records/user/:id`      | Update a record by ID                           |
-| DELETE | `/records/user/:id`      | Delete a record by ID                           |
-| GET    | `/records/type`          | Get all power plants from the table vrstapogona |
+| POST   | `/create/`               | Creates a new record                            |
+| POST   | `/update/:id`            | Updates an existing record                      |
+| GET    | `/delete/:id`            | Deletes a record                                |
 
 # Database: energetika
 
