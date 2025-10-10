@@ -1,4 +1,3 @@
-# *Currently outdated readme - Refactor done recently - creating new readme in progress...
 # Node.js Express PostgreSQL CRUD App with EJS Views & JWT Authentication
 
 A refactored full-stack web application originally built in 2024, now rebuilt ( 2025 ) to use **EJS templating** for server-side rendering, simplified data handling, and removal of unnecessary frontend fetch calls.
@@ -196,9 +195,39 @@ VALUES ('Пиперски', 'Алекса', 'mr.alexpiperski@gmail.com', 'aleksa
 
 # Middleware
 
-In this project, two middleware functions are implemented:
+This project currently includes one custom middleware function:
 
-- **cookieJwtToken**: This middleware checks if the user's token is valid and not expired. It ensures that only authenticated users can access certain routes, providing an additional layer of security by automatically logging out users with invalid or expired tokens.
+- **cookieJwtAuth**:  
+  This middleware validates the JWT stored in the user's cookie.  
+  It ensures that only authenticated users can access protected routes.  
+  If the token is missing, invalid, or expired, the middleware automatically clears the cookie and redirects the user to the login page.
 
-- **bussinessRule**: This middleware is used when attempting to add a new record. It verifies that the current number of records does not exceed the maximum allowed limit (10). This prevents users from creating more records than the allowed threshold, maintaining data integrity.
+This middleware is applied globally to all `/viewPage` and `/records` routes to protect access from unauthorized users.
+
+## Login Page  
+![Login Page](public/images/login.jpg)
+
+## Welcome Page  
+![Welcome Page](public/images/welcome.jpg)
+
+## View Records Page  
+![View Records Page](public/images/view-records.jpg)
+
+## Add Record Page  
+![Add Record Page](public/images/add-record.jpg)
+
+## Update Record Page  
+![Update Record Page](public/images/update-recrod.jpg)
+
+## Logout Button  
+![Logout Button](public/images/logout.jpg)
+---
+
+## 🚀 Future Improvements  
+
+- **Multiple Profiles Support** — Implement functionality for creating and managing multiple user profiles.  
+- **User Registration** — Add a registration system allowing new users to create accounts.  
+- **User-Specific Databases** — Assign each user their own database or data schema, requiring adjustments to the current database design.  
+- **Form Validation** — Implement both client-side and server-side form validation for better data integrity.  
+- **Deployment** — Host the application online after implementing all planned features.  
 
