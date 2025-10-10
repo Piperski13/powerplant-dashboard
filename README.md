@@ -3,6 +3,19 @@
 A refactored full-stack web application originally built in 2024, now rebuilt ( 2025 ) to use **EJS templating** for server-side rendering, simplified data handling, and removal of unnecessary frontend fetch calls.
 The project features **JWT-based authentication**, **MVC architecture**, and an **automated database setup script** for easy initialization.
 
+## Table of Contents
+
+- [Features](#-features)
+- [Technologies](#-technologies)
+- [Getting Started](#getting-started)
+- [API Endpoints](#api-endpoints)
+- [Database: energetika](#database-energetika)
+- [Middleware](#middleware)
+- [Screenshots](#screenshots)
+- [Future Improvements](#-future-improvements)
+
+---
+
 ## 🚀 Features 
 
 - **Full CRUD Functionality** - create, read, update, and delete records directly through EJS-rendered views
@@ -31,7 +44,7 @@ The project features **JWT-based authentication**, **MVC architecture**, and an 
 - **PostgreSQL** - relational database for data persistence
 - **pg** - official PostgreSQL client for Node.js
 
-## ⚙️ Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -206,7 +219,7 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 
 ---
 
-## 🖼️ Screenshots
+## Screenshots
 
 | Login Page |
 |------------|
