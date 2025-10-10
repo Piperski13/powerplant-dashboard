@@ -1,9 +1,8 @@
 # *Currently outdated readme - Refactor done recently - creating new readme in progress...
-# Node.js Express PostgreSQL CRUD App (EJS Refactor · JWT Auth · MVC Architecture) | Responsive Design
+# Node.js Express PostgreSQL CRUD App with EJS Views & JWT Authentication
 
-Originally developed in 2024 as a Node.js + Express + PostgreSQL REST API with a Vanilla JS frontend,
-this project has now been completely refactored to use EJS templates for dynamic rendering.
-Unnecessary frontend fetch calls were removed, and the logic is now fully handled through server-side rendering and controllers for cleaner, more maintainable code.
+A refactored full-stack web application originally built in 2024, now rebuilt ( 2025 ) to use **EJS templating** for server-side rendering, simplified data handling, and removal of unnecessary frontend fetch calls.
+The project features **JWT-based authentication**, **MVC architecture**, and an **automated database setup script** for easy initialization.
 
 ## 🚀 Features 
 
@@ -33,7 +32,7 @@ Unnecessary frontend fetch calls were removed, and the logic is now fully handle
 - **PostgreSQL** - relational database for data persistence
 - **pg** - official PostgreSQL client for Node.js
 
-## Getting Started
+## ⚙️ Getting Started
 
 ### Prerequisites
 
@@ -68,21 +67,35 @@ Ensure you have these installed:
    Create a `.env` file in the root directory and add your PostgreSQL credentials
 
     ```plaintext
-    PORT,
-    DB_USER,
-    DB_HOST,
-    DB_DATABASE,
-    DB_PASSWORD,
-    DB_PORT,
-    JWT_SECRET
+    PORT=
+    DB_USER=
+    DB_HOST=
+    DB_DATABASE=
+    DB_PASSWORD=
+    DB_PORT=
+    JWT_SECRET=
+    DB_CONNECTION_STRING=
     ```
     
-### Running the API
+### Database Setup
+
+1. To automatically create and populate your PostgreSQL database, run:
+
+    ```bash
+    node db/populatedb.js
+    ```
+   This script will generate the required tables and seed example data.
+   <br>Note: You will need to create DB itself manualy inside of a psql:
+   ```bash
+   CREATE DATABASE DB_DATABASE;
+   ```
+    
+### Running the app
 
 1. Start the server:
 
     ```bash
-    node server.js
+    npm start
     ```
 
 2. The server will start on `http://localhost:3000` by default.
