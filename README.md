@@ -17,6 +17,7 @@ The project features **JWT-based authentication**, **MVC architecture**, and an 
 ---
 
 ## 🚀 Features 
+[⬆ Back to Table of Contents](#table-of-contents)
 
 - **Full CRUD Functionality** - create, read, update, and delete records directly through EJS-rendered views
 
@@ -35,6 +36,7 @@ The project features **JWT-based authentication**, **MVC architecture**, and an 
 - **Responsive Design** - layout optimized for both desktop and mobile
 
 ## 🧩 Technologies
+[⬆ Back to Table of Contents](#table-of-contents)
 
 - **EJS** - server-side templating for dynamic HTML rendering
 - **CSS** - styling language
@@ -45,6 +47,7 @@ The project features **JWT-based authentication**, **MVC architecture**, and an 
 - **pg** - official PostgreSQL client for Node.js
 
 ## Getting Started
+[⬆ Back to Table of Contents](#table-of-contents)
 
 ### Prerequisites
 
@@ -113,6 +116,7 @@ Ensure you have these installed:
 2. The server will start on `http://localhost:3000` by default.
 
 # API Endpoints
+[⬆ Back to Table of Contents](#table-of-contents)
 
 ## Login router ('/') 
 ------------------------ 
@@ -140,6 +144,7 @@ Ensure you have these installed:
 | GET    | `/delete/:id`            | Deletes a record                                |
 
 # Database: energetika
+[⬆ Back to Table of Contents](#table-of-contents)
 
 ## Table: EvidencijaElektrane ( evidencijaelektrana )
 
@@ -207,6 +212,7 @@ INSERT INTO korisnik (PREZIME, IME, EMAIL, KORISNICKOIME, SIFRA, URLSLIKE, STATU
 VALUES ('Пиперски', 'Алекса', 'mr.alexpiperski@gmail.com', 'aleksap', 'ap', 'admin.jpg', 'admin');<br>
 
 # Middleware
+[⬆ Back to Table of Contents](#table-of-contents)
 
 This project currently includes one custom middleware function:
 
@@ -220,6 +226,7 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 ---
 
 ## Screenshots
+[⬆ Back to Table of Contents](#table-of-contents)
 
 | Login Page |
 |------------|
@@ -247,7 +254,8 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 
 ---
 
-## 🚀 Future Improvements  
+## 🚀 Future Improvements 
+[⬆ Back to Table of Contents](#table-of-contents)
 
 - **Multiple Profiles Support** — Implement functionality for creating and managing multiple user profiles.  
 - **User Registration** — Add a registration system allowing new users to create accounts.  
