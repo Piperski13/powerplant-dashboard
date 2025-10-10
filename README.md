@@ -204,23 +204,34 @@ This project currently includes one custom middleware function:
 
 This middleware is applied globally to all `/viewPage` and `/records` routes to protect access from unauthorized users.
 
-## Login Page  
-![Login Page](public/images/login.jpg)
+---
 
-## Welcome Page  
-![Welcome Page](public/images/welcome.jpg)
+## 🖼️ Screenshots
 
-## View Records Page  
-![View Records Page](public/images/view-records.jpg)
+| Login Page |
+|------------|
+| ![Login Page](public/images/login.jpg)
 
-## Add Record Page  
-![Add Record Page](public/images/add-record.jpg)
+| Welcome Page |
+|------------|
+| ![Welcome Page](public/images/welcome.jpg)
 
-## Update Record Page  
-![Update Record Page](public/images/update-recrod.jpg)
+| View Records Page  |
+|------------|
+| ![View Records Page](public/images/view-records.jpg)
 
-## Logout Button  
-![Logout Button](public/images/logout.jpg)
+| Add Record Page    |
+|------------|
+| ![Add Record Page](public/images/add-record.jpg)
+
+| Update Record Page   |
+|------------|
+| ![Update Record Page](public/images/update-recrod.jpg)
+
+| Logout Button     |
+|------------|
+| ![Logout Button](public/images/logout.jpg)
+
 ---
 
 ## 🚀 Future Improvements  
