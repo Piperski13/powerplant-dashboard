@@ -254,7 +254,7 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 
 ---
 
-## 🚀 Future Improvements 
+## 🚀 Future Improvements - ( work in progress )
 [⬆ Back to Table of Contents](#table-of-contents)
 
 - **Multiple Profiles Support** — Implement functionality for creating and managing multiple user profiles.  
