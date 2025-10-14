@@ -26,14 +26,11 @@ CREATE TABLE IF NOT EXISTS EvidencijaElektrana (
 );
 
 CREATE TABLE IF NOT EXISTS Korisnik (
-  idkorisnika INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  prezime VARCHAR(50) NOT NULL,
-  ime VARCHAR(40) NOT NULL,
-  email VARCHAR(50) NOT NULL,
-  korisnickoime VARCHAR(30) NOT NULL,
-  sifra VARCHAR(30) NOT NULL,
-  urlslike VARCHAR(250) NOT NULL,
-  statusucesca VARCHAR(30) NOT NULL
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
+    email VARCHAR(100) NOT NULL UNIQUE, 
+    password VARCHAR(100) NOT NULL,
+    surname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL 
 );
 
 -- Insert default data
@@ -45,9 +42,9 @@ VALUES
   (2, 'Ugalj', 0)
 ON CONFLICT (sifra) DO NOTHING;
 
-INSERT INTO Korisnik (prezime, ime, email, korisnickoime, sifra, urlslike, statusucesca)
+INSERT INTO Korisnik (email, password, surname, lastname)
 VALUES
-  ('Пиперски', 'Алекса', 'mr.alexpiperski@gmail.com', 'aleksap', 'ap', 'admin.jpg', 'admin')
+  ('mr.alexpiperski@gmail.com', 'ap', 'Aleksa', 'Piperski')
 ON CONFLICT DO NOTHING;
 `;
 

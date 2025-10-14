@@ -15,13 +15,13 @@
     <!-- Local Styles -->
     <link rel="stylesheet" href="/styles/welcome.css" />
 
-    <title>Welcome <%= user.ime %></title>
+    <title>Welcome <%= user.surname %></title>
   </head>
 
   <body>
     <div id="main-box">
       <%- include("../partials/navbar.ejs") %>
-      <h1><%= `Welcome, ${user.ime}` %></h1>
+      <h1><%= `Welcome, ${user.surname}` %></h1>
     </div>
     <%- include("../partials/footer.ejs") %>
     <script src="/scripts/hamburger_menu/toggleMenu.js"></script>

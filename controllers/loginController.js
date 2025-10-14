@@ -2,9 +2,9 @@ const jwt = require("jsonwebtoken");
 const Login = require("../model/loginModel.js");
 require("dotenv").config("../.env");
 
-const getUser = async (username) => {
+const getUser = async (email) => {
   try {
-    const result = await Login.getUserByUsername(username);
+    const result = await Login.getUserByEmail(email);
     return result;
   } catch (error) {
     console.error(error);
@@ -16,15 +16,15 @@ const showLogin = async (req, res) => {
 };
 
 const loginAuth = async (req, res) => {
-  const { username, password } = req.body;
+  const { email, password } = req.body;
 
-  const user = await getUser(username);
+  const user = await getUser(email);
 
   if (!user) {
     return res.status(403).json({
       error: "invalid login",
     });
-  } else if (user.sifra !== password) {
+  } else if (user.password !== password) {
     return res.status(403).json({
       error: "invalid login",
     });

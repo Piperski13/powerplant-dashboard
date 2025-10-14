@@ -1,15 +1,15 @@
 const pool = require("../db/pool");
 
 class Login {
-  static async getUserByUsername(username) {
+  static async getUserByEmail(email) {
     try {
-      const query = "SELECT * FROM korisnik WHERE korisnickoime=$1";
-      const value = [username];
+      const query = "SELECT * FROM korisnik WHERE email=$1";
+      const value = [email];
 
       const { rows } = await pool.query(query, value);
       return rows[0];
     } catch (error) {
-      console.error("Error database query (getUsername): ", error.message);
+      console.error("Error database query: ", error.message);
     }
   }
 }
