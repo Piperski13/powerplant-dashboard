@@ -44,4 +44,18 @@ const logout = (req, res) => {
   res.redirect("/");
 };
 
-module.exports = { loginAuth, showLogin, logout };
+const signIn = async (req, res) => {
+  try {
+    const { email, password, surname, lastname } = req.body;
+    const result = await Login.addUser(email, password, surname, lastname);
+    res.redirect("/");
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const showSignIn = async (req, res) => {
+  res.render("signIn", { error: true });
+};
+
+module.exports = { loginAuth, showLogin, logout, signIn, showSignIn };
