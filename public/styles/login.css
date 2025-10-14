@@ -75,6 +75,21 @@ input::placeholder {
 .login-div-text {
   color: white;
 }
+
+.form-link {
+  display: inline-block;
+  margin-top: 10px;
+  color: #3b49e6;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.2s ease, text-decoration 0.2s ease;
+}
+
+.form-link:hover {
+  color: #2a36c4;
+  text-decoration: underline;
+}
+
 /* incorrect password start */
 .username-error,
 .password-error {
