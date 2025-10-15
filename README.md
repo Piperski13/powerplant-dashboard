@@ -23,6 +23,8 @@ A refactored full-stack web application originally built in 2024, now rebuilt ( 
 
 - **User Authentication via Passport.js** - session-based authentication with bcrypt password hashing
 
+- **Per-User Data Views** - each user only sees records they created; all records are linked to the user's profile
+
 - **Server-Side Rendering (EJS)** - real-time data updates and dynamic pages based on logged-in user data
 
 - **PostgreSQL Integration** - all data operations handled through RESTful-style controllers and models
@@ -137,22 +139,22 @@ Ensure you have these installed:
 
 ---
 
-| Method | Endpoint           | Description                                                                  |
-| ------ | ------------------ | ---------------------------------------------------------------------------- |
-| GET    | `/welcome`         | Renders the welcome page and passes the logged-in user object                |
-| GET    | `/recordsViewPage` | Renders the records view page, displaying all data with filter functionality |
-| GET    | `/addRecord`       | Renders the page for adding a new record                                     |
-| GET    | `/addRecord/:id`   | Renders the update record page with pre-filled data for the selected record  |
+| Method | Endpoint           | Description                                                                                  |
+| ------ | ------------------ | -------------------------------------------------------------------------------------------- |
+| GET    | `/welcome`         | Renders the welcome page and passes the logged-in user object                                |
+| GET    | `/recordsViewPage` | Renders the records view page, displaying only the logged-in user's data with filter options |
+| GET    | `/addRecord`       | Renders the page for adding a new record                                                     |
+| GET    | `/addRecord/:id`   | Renders the update record page with pre-filled data for the selected record                  |
 
 ## Record router ('/records')
 
 ---
 
-| Method | Endpoint      | Description                |
-| ------ | ------------- | -------------------------- |
-| POST   | `/create/`    | Creates a new record       |
-| POST   | `/update/:id` | Updates an existing record |
-| GET    | `/delete/:id` | Deletes a record           |
+| Method | Endpoint      | Description                                                      |
+| ------ | ------------- | ---------------------------------------------------------------- |
+| POST   | `/create/`    | Creates a new record linked to the logged-in user                |
+| POST   | `/update/:id` | Updates an existing record that it belongs to the logged-in user |
+| GET    | `/delete/:id` | Deletes a record that it belongs to the logged-in user           |
 
 # Database: energetika
 
@@ -164,14 +166,15 @@ The `evidencijaelektrana` table stores information about power plants.
 
 ### Attributes:
 
-| Column Name       | Data Type              | Constraints           | Description                                 |
-| ----------------- | ---------------------- | --------------------- | ------------------------------------------- |
-| id                | integer                | NOT NULL, PRIMARY KEY | Unique identifier for each record           |
-| nazivelektrane    | character varying(100) | NOT NULL              | Name of the power plant                     |
-| mesto             | character varying(100) | NOT NULL              | Location of the power plant                 |
-| adresa            | character varying(50)  | NOT NULL              | Address of the power plant                  |
-| datumpustanjaurad | date                   | NOT NULL              | Date the power plant was put into operation |
-| sifravrstepogona  | integer                | NOT NULL              | Foreign key referencing VrstaPogona table   |
+| Column Name       | Data Type              | Constraints           | Description                                                   |
+| ----------------- | ---------------------- | --------------------- | ------------------------------------------------------------- |
+| id                | integer                | NOT NULL, PRIMARY KEY | Unique identifier for each record                             |
+| nazivelektrane    | character varying(100) | NOT NULL              | Name of the power plant                                       |
+| mesto             | character varying(100) | NOT NULL              | Location of the power plant                                   |
+| adresa            | character varying(50)  | NOT NULL              | Address of the power plant                                    |
+| datumpustanjaurad | date                   | NOT NULL              | Date the power plant was put into operation                   |
+| sifravrstepogona  | integer                | NOT NULL              | Foreign key referencing VrstaPogona table                     |
+| user_id           | integer                | NOT NULL              | Foreign key referencing Korisnici table (owner of the record) |
 
 ### Foreign Key Constraints:
 
@@ -181,6 +184,14 @@ The `evidencijaelektrana` table stores information about power plants.
   - **Actions**:
     - ON UPDATE CASCADE
     - ON DELETE RESTRICT
+
+- **fk_user**:
+  - **Column**: `user_id`
+  - **References**: `Korisnici(id)`
+  - **Actions**:
+    - ON UPDATE CASCADE
+    - ON DELETE CASCADE
+
 
 ## Table: VrstaPogona ( vrstapogona )
 
@@ -226,10 +237,10 @@ The `korisnici` table stores information about users of the application
 
 This project currently includes one custom middleware function:
 
-- **cookieJwtAuth**:  
-  This middleware validates the JWT stored in the user's cookie.  
+- **isAuthenticated**:  
+  This middleware checks if the user is logged in using Passport.js.  
   It ensures that only authenticated users can access protected routes.  
-  If the token is missing, invalid, or expired, the middleware automatically clears the cookie and redirects the user to the login page.
+  If the user is not authenticated, they are redirected to the login page.
 
 This middleware is applied globally to all `/viewPage` and `/records` routes to protect access from unauthorized users.
 
@@ -277,6 +288,5 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 
 [⬆ Back to Table of Contents](#table-of-contents)
 
-- **User-Specific Databases** — Assign each user their own database or data schema, requiring adjustments to the current database design.
 - **Form Validation** — Implement both client-side and server-side form validation for better data integrity.
 - **Deployment** — Host the application online after implementing all planned features.
