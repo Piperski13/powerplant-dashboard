@@ -1,7 +1,6 @@
-# Node.js Express PostgreSQL CRUD App with EJS Views & JWT Authentication
-
-A refactored full-stack web application originally built in 2024, now rebuilt ( 2025 ) to use **EJS templating** for server-side rendering, simplified data handling, and removal of unnecessary frontend fetch calls.
-The project features **JWT-based authentication**, **MVC architecture**, and an **automated database setup script** for easy initialization.
+# Node.js Express PostgreSQL CRUD App with EJS Views & Passport Authentication
+A refactored full-stack web application originally built in 2024, now rebuilt ( 2025 ) to use **EJS templating** for server-side rendering, simplified data handling, switched from JWT to Passport for session-based authentication, and removal of unnecessary frontend fetch calls. <br>
+**Passport.js session-based authentication with bcrypt password hashing**, **MVC architecture**, and an **automated database setup script** for easy initialization.
 
 ## Table of Contents
 
@@ -22,7 +21,7 @@ The project features **JWT-based authentication**, **MVC architecture**, and an 
 
 - **Full CRUD Functionality** - create, read, update, and delete records directly through EJS-rendered views
 
-- **User Authentication via JWT** - protected routes using secure JWT validation middleware
+- **User Authentication via Passport.js** - session-based authentication with bcrypt password hashing
 
 - **Server-Side Rendering (EJS)** - real-time data updates and dynamic pages based on logged-in user data
 
@@ -128,11 +127,11 @@ Ensure you have these installed:
 
 ---
 
-| Method | Endpoint  | Description                                                            |
-| ------ | --------- | ---------------------------------------------------------------------- |
-| GET    | `/`       | Renders the login page                                                 |
-| POST   | `/login`  | Authenticates the user, creates a cookie, and redirects to the welcome |
-| GET    | `/logout` | Clears the authentication cookie and redirects to the login page       |
+| Method | Endpoint  | Description                                                                                        |
+| ------ | --------- | -------------------------------------------------------------------------------------------------- |
+| GET    | `/`       | Renders the login page                                                                             |
+| POST   | `/login`  | Authenticates the user using Passport.js, establishes a session, and redirects to the welcome page |
+| GET    | `/logout` | Ends the user session and redirects to the login page                                              |
 
 ## View router ('/viewPage')
 
@@ -204,25 +203,22 @@ INSERT INTO "VrstaPogona" (Sifra, Naziv, UkupanBrojElektrana) VALUES ('2', 'Ugal
 
 ## Table: korisnici ( korisnici )
 
-The `korisnici` table stores information about user of the application
+The `korisnici` table stores information about users of the application
 
 ### Attributes:
 
-| Column Name   | Data Type              | Constraints           | Description                   |
-| ------------- | ---------------------- | --------------------- | ----------------------------- |
-| idkorisnika   | integer                | NOT NULL, PRIMARY KEY | Unique identifier of the user |
-| prezime       | character varying(50)  | NOT NULL              | User's last name              |
-| ime           | character varying(40)  | NOT NULL              | User's first name             |
-| email         | character varying(50)  | NOT NULL, PRIMARY KEY | User's email address          |
-| korisnickoime | character varying(30)  | NOT NULL              | Username of the user          |
-| sifra         | character varying(30)  | NOT NULL              | User's identification number  |
-| urlslike      | character varying(250) | NOT NULL, PRIMARY KEY | URL of the user's picture     |
-| statusucesca  | character varying(30)  | NOT NULL              | User's status                 |
+| Column Name | Data Type              | Constraints          | Description                   |
+| ----------- | ---------------------- | -------------------- | ----------------------------- |
+| id          | integer                | PRIMARY KEY          | Unique identifier of the user |
+| email       | character varying(100) | NOT NULL, UNIQUE     | User's email address          |
+| password    | character varying(100) | NOT NULL             | Hashed password using bcrypt  |
+| surname     | character varying(50)  | NOT NULL             | User's first name             |
+| lastname    | character varying(50)  | NOT NULL             | User's last name              |
 
-- Using SQL Shell, create user:
+- The `password` field is stored as a **hashed value using bcrypt**, so **plaintext passwords are never stored**.  
+- Because of this, you **cannot create users directly using SQL shell** with plain-text passwords.  
+- Users must be created via the **Sign In / Register form** (`/sign-in`), which automatically hashes the password before storing it in the database.  
 
-INSERT INTO korisnici (PREZIME, IME, EMAIL, KORISNICKOIME, SIFRA, URLSLIKE, STATUSUCESCA)<br>
-VALUES ('Пиперски', 'Алекса', 'mr.alexpiperski@gmail.com', 'aleksap', 'ap', 'admin.jpg', 'admin');<br>
 
 # Middleware
 
