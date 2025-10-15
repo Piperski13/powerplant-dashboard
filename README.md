@@ -239,34 +239,36 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 
 [⬆ Back to Table of Contents](#table-of-contents)
 
-| Login Page |
-| ---------- |
-
+|  Login Page |
+|------------|
 | ![Login Page](public/images/login.jpg)
+
+| Sign-in Page |
+| ----------   |
+| ![Login Page](public/images/sign-in.jpg)
+
+| Hashed Passwords |
+| ---------- |
+| ![Login Page](public/images/hashed-passwrods.jpg)
 
 | Welcome Page |
 | ------------ |
-
 | ![Welcome Page](public/images/welcome.jpg)
 
 | View Records Page |
 | ----------------- |
-
 | ![View Records Page](public/images/view-records.jpg)
 
 | Add Record Page |
 | --------------- |
-
 | ![Add Record Page](public/images/add-record.jpg)
 
 | Update Record Page |
 | ------------------ |
-
 | ![Update Record Page](public/images/update-recrod.jpg)
 
 | Logout Button |
 | ------------- |
-
 | ![Logout Button](public/images/logout.jpg)
 
 ---
@@ -275,8 +277,6 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 
 [⬆ Back to Table of Contents](#table-of-contents)
 
-- **Multiple Profiles Support** — Implement functionality for creating and managing multiple user profiles.
-- **User Registration** — Add a registration system allowing new users to create accounts.
 - **User-Specific Databases** — Assign each user their own database or data schema, requiring adjustments to the current database design.
 - **Form Validation** — Implement both client-side and server-side form validation for better data integrity.
 - **Deployment** — Host the application online after implementing all planned features.
