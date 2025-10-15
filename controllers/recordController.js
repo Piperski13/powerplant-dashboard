@@ -10,12 +10,15 @@ const addRecord = async (req, res) => {
       sifravrstepogona,
     } = req.body;
 
+    const user_id = req.user.id;
+
     await Record.add({
       nazivelektrane,
       mesto,
       adresa,
       datumpustanjaurad,
       sifravrstepogona,
+      user_id,
     });
     res.redirect("/viewPage/recordsViewPage");
   } catch (error) {

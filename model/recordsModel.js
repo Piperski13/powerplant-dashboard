@@ -7,9 +7,10 @@ class Record {
     adresa,
     datumpustanjaurad,
     sifravrstepogona,
+    user_id,
   }) {
     try {
-      const query = `INSERT INTO evidencijaelektrana (nazivelektrane,mesto,adresa,datumpustanjaurad,sifravrstepogona) VALUES ($1,$2,$3,$4,$5) RETURNING *`;
+      const query = `INSERT INTO evidencijaelektrana (nazivelektrane,mesto,adresa,datumpustanjaurad,sifravrstepogona,user_id) VALUES ($1,$2,$3,$4,$5,$6) RETURNING *`;
 
       const value = [
         nazivelektrane,
@@ -17,6 +18,7 @@ class Record {
         adresa,
         datumpustanjaurad,
         sifravrstepogona,
+        user_id,
       ];
 
       const { rows } = await pool.query(query, value);
