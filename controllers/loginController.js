@@ -1,4 +1,5 @@
 const passport = require("passport");
+const bcrypt = require("bcryptjs");
 const Login = require("../model/loginModel.js");
 require("dotenv").config("../.env");
 
@@ -12,8 +13,9 @@ const showLogin = async (req, res) => {
 
 const signIn = async (req, res) => {
   try {
-    const { email, password, surname, lastname } = req.body;
-    await Login.addUser(email, password, surname, lastname);
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const { email, surname, lastname } = req.body;
+    await Login.addUser(email, hashedPassword, surname, lastname);
     res.redirect("/");
   } catch (error) {
     console.error(error);

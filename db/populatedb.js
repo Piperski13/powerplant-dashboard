@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS EvidencijaElektrana (
     ON DELETE RESTRICT
 );
 
-CREATE TABLE IF NOT EXISTS Korisnik (
+CREATE TABLE IF NOT EXISTS Korisnici (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
     email VARCHAR(100) NOT NULL UNIQUE, 
     password VARCHAR(100) NOT NULL,
@@ -41,11 +41,6 @@ VALUES
   (1, 'Vetar', 0),
   (2, 'Ugalj', 0)
 ON CONFLICT (sifra) DO NOTHING;
-
-INSERT INTO Korisnik (email, password, surname, lastname)
-VALUES
-  ('mr.alexpiperski@gmail.com', 'ap', 'Aleksa', 'Piperski')
-ON CONFLICT DO NOTHING;
 `;
 
 async function main() {
