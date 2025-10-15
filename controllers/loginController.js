@@ -1,47 +1,57 @@
-const jwt = require("jsonwebtoken");
+const passport = require("passport");
+const bcrypt = require("bcryptjs");
 const Login = require("../model/loginModel.js");
 require("dotenv").config("../.env");
 
-const getUser = async (username) => {
-  try {
-    const result = await Login.getUserByUsername(username);
-    return result;
-  } catch (error) {
-    console.error(error);
-  }
+const showSignIn = async (req, res) => {
+  res.render("signIn", { error: true });
 };
 
 const showLogin = async (req, res) => {
   res.render("login", { error: true });
 };
 
-const loginAuth = async (req, res) => {
-  const { username, password } = req.body;
-
-  const user = await getUser(username);
-
-  if (!user) {
-    return res.status(403).json({
-      error: "invalid login",
-    });
-  } else if (user.sifra !== password) {
-    return res.status(403).json({
-      error: "invalid login",
-    });
+const signIn = async (req, res) => {
+  try {
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+    const { email, surname, lastname } = req.body;
+    await Login.addUser(email, hashedPassword, surname, lastname);
+    res.redirect("/");
+  } catch (error) {
+    console.error(error);
   }
-
-  delete user.password;
-
-  const token = jwt.sign(user, process.env.JWT_SECRET, { expiresIn: "1h" });
-
-  res.cookie("token", token, { httpOnly: true });
-
-  res.redirect("/viewPage/welcome");
 };
 
-const logout = (req, res) => {
-  res.clearCookie("token");
-  res.redirect("/");
+const login = async (req, res, next) => {
+  passport.authenticate("local", (err, user, info) => {
+    if (err) return next(err);
+
+    if (!user) {
+      return res.redirect("/");
+    }
+
+    req.logIn(user, (err) => {
+      if (err) return next(err);
+      return res.redirect("/viewPage/welcome");
+    });
+  })(req, res, next);
 };
 
-module.exports = { loginAuth, showLogin, logout };
+const logout = async (req, res, next) => {
+  try {
+    await new Promise((resolve, reject) => {
+      req.logout((err) => {
+        if (err) return reject(err);
+        resolve();
+      });
+    });
+
+    req.session.destroy(() => {
+      res.redirect("/");
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+module.exports = { showSignIn, showLogin, signIn, login, logout };

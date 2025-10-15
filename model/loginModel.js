@@ -1,15 +1,14 @@
 const pool = require("../db/pool");
 
 class Login {
-  static async getUserByUsername(username) {
+  static async addUser(email, password, surname, lastname) {
     try {
-      const query = "SELECT * FROM korisnik WHERE korisnickoime=$1";
-      const value = [username];
-
-      const { rows } = await pool.query(query, value);
-      return rows[0];
-    } catch (error) {
-      console.error("Error database query (getUsername): ", error.message);
+      await pool.query(
+        "INSERT INTO korisnici (email, password, surname, lastname) VALUES ($1, $2, $3, $4)",
+        [email, password, surname, lastname]
+      );
+    } catch (err) {
+      return next(err);
     }
   }
 }

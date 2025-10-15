@@ -20,7 +20,7 @@
 
     <!-- Static CSS -->
     <link rel="stylesheet" href="/styles/login.css" />
-    <title>Login</title>
+    <title>Sign in</title>
   </head>
   <body>
     <main>
@@ -32,11 +32,23 @@
         <form
           id="login-form-js"
           class="login-form"
-          action="/login"
+          action="/sign-in"
           method="POST"
         >
           <span class="material-symbols-outlined icon"> account_circle </span>
 
+          <input
+            id="surname"
+            name="surname"
+            type="text"
+            placeholder="Surname"
+          />
+          <input
+            id="lastname"
+            name="lastname"
+            type="text"
+            placeholder="Lastname"
+          />
           <input id="email" name="email" type="email" placeholder="Email" />
 
           <input
@@ -45,8 +57,8 @@
             type="password"
             placeholder="Password"
           />
-          <a href="/sign-in" class="form-link">Don't have an account? Sign up</a>
-          <button type="submit" class="login-submit-btn">LOGIN</button>
+          <a href="/" class="form-link">Already have an account? Log in?</a>
+          <button type="submit" class="login-submit-btn">SIGN IN</button>
         </form>
       </section>
       <%- include("../partials/footer.ejs") %>

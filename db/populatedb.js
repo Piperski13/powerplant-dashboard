@@ -25,15 +25,12 @@ CREATE TABLE IF NOT EXISTS EvidencijaElektrana (
     ON DELETE RESTRICT
 );
 
-CREATE TABLE IF NOT EXISTS Korisnik (
-  idkorisnika INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  prezime VARCHAR(50) NOT NULL,
-  ime VARCHAR(40) NOT NULL,
-  email VARCHAR(50) NOT NULL,
-  korisnickoime VARCHAR(30) NOT NULL,
-  sifra VARCHAR(30) NOT NULL,
-  urlslike VARCHAR(250) NOT NULL,
-  statusucesca VARCHAR(30) NOT NULL
+CREATE TABLE IF NOT EXISTS Korisnici (
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
+    email VARCHAR(100) NOT NULL UNIQUE, 
+    password VARCHAR(100) NOT NULL,
+    surname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL 
 );
 
 -- Insert default data
@@ -44,11 +41,6 @@ VALUES
   (1, 'Vetar', 0),
   (2, 'Ugalj', 0)
 ON CONFLICT (sifra) DO NOTHING;
-
-INSERT INTO Korisnik (prezime, ime, email, korisnickoime, sifra, urlslike, statusucesca)
-VALUES
-  ('Пиперски', 'Алекса', 'mr.alexpiperski@gmail.com', 'aleksap', 'ap', 'admin.jpg', 'admin')
-ON CONFLICT DO NOTHING;
 `;
 
 async function main() {
