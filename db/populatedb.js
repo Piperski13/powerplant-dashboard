@@ -1,10 +1,16 @@
-#! /usr/bin/env node
-
 const { Client } = require("pg");
 require("dotenv").config();
 
 const SQL = `
 -- Create tables
+
+CREATE TABLE IF NOT EXISTS Korisnici (
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
+    email VARCHAR(100) NOT NULL UNIQUE, 
+    password VARCHAR(100) NOT NULL,
+    surname VARCHAR(50) NOT NULL,
+    lastname VARCHAR(50) NOT NULL 
+);
 
 CREATE TABLE IF NOT EXISTS VrstaPogona (
   sifra INTEGER PRIMARY KEY,
@@ -19,18 +25,15 @@ CREATE TABLE IF NOT EXISTS EvidencijaElektrana (
   adresa VARCHAR(50) NOT NULL,
   datumpustanjaurad DATE NOT NULL,
   sifravrstepogona INTEGER NOT NULL,
+  user_id INTEGER NOT NULL,
   CONSTRAINT fk_pripada FOREIGN KEY (sifravrstepogona)
     REFERENCES VrstaPogona (sifra)
     ON UPDATE CASCADE
-    ON DELETE RESTRICT
-);
-
-CREATE TABLE IF NOT EXISTS Korisnici (
-    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
-    email VARCHAR(100) NOT NULL UNIQUE, 
-    password VARCHAR(100) NOT NULL,
-    surname VARCHAR(50) NOT NULL,
-    lastname VARCHAR(50) NOT NULL 
+    ON DELETE RESTRICT,
+  CONSTRAINT fk_user FOREIGN KEY (user_id)
+    REFERENCES Korisnici (id)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE
 );
 
 -- Insert default data
