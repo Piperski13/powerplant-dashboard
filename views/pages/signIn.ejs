@@ -26,9 +26,17 @@
     <main>
       <section id="form-section">
         <div class="login-div">
-          <p class="login-div-text">HELLO USER!</p>
+          <p class="login-div-text">
+            <%= user ? "HELLO " + user.surname +"!" : "HELLO USER!" %>
+          </p>
         </div>
 
+        <% if (user) { %>
+        <form action="/logout">
+          <span class="material-symbols-outlined icon"> account_circle </span>
+          <button type="submit" class="login-submit-btn">LOGOUT</button>
+        </form>
+        <% } else { %>
         <form
           id="login-form-js"
           class="login-form"
@@ -60,6 +68,7 @@
           <a href="/" class="form-link">Already have an account? Log in?</a>
           <button type="submit" class="login-submit-btn">SIGN IN</button>
         </form>
+        <% } %>
       </section>
       <%- include("../partials/footer.ejs") %>
     </main>
