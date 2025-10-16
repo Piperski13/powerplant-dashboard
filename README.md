@@ -278,6 +278,14 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 | ------------------ |
 | ![Update Record Page](public/images/update-recrod.jpg)
 
+| 404 Page - Displayed when a user accesses a non-existent route |
+| ------------------ |
+| ![Update Record Page](public/images/404.jpg)
+
+| Rendered when an authenticated user tries to access the login/sign in page |
+| ------------------ |
+| ![Update Record Page](public/images/login-user-true.jpg)
+
 | Logout Button |
 | ------------- |
 | ![Logout Button](public/images/logout.jpg)
