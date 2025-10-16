@@ -25,7 +25,7 @@ const showWelcome = async (req, res) => {
   res.render("welcome", { user: req.user });
 };
 
-const showAddRecord = async (req, res) => {
+const showAddRecord = async (req, res, next, errors = []) => {
   try {
     const { id } = req.params;
     let record = null;
@@ -37,6 +37,7 @@ const showAddRecord = async (req, res) => {
     res.render("addRecord", {
       user: req.user,
       record,
+      errors,
     });
   } catch (error) {
     console.error("Error in showAddRecord:", error.message);

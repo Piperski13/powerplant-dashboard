@@ -1,7 +1,34 @@
 const Record = require("../model/recordsModel.js");
+const { body, validationResult } = require("express-validator");
+const { showAddRecord } = require("./viewController.js");
+
+const alphaErr = "must only contain letters.";
+const lengthErr = "must be between 2 and 15 characters.";
+
+const validateUser = [
+  body("nazivelektrane")
+    .trim()
+    .isAlpha()
+    .withMessage(`Nazivel Ektrane ${alphaErr}`)
+    .isLength({ min: 2, max: 15 })
+    .withMessage(`Nazivel Ektrane ${lengthErr}`),
+  body("mesto")
+    .trim()
+    .isLength({ min: 2, max: 15 })
+    .withMessage(`Mesto ${lengthErr}`),
+  body("adresa")
+    .trim()
+    .isLength({ min: 2, max: 15 })
+    .withMessage(`Adresa ${lengthErr}`),
+];
 
 const addRecord = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return showAddRecord(req, res, [], errors.array());
+    }
+
     const {
       nazivelektrane,
       mesto,
@@ -43,6 +70,11 @@ const deleteRecord = async (req, res) => {
 
 const updateRecord = async (req, res) => {
   try {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return showAddRecord(req, res, [], errors.array());
+    }
+
     const id = parseInt(req.params.id);
     const {
       nazivelektrane,
@@ -71,4 +103,5 @@ module.exports = {
   addRecord,
   deleteRecord,
   updateRecord,
+  validateUser,
 };

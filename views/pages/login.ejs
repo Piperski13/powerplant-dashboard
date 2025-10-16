@@ -52,7 +52,7 @@
             id="email"
             name="email"
             type="email"
-            class="<%= error ? 'input-error' : '' %>"
+            class="<%= error.length>0 ? 'input-error' : '' %>"
             placeholder="Email"
           />
 
@@ -60,7 +60,7 @@
             id="password"
             name="password"
             type="password"
-            class="<%= error ? 'input-error' : '' %>"
+            class="<%= error.length>0 ? 'input-error' : '' %>"
             placeholder="Password"
           />
           <a href="/sign-in" class="form-link"

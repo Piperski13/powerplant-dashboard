@@ -24,12 +24,12 @@ const validateUser = [
   body("password").isLength({ min: 2 }).withMessage("Password too short"),
 ];
 
-const showSignIn = async (req, res) => {
-  res.render("signIn", { error: false, user: req.user });
+const showSignIn = async (req, res, next, errors = []) => {
+  res.render("signIn", { errors, user: req.user });
 };
 
-const showLogin = async (req, res) => {
-  res.render("login", { error: false, user: req.user });
+const showLogin = async (req, res, next, error = []) => {
+  res.render("login", { error, user: req.user });
 };
 
 const signIn = async (req, res) => {
@@ -44,10 +44,7 @@ const signIn = async (req, res) => {
     }
 
     if (allErrors.length > 0) {
-      return res.status(400).render("signIn", {
-        errors: allErrors,
-        user: req.user,
-      });
+      return showSignIn(req, res, [], allErrors);
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -65,7 +62,7 @@ const login = async (req, res, next) => {
     if (err) return next(err);
 
     if (!user) {
-      return res.render("login", { error: info.message, user: req.user });
+      return showLogin(req, res, [], info.message);
     }
 
     req.logIn(user, (err) => {
