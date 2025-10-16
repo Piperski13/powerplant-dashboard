@@ -47,13 +47,20 @@
           method="POST"
         >
           <span class="material-symbols-outlined icon"> account_circle </span>
-
-          <input id="email" name="email" type="email" placeholder="Email" />
+          <p class="login-error"><%= error ? error : "" %></p>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            class="<%= error.length>0 ? 'input-error' : '' %>"
+            placeholder="Email"
+          />
 
           <input
             id="password"
             name="password"
             type="password"
+            class="<%= error.length>0 ? 'input-error' : '' %>"
             placeholder="Password"
           />
           <a href="/sign-in" class="form-link"

@@ -8,8 +8,15 @@ class Login {
         [email, password, surname, lastname]
       );
     } catch (err) {
-      return next(err);
+      throw err;
     }
+  }
+  static async emailExists(email) {
+    const { rows } = await pool.query(
+      `SELECT 1 FROM korisnici WHERE email = $1`,
+      [email]
+    );
+    return rows.length > 0;
   }
 }
 

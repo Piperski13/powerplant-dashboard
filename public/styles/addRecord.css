@@ -52,6 +52,7 @@ a {
   align-items: center;
   justify-content: right;
   padding-right: 5em;
+  position: relative;
 }
 .header-section-link {
   display: flex;
@@ -88,11 +89,8 @@ a {
   justify-content: center;
 }
 /* business rule start  */
-.dropdown-limit {
+.input-error {
   border: 2px solid red;
-}
-.invalid-msg {
-  color: red;
 }
 /* business rule end */
 

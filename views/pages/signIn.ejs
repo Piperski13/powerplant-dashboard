@@ -47,25 +47,34 @@
           method="POST"
         >
           <span class="material-symbols-outlined icon"> account_circle </span>
-
+          <%- include("../partials/errors.ejs") %>
           <input
             id="surname"
             name="surname"
             type="text"
+            class="<%= locals.errors.length>0 ? 'input-error' : '' %>"
             placeholder="Surname"
           />
           <input
             id="lastname"
             name="lastname"
             type="text"
+            class="<%= locals.errors.length>0 ? 'input-error' : '' %>"
             placeholder="Lastname"
           />
-          <input id="email" name="email" type="email" placeholder="Email" />
+          <input
+            id="email"
+            name="email"
+            type="email"
+            class="<%= locals.errors.length>0 ? 'input-error' : '' %>"
+            placeholder="Email"
+          />
 
           <input
             id="password"
             name="password"
             type="password"
+            class="<%= locals.errors.length>0 ? 'input-error' : '' %>"
             placeholder="Password"
           />
           <a href="/" class="form-link">Already have an account? Log in?</a>

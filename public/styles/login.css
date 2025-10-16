@@ -36,6 +36,7 @@ input::placeholder {
   border: 3px solid #3b49e6;
   border-radius: 39px;
   margin-bottom: 20px;
+  margin-top: 3%;
 }
 .login-form {
   display: flex;
@@ -103,18 +104,12 @@ input::placeholder {
   text-decoration: underline;
 }
 
-/* incorrect password start */
-.username-error,
-.password-error {
-  border: 2px solid red;
-}
-.invalid-msg {
+.login-error {
   color: red;
 }
-.hidden {
-  display: none;
+.input-error {
+  border: 2px solid red;
 }
-/* incorrect password finish */
 
 /* responsive design start */
 
