@@ -36,6 +36,7 @@ input::placeholder {
   border: 3px solid #3b49e6;
   border-radius: 39px;
   margin-bottom: 20px;
+  margin-top: 3%;
 }
 .login-form {
   display: flex;

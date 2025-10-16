@@ -1,12 +1,20 @@
 const express = require("express");
-const loginController = require("../controllers/loginController.js");
+const {
+  showSignIn,
+  showLogin,
+  signIn,
+  login,
+  logout,
+  validateUser,
+} = require("../controllers/loginController");
+
 const router = express.Router();
 
-router.route("/").get(loginController.showLogin);
-router.route("/sign-in").get(loginController.showSignIn);
-router.route("/logout").get(loginController.logout);
+router.route("/").get(showLogin);
+router.route("/sign-in").get(showSignIn);
+router.route("/logout").get(logout);
 
-router.route("/login").post(loginController.login);
-router.route("/sign-in").post(loginController.signIn);
+router.route("/login").post(login);
+router.route("/sign-in").post(validateUser, signIn);
 
 module.exports = router;
