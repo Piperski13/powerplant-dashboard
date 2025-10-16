@@ -42,5 +42,8 @@ app.set("view engine", "ejs");
 app.use("/", loginRouter);
 app.use("/viewPage", isAuthenticated, viewRouter);
 app.use("/records", isAuthenticated, recordRouter);
+app.use((req, res) => {
+  res.status(404).render("404");
+});
 
 module.exports = app;
