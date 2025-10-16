@@ -274,6 +274,10 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 | --------------- |
 | ![Add Record Page](public/images/add-record.jpg)
 
+| Add Record Page Validation |
+| --------------- |
+| ![Add Record Page](public/images/add-record-validation.jpg)
+
 | Update Record Page |
 | ------------------ |
 | ![Update Record Page](public/images/update-recrod.jpg)
@@ -295,6 +299,9 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 ## 🚀 Future Improvements - ( work in progress )
 
 [⬆ Back to Table of Contents](#table-of-contents)
-
-- **Form Validation** — Implement both client-side and server-side form validation for better data integrity.
-- **Deployment** — Host the application online after implementing all planned features.
+- **User Roles & Permissions** - Add admin and regular user roles; only admins can delete or edit all records.
+- **Deployment** - Host the application online after implementing all planned features.
+- **Password Reset Flow** - Implement “Forgot Password?” using secure email tokens.
+- **File Uploads** - Allow users to attach images or documents to records, stored on disk or cloud (e.g., Cloudinary or S3).
+- **Security Enhancements** - Add rate limiting, helmet middleware, and sanitize inputs against SQL/XSS attacks.
+- **API Layer (REST or GraphQL)** - Expose your data via a JSON API for future frontend integrations.
