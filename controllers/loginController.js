@@ -4,11 +4,11 @@ const Login = require("../model/loginModel.js");
 require("dotenv").config("../.env");
 
 const showSignIn = async (req, res) => {
-  res.render("signIn", { error: true });
+  res.render("signIn", { error: true, user: req.user });
 };
 
 const showLogin = async (req, res) => {
-  res.render("login", { error: true });
+  res.render("login", { error: true, user: req.user });
 };
 
 const signIn = async (req, res) => {
