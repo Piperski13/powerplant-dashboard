@@ -103,18 +103,12 @@ input::placeholder {
   text-decoration: underline;
 }
 
-/* incorrect password start */
-.username-error,
-.password-error {
-  border: 2px solid red;
-}
-.invalid-msg {
+.login-error {
   color: red;
 }
-.hidden {
-  display: none;
+.input-error {
+  border: 2px solid red;
 }
-/* incorrect password finish */
 
 /* responsive design start */
 
