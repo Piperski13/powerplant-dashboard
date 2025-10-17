@@ -296,7 +296,7 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 
 ---
 
-## 🚀 Future Improvements - ( work in progress )
+## 🚀 Future Improvements
 
 [⬆ Back to Table of Contents](#table-of-contents)
 - **User Roles & Permissions** - Add admin and regular user roles; only admins can delete or edit all records.
