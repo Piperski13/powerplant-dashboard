@@ -39,7 +39,7 @@
             <% } %>
             </tr>
           </thead>
-          <tbody id="types-table">
+          <tbody>
             <tr>
             <% if (totalPlantsData && totalPlantsData.length > 0) { %> <%
             totalPlantsData.forEach(item => { %>
@@ -60,7 +60,6 @@
           <form action="/viewPage/recordsViewPage" method="GET" id="filter-form">
             <input
               id="name"
-              class="filter-name-input-class"
               name="name"
               type="text"
               placeholder="Search by Name"
@@ -94,7 +93,7 @@
               <th>Obriši</th>
             </tr>
           </thead>
-          <tbody id="records-table">
+          <tbody>
             <% if (data && data.length > 0) { %> <% data.forEach(record => { %>
             <tr>
               <td><%= record.id %></td>
