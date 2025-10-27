@@ -8,8 +8,6 @@ const lengthErr = "must be between 2 and 15 characters.";
 const validateUser = [
   body("nazivelektrane")
     .trim()
-    .isAlpha()
-    .withMessage(`Nazivel Ektrane ${alphaErr}`)
     .isLength({ min: 2, max: 15 })
     .withMessage(`Nazivel Ektrane ${lengthErr}`),
   body("mesto")

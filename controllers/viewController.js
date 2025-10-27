@@ -5,9 +5,12 @@ const path = require("path");
 const generateView = async (req, res) => {
   try {
     const name = req.query.name || "";
-    const user_id = req.user.id;
-    const data = await View.filterData(name, user_id);
-    const totalPlantsData = await View.getAllPlants(user_id);
+    const { id: user_id, is_admin } = req.user;
+
+    const effectiveUserId = is_admin ? null : user_id;
+
+    const data = await View.filterData(name, effectiveUserId);
+    const totalPlantsData = await View.getAllPlants(effectiveUserId);
 
     res.render("recordsView", {
       name,
