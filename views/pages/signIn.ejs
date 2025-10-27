@@ -37,15 +37,10 @@
           <a href="/viewPage/welcome" class="welcome-link"
             >Go back to the welcome page</a
           >
-          <button type="submit" class="login-submit-btn">LOGOUT</button>
+          <button type="submit" class="submit-btn">LOGOUT</button>
         </form>
         <% } else { %>
-        <form
-          id="login-form-js"
-          class="login-form"
-          action="/sign-in"
-          method="POST"
-        >
+        <form class="login-form" action="/sign-in" method="POST">
           <span class="material-symbols-outlined icon"> account_circle </span>
           <%- include("../partials/errors.ejs") %>
           <input
@@ -78,7 +73,7 @@
             placeholder="Password"
           />
           <a href="/" class="form-link">Already have an account? Log in?</a>
-          <button type="submit" class="login-submit-btn">SIGN IN</button>
+          <button type="submit" class="submit-btn">SIGN IN</button>
         </form>
         <% } %>
       </section>
