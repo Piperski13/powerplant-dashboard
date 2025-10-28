@@ -28,6 +28,10 @@ const showWelcome = async (req, res) => {
   res.render("welcome", { user: req.user });
 };
 
+const showUsers = async (req, res) => {
+  res.render("users", { user: req.user });
+};
+
 const showAddRecord = async (req, res, next, errors = []) => {
   try {
     const { id } = req.params;
@@ -48,4 +52,4 @@ const showAddRecord = async (req, res, next, errors = []) => {
   }
 };
 
-module.exports = { generateView, showWelcome, showAddRecord };
+module.exports = { generateView, showWelcome, showUsers, showAddRecord };

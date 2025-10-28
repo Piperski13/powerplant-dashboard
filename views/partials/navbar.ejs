@@ -9,6 +9,10 @@
         >View All Records</a
       >
       <a href="/viewPage/addRecord" id="add-record-js">Add Record</a>
+
+      <% if (user.is_admin) { %>
+      <a href="/viewPage/users">Users</a>
+      <% } %>
     </div>
 
     <div class="logout-style">
