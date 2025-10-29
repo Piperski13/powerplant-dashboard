@@ -29,7 +29,12 @@ const showWelcome = async (req, res) => {
 };
 
 const showUsers = async (req, res) => {
-  res.render("users", { user: req.user });
+  if (!req.user.is_admin) {
+    return res.status(403).render("404");
+  }
+
+  const data = await View.getUsers();
+  res.render("users", { user: req.user, data });
 };
 
 const showAddRecord = async (req, res, next, errors = []) => {

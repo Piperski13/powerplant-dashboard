@@ -42,6 +42,16 @@ class View {
       throw error;
     }
   }
+  static async getUsers() {
+    try {
+      const { rows } = await pool.query(`SELECT * FROM korisnici`);
+
+      return rows;
+    } catch (error) {
+      console.error("Database error (getUsers):", error.message);
+      throw error;
+    }
+  }
 }
 
 module.exports = View;
