@@ -1,5 +1,6 @@
 const View = require("../model/viewModel.js");
 const Records = require("../model/recordsModel.js");
+const Users = require("../model/usersModel.js");
 const path = require("path");
 
 const generateView = async (req, res) => {
@@ -57,4 +58,30 @@ const showAddRecord = async (req, res, next, errors = []) => {
   }
 };
 
-module.exports = { generateView, showWelcome, showUsers, showAddRecord };
+const showUpdateUser = async (req, res, next, errors = []) => {
+  try {
+    const { id } = req.params;
+    let profile = null;
+
+    if (id) {
+      profile = await Users.getById(id);
+    }
+
+    res.render("updateUser", {
+      user: req.user,
+      profile,
+      errors,
+    });
+  } catch (error) {
+    console.error("Error in showAddRecord:", error.message);
+    res.status(500).send("Internal Server Error");
+  }
+};
+
+module.exports = {
+  generateView,
+  showWelcome,
+  showUsers,
+  showAddRecord,
+  showUpdateUser,
+};

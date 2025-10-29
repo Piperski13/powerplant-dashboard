@@ -6,18 +6,19 @@ const alphaErr = "must only contain letters.";
 const lengthErr = "must be between 2 and 15 characters.";
 
 const validateUser = [
-  body("nazivelektrane")
+  body("surname")
     .trim()
-    .isLength({ min: 2, max: 15 })
-    .withMessage(`Nazivel Ektrane ${lengthErr}`),
-  body("mesto")
+    .isAlpha()
+    .withMessage(`Surname ${alphaErr}`)
+    .isLength({ min: 2, max: 12 })
+    .withMessage(`Surname ${lengthErr}`),
+  body("lastname")
     .trim()
-    .isLength({ min: 2, max: 15 })
-    .withMessage(`Mesto ${lengthErr}`),
-  body("adresa")
-    .trim()
-    .isLength({ min: 2, max: 15 })
-    .withMessage(`Adresa ${lengthErr}`),
+    .isAlpha()
+    .withMessage(`Lastname ${alphaErr}`)
+    .isLength({ min: 2, max: 12 })
+    .withMessage(`Lastname ${lengthErr}`),
+  body("email").isEmail().withMessage("Invalid email address"),
 ];
 
 const deleteUser = async (req, res) => {
@@ -43,24 +44,19 @@ const updateUser = async (req, res) => {
     }
 
     const id = parseInt(req.params.id);
-    const {
-      nazivelektrane,
-      mesto,
-      adresa,
-      datumpustanjaurad,
-      sifravrstepogona,
-    } = req.body;
+    const { email, surname, lastname } = req.body;
+
+    const is_admin = req.body.is_admin ? true : false;
 
     await Users.updateById({
       id,
-      nazivelektrane,
-      mesto,
-      adresa,
-      datumpustanjaurad,
-      sifravrstepogona,
+      email,
+      surname,
+      lastname,
+      is_admin,
     });
 
-    res.redirect("/viewPage/recordsViewPage");
+    res.redirect("/viewPage/users");
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
