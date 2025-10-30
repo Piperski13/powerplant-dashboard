@@ -1,7 +1,7 @@
 const pool = require("../db/pool");
 
 class View {
-  static async filterData(filter, user_id) {
+  static async filterRecords(filter, user_id) {
     try {
       const baseQuery = `SELECT * FROM evidencijaelektrana WHERE nazivelektrane ILIKE $1`;
       const values = [`${filter}%`];
@@ -50,6 +50,17 @@ class View {
     } catch (error) {
       console.error("Database error (getUsers):", error.message);
       throw error;
+    }
+  }
+  static async filterUsers(filter) {
+    try {
+      const query = `SELECT * FROM korisnici WHERE email ILIKE $1;`;
+      const value = [`${filter}%`];
+
+      const { rows } = await pool.query(query, value);
+      return rows;
+    } catch (error) {
+      console.error("Error database query (filterUsers): ", error.message);
     }
   }
 }

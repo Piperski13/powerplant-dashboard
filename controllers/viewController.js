@@ -10,7 +10,7 @@ const generateView = async (req, res) => {
 
     const effectiveUserId = is_admin ? null : user_id;
 
-    const data = await View.filterData(name, effectiveUserId);
+    const data = await View.filterRecords(name, effectiveUserId);
     const totalPlantsData = await View.getAllPlants(effectiveUserId);
 
     res.render("recordsView", {
@@ -34,8 +34,10 @@ const showUsers = async (req, res) => {
     return res.status(403).render("404");
   }
 
-  const data = await View.getUsers();
-  res.render("users", { user: req.user, data });
+  const email = req.query.email || "";
+  const data = await View.filterUsers(email);
+
+  res.render("users", { user: req.user, data, email });
 };
 
 const showAddRecord = async (req, res, next, errors = []) => {

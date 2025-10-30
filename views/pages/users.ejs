@@ -25,17 +25,13 @@
       <div class="div-tables-section">
         <p>Filter users by email:</p>
         <div id="div-filter-form">
-          <form
-            action="/viewPage/recordsViewPage"
-            method="GET"
-            id="filter-form"
-          >
+          <form action="/viewPage/users" method="GET" id="filter-form">
             <input
-              id="name"
-              name="name"
+              id="email"
+              name="email"
               type="text"
               placeholder="Search by Email"
-              value="<%= '' %>"
+              value="<%= email || '' %>"
             />
             <div class="filter-submit">
               <button
