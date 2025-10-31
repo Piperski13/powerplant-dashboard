@@ -28,16 +28,6 @@ class Record {
       console.error("Database query failed (add):", error.message);
     }
   }
-  static async getAll() {
-    try {
-      const query = `SELECT * FROM evidencijaelektrana ORDER BY id ASC`;
-
-      const { rows } = await pool.query(query);
-      return rows;
-    } catch (error) {
-      console.error("Database query failed (getAll):", error.message);
-    }
-  }
   static async getById(id) {
     try {
       const query = `SELECT * FROM evidencijaelektrana WHERE id=$1;`;

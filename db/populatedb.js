@@ -1,4 +1,5 @@
 const { Client } = require("pg");
+const bcrypt = require("bcryptjs");
 require("dotenv").config();
 
 const SQL = `
@@ -9,7 +10,8 @@ CREATE TABLE IF NOT EXISTS Korisnici (
     email VARCHAR(100) NOT NULL UNIQUE, 
     password VARCHAR(100) NOT NULL,
     surname VARCHAR(50) NOT NULL,
-    lastname VARCHAR(50) NOT NULL 
+    lastname VARCHAR(50) NOT NULL ,
+    is_admin BOOLEAN DEFAULT FALSE
 );
 
 CREATE TABLE IF NOT EXISTS VrstaPogona (
@@ -56,6 +58,32 @@ async function main() {
   try {
     await client.connect();
     await client.query(SQL);
+
+    const adminEmail = process.env.ADMIN_EMAIL;
+    const adminExists = await client.query(
+      "SELECT * FROM Korisnici WHERE email = $1",
+      [adminEmail]
+    );
+
+    if (adminExists.rows.length === 0) {
+      const hashedPassword = await bcrypt.hash(process.env.ADMIN_PASSWORD, 10);
+
+      await client.query(
+        `INSERT INTO Korisnici (email, password, surname, lastname, is_admin)
+         VALUES ($1, $2, $3, $4, TRUE)`,
+        [
+          adminEmail,
+          hashedPassword,
+          process.env.ADMIN_SURNAME,
+          process.env.ADMIN_LASTNAME,
+        ]
+      );
+
+      console.log("✅ Admin user created successfully!");
+    } else {
+      console.log("ℹ️ Admin user already exists, skipping creation.");
+    }
+
     console.log("Database seeded successfully.");
   } catch (err) {
     console.error("Error seeding database: ", err);

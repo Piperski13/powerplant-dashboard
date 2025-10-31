@@ -6,6 +6,7 @@ const passport = require("passport");
 
 const isAuthenticated = require("./middleware/isAuthenticated.js");
 const recordRouter = require("./routes/recordRoutes.js");
+const usersRouter = require("./routes/usersRoutes.js");
 const loginRouter = require("./routes/loginRoutes.js");
 const viewRouter = require("./routes/viewRoutes.js");
 
@@ -42,6 +43,7 @@ app.set("view engine", "ejs");
 app.use("/", loginRouter);
 app.use("/viewPage", isAuthenticated, viewRouter);
 app.use("/records", isAuthenticated, recordRouter);
+app.use("/users", isAuthenticated, usersRouter);
 app.use((req, res) => {
   res.status(404).render("404");
 });

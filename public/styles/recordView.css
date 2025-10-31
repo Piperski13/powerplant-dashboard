@@ -108,6 +108,7 @@ caption {
   justify-content: center;
   flex-direction: column;
   margin-left: 10em;
+  margin-top: 1em;
 }
 
 /* Small table start */
@@ -127,6 +128,7 @@ caption {
 #div-filter-form {
   display: flex;
   align-items: baseline;
+  margin: 1em 0;
 }
 input {
   width: 100%;

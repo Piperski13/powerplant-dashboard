@@ -1,20 +1,26 @@
 const pool = require("../db/pool");
 
 class View {
-  static async filterData(filter, user_id) {
+  static async filterRecords(filter, user_id) {
     try {
-      const query = `SELECT * FROM evidencijaelektrana WHERE nazivelektrane ILIKE $1 AND user_id = $2;`;
-      const value = [`${filter}%`, user_id];
+      const baseQuery = `SELECT * FROM evidencijaelektrana WHERE nazivelektrane ILIKE $1`;
+      const values = [`${filter}%`];
 
-      const { rows } = await pool.query(query, value);
+      const query = user_id ? `${baseQuery} AND user_id = $2` : baseQuery;
+
+      if (user_id) values.push(user_id);
+
+      const { rows } = await pool.query(query, values);
       return rows;
     } catch (error) {
-      console.error("Error database query (filterData): ", error.message);
+      console.error("Database error (filterData):", error.message);
+      throw error;
     }
   }
-  static async getAllPlants(user_id) {
+  //Number of total plants filtered on the screen
+  static async getAllPlants(filter, user_id) {
     try {
-      const query = `
+      let baseQuery = `
       SELECT 
         v.sifra, 
         v.naziv, 
@@ -22,15 +28,53 @@ class View {
       FROM vrstapogona v
       LEFT JOIN evidencijaelektrana e
         ON e.sifravrstepogona = v.sifra
-        AND e.user_id = $1
-      GROUP BY v.sifra, v.naziv
-      ORDER BY v.sifra ASC;
     `;
 
-      const { rows } = await pool.query(query, [user_id]);
+      const conditions = [];
+      const values = [];
+
+      if (filter) {
+        values.push(`${filter}%`);
+        conditions.push(`e.nazivelektrane ILIKE $${values.length}`);
+      }
+
+      if (user_id) {
+        values.push(user_id);
+        conditions.push(`e.user_id = $${values.length}`);
+      }
+
+      if (conditions.length > 0) {
+        baseQuery += ` WHERE ${conditions.join(" AND ")}`;
+      }
+
+      baseQuery += ` GROUP BY v.sifra, v.naziv ORDER BY v.sifra ASC`;
+
+      const { rows } = await pool.query(baseQuery, values);
       return rows;
     } catch (error) {
-      console.error("Error database query (getAllPlants): ", error.message);
+      console.error("Database error (getPlants):", error.message);
+      throw error;
+    }
+  }
+  static async getUsers() {
+    try {
+      const { rows } = await pool.query(`SELECT * FROM korisnici`);
+
+      return rows;
+    } catch (error) {
+      console.error("Database error (getUsers):", error.message);
+      throw error;
+    }
+  }
+  static async filterUsers(filter) {
+    try {
+      const query = `SELECT * FROM korisnici WHERE email ILIKE $1;`;
+      const value = [`${filter}%`];
+
+      const { rows } = await pool.query(query, value);
+      return rows;
+    } catch (error) {
+      console.error("Error database query (filterUsers): ", error.message);
     }
   }
 }
