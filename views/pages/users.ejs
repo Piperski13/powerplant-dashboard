@@ -21,8 +21,8 @@
   <body>
     <div id="main-box">
       <%- include("../partials/navbar.ejs") %>
-
       <div class="div-tables-section">
+        <h1>Lista Korisnika</h1>
         <p>Filter users by email:</p>
         <div id="div-filter-form">
           <form action="/viewPage/users" method="GET" id="filter-form">
@@ -46,9 +46,6 @@
         </div>
 
         <table>
-          <caption>
-            Lista Korisnika
-          </caption>
           <thead>
             <tr>
               <th>ID</th>
