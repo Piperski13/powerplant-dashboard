@@ -160,6 +160,15 @@ Ensure you have these installed:
 | POST   | `/update/:id` | Updates an existing record that it belongs to the logged-in user |
 | GET    | `/delete/:id` | Deletes a record that it belongs to the logged-in user           |
 
+## Users router ('/users')
+
+---
+
+| Method | Endpoint         | Description                                             |
+| ------ | ---------------- | ------------------------------------------------------- |
+| POST   | `/update/:id`    | Updates the selected user's information                 |
+| POST   | `/delete/:id`    | Deletes the selected user from the system               |
+
 # Database: energetika
 
 [⬆ Back to Table of Contents](#table-of-contents)
@@ -222,17 +231,19 @@ The `korisnici` table stores information about users of the application
 
 ### Attributes:
 
-| Column Name | Data Type              | Constraints          | Description                   |
-| ----------- | ---------------------- | -------------------- | ----------------------------- |
-| id          | integer                | PRIMARY KEY          | Unique identifier of the user |
-| email       | character varying(100) | NOT NULL, UNIQUE     | User's email address          |
-| password    | character varying(100) | NOT NULL             | Hashed password using bcrypt  |
-| surname     | character varying(50)  | NOT NULL             | User's first name             |
-| lastname    | character varying(50)  | NOT NULL             | User's last name              |
+| Column Name | Data Type              | Constraints          | Description                            |
+| ----------- | ---------------------- | -------------------- | -------------------------------------- |
+| id          | integer                | PRIMARY KEY          | Unique identifier of the user          |
+| email       | character varying(100) | NOT NULL, UNIQUE     | User's email address                   |
+| password    | character varying(100) | NOT NULL             | Hashed password using bcrypt           |
+| surname     | character varying(50)  | NOT NULL             | User's first name                      |
+| lastname    | character varying(50)  | NOT NULL             | User's last name                       |
+| is_admin    | boolean                | DEFAULT FALSE        | Indicates whether the user is an admin |
 
 - The `password` field is stored as a **hashed value using bcrypt**, so **plaintext passwords are never stored**.  
 - Because of this, you **cannot create users directly using SQL shell** with plain-text passwords.  
-- Users must be created via the **Sign In / Register form** (`/sign-in`), which automatically hashes the password before storing it in the database.  
+- Users must be created via the **Sign In / Register form** (`/sign-in`), which automatically hashes the password before storing it in the database. 
+- The `is_admin` field determines if a user has **administrative privileges** — administrators can access and manage all users and records.
 
 
 # Middleware
@@ -270,6 +281,10 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 | ------------ |
 | ![Welcome Page](public/images/welcome.jpg)
 
+| Welcome Page Admin |
+| ------------ |
+| ![Welcome Page](public/images/welcome-admin.jpg)
+
 | View Records Page |
 | ----------------- |
 | ![View Records Page](public/images/view-records.jpg)
@@ -285,6 +300,14 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 | Update Record Page |
 | ------------------ |
 | ![Update Record Page](public/images/update-recrod.jpg)
+
+| Admin Users Page |
+| ------------------ |
+| ![Update Record Page](public/images/users-page.jpg)
+
+| Admin User Update Page |
+| ------------------ |
+| ![Update Record Page](public/images/user-update-page.jpg)
 
 | 404 Page - Displayed when a user accesses a non-existent route |
 | ------------------ |
@@ -303,7 +326,6 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 ## 🚀 Future Improvements
 
 [⬆ Back to Table of Contents](#table-of-contents)
-- **User Roles & Permissions** - Add admin and regular user roles; only admins can delete or edit all records.
 - **Deployment** - Host the application online after implementing all planned features.
 - **Password Reset Flow** - Implement “Forgot Password?” using secure email tokens.
 - **File Uploads** - Allow users to attach images or documents to records, stored on disk or cloud (e.g., Cloudinary or S3).
