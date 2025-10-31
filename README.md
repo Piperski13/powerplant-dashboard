@@ -31,6 +31,8 @@ A refactored full-stack web application originally built in 2024, now rebuilt ( 
 
 - **Input Filtering** - filter and search records efficiently in the records view
 
+- **Admin Dashboard** - manage users and their permissions through an intuitive admin interface
+
 - **Centralized Error Handling** - consistent error responses across the app
 
 - **MVC Architecture** - clean structure separating logic, views, and data access layers
@@ -145,6 +147,8 @@ Ensure you have these installed:
 | GET    | `/recordsViewPage` | Renders the records view page, displaying only the logged-in user's data with filter options |
 | GET    | `/addRecord`       | Renders the page for adding a new record                                                     |
 | GET    | `/addRecord/:id`   | Renders the update record page with pre-filled data for the selected record                  |
+| GET    | `/users`           | Renders the users page for admins, displaying all registered users                           |
+| GET    | `/updateUser/:id`  | Renders the update user page with pre-filled data for editing user details                   |
 
 ## Record router ('/records')
 
