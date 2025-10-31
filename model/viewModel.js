@@ -17,9 +17,10 @@ class View {
       throw error;
     }
   }
-  static async getAllPlants(user_id) {
+  //Number of total plants filtered on the screen
+  static async getAllPlants(filter, user_id) {
     try {
-      const baseQuery = `
+      let baseQuery = `
       SELECT 
         v.sifra, 
         v.naziv, 
@@ -29,16 +30,29 @@ class View {
         ON e.sifravrstepogona = v.sifra
     `;
 
-      const query = user_id
-        ? `${baseQuery} AND e.user_id = $1 GROUP BY v.sifra, v.naziv ORDER BY v.sifra ASC`
-        : `${baseQuery} GROUP BY v.sifra, v.naziv ORDER BY v.sifra ASC`;
+      const conditions = [];
+      const values = [];
 
-      const values = user_id ? [user_id] : [];
+      if (filter) {
+        values.push(`${filter}%`);
+        conditions.push(`e.nazivelektrane ILIKE $${values.length}`);
+      }
 
-      const { rows } = await pool.query(query, values);
+      if (user_id) {
+        values.push(user_id);
+        conditions.push(`e.user_id = $${values.length}`);
+      }
+
+      if (conditions.length > 0) {
+        baseQuery += ` WHERE ${conditions.join(" AND ")}`;
+      }
+
+      baseQuery += ` GROUP BY v.sifra, v.naziv ORDER BY v.sifra ASC`;
+
+      const { rows } = await pool.query(baseQuery, values);
       return rows;
     } catch (error) {
-      console.error("Database error (getAllPlants):", error.message);
+      console.error("Database error (getPlants):", error.message);
       throw error;
     }
   }

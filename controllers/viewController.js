@@ -11,7 +11,7 @@ const generateView = async (req, res) => {
     const effectiveUserId = is_admin ? null : user_id;
 
     const data = await View.filterRecords(name, effectiveUserId);
-    const totalPlantsData = await View.getAllPlants(effectiveUserId);
+    const totalPlantsData = await View.getAllPlants(name, effectiveUserId);
 
     res.render("recordsView", {
       name,
