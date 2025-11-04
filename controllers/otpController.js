@@ -23,16 +23,18 @@ const generateOtp = async (req, res) => {
     res.render("otp", {
       user: req.user || "",
       message: "OTP sent to your email!",
+      errorMessage: "",
     });
   } catch (err) {
     console.error(err);
-    res.render("otp", { message: "Error sending OTP. Try again." });
+    res.render("otp", { errorMessage: err });
   }
 };
 
 const verifyOtp = async (req, res) => {
   const { otp } = req.body;
   const pendingUser = req.session.pendingUser;
+
   try {
     const { email } = pendingUser;
     const result = await Otp.verifyOtp(email, otp);
@@ -40,15 +42,25 @@ const verifyOtp = async (req, res) => {
     if (!result.valid) {
       const message =
         result.reason === "expired" ? "OTP expired" : "Invalid OTP";
-      return res.render("otp", { user: req.user, message });
+      return res.render("otp", {
+        user: req.user,
+        errorMessage: message,
+        message: "",
+      });
     }
 
     await registerPendingUser(pendingUser);
     delete req.session.pendingUser;
+
     res.redirect("/");
   } catch (err) {
     console.error(err);
-    res.render("otp", { user: req.user, message: "Error verifying OTP" });
+
+    res.render("otp", {
+      user: req.user,
+      errorMessage: "Error verifying OTP",
+      message: "",
+    });
   }
 };
 

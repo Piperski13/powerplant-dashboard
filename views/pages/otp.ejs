@@ -42,15 +42,17 @@
         <% } else { %>
         <form class="login-form" action="/otp/verify-otp" method="POST">
           <span class="material-symbols-outlined icon"> account_circle </span>
-          <%- include("../partials/errors.ejs") %>
+          <% if (message) { %>
+          <p class="message-otp"><%= message %></p>
+          <% } %> <% if (errorMessage) { %>
+          <p class="errorMessage-otp"><%= errorMessage %></p>
+          <% } %>
           <input id="otp" name="otp" type="text" placeholder="" />
           <button type="submit" class="submit-btn">Verify</button>
         </form>
         <% } %>
       </section>
-      <% if (message) { %>
-      <p class="message"><%= message %></p>
-      <% } %> <%- include("../partials/footer.ejs") %>
+      <%- include("../partials/footer.ejs") %>
     </main>
   </body>
 </html>
