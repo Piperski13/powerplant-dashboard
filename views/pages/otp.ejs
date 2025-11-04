@@ -20,7 +20,7 @@
 
     <!-- Static CSS -->
     <link rel="stylesheet" href="/styles/login.css" />
-    <title>Sign in</title>
+    <title>Verify OTP</title>
   </head>
   <body>
     <main>
@@ -40,44 +40,17 @@
           <button type="submit" class="submit-btn">LOGOUT</button>
         </form>
         <% } else { %>
-        <form class="login-form" action="/otp/generate-otp" method="POST">
+        <form class="login-form" action="/otp/verify-otp" method="POST">
           <span class="material-symbols-outlined icon"> account_circle </span>
           <%- include("../partials/errors.ejs") %>
-          <input
-            id="surname"
-            name="surname"
-            type="text"
-            class="<%= locals.errors.length>0 ? 'input-error' : '' %>"
-            placeholder="Surname"
-          />
-          <input
-            id="lastname"
-            name="lastname"
-            type="text"
-            class="<%= locals.errors.length>0 ? 'input-error' : '' %>"
-            placeholder="Lastname"
-          />
-          <input
-            id="email"
-            name="email"
-            type="email"
-            class="<%= locals.errors.length>0 ? 'input-error' : '' %>"
-            placeholder="Email"
-          />
-
-          <input
-            id="password"
-            name="password"
-            type="password"
-            class="<%= locals.errors.length>0 ? 'input-error' : '' %>"
-            placeholder="Password"
-          />
-          <a href="/" class="form-link">Already have an account? Log in?</a>
-          <button type="submit" class="submit-btn">SIGN IN</button>
+          <input id="otp" name="otp" type="text" placeholder="" />
+          <button type="submit" class="submit-btn">Verify</button>
         </form>
         <% } %>
       </section>
-      <%- include("../partials/footer.ejs") %>
+      <% if (message) { %>
+      <p class="message"><%= message %></p>
+      <% } %> <%- include("../partials/footer.ejs") %>
     </main>
   </body>
 </html>
