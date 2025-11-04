@@ -38,6 +38,15 @@ CREATE TABLE IF NOT EXISTS EvidencijaElektrana (
     ON UPDATE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS otps (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) NOT NULL,
+  otp VARCHAR(255) NOT NULL, -- hash will be longer
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE INDEX IF NOT EXISTS idx_otps_email ON otps(email);
+    
 -- Insert default data
 
 INSERT INTO VrstaPogona (sifra, naziv, ukupanbrojelektrana)
