@@ -1,11 +1,37 @@
 const Otp = require("../model/otpModel");
-require("dotenv").config("../.env");
+const Login = require("../model/loginModel.js");
 const otpGenerator = require("otp-generator");
 const sendOTPEmail = require("../utils/sendEmail");
 const { registerPendingUser } = require("../services/userService");
+const { body, validationResult } = require("express-validator");
+
+require("dotenv").config("../.env");
+
+const alphaErr = "must only contain letters.";
+const lengthErr = "must be between 1 and 10 characters.";
+
+const validateUser = [
+  body("surname")
+    .trim()
+    .isAlpha()
+    .withMessage(`Surname ${alphaErr}`)
+    .isLength({ min: 2, max: 12 })
+    .withMessage(`Surname ${lengthErr}`),
+  body("lastname")
+    .trim()
+    .isAlpha()
+    .withMessage(`Lastname ${alphaErr}`)
+    .isLength({ min: 2, max: 12 })
+    .withMessage(`Lastname ${lengthErr}`),
+  body("email").isEmail().withMessage("Invalid email address"),
+  body("password").isLength({ min: 2 }).withMessage("Password too short"),
+];
 
 const generateOtp = async (req, res) => {
+  const errors = validationResult(req);
   const { email, surname, lastname, password } = req.body;
+
+  let allErrors = errors.array();
 
   const otp = otpGenerator.generate(6, {
     digits: true,
@@ -15,6 +41,14 @@ const generateOtp = async (req, res) => {
   });
 
   try {
+    if (await Login.emailExists(email)) {
+      allErrors.push({ msg: "Email already registered" });
+    }
+
+    if (allErrors.length > 0) {
+      return showSignIn(req, res, [], allErrors);
+    }
+
     await Otp.storeOtp(email, otp);
     await sendOTPEmail(email, otp);
 
@@ -65,4 +99,8 @@ const verifyOtp = async (req, res) => {
   }
 };
 
-module.exports = { generateOtp, verifyOtp };
+const showSignIn = async (req, res, next, errors = []) => {
+  res.render("signIn", { errors, user: req.user });
+};
+
+module.exports = { generateOtp, verifyOtp, validateUser, showSignIn };
