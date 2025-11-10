@@ -40,11 +40,7 @@
           <button type="submit" class="submit-btn">LOGOUT</button>
         </form>
         <% } else { %>
-        <form
-          class="login-form"
-          action="/login"
-          method="POST"
-        >
+        <form class="login-form" action="/login" method="POST">
           <span class="material-symbols-outlined icon"> account_circle </span>
           <p class="login-error"><%= error ? error : "" %></p>
           <input
@@ -71,5 +67,11 @@
       </section>
       <%- include("../partials/footer.ejs") %>
     </main>
+
+    <% if (successMessage) { %>
+    <div id="flash-message" class="flash-success"><%= successMessage %></div>
+    <% } %>
+
+    <script src="/scripts/flashMessage.js"></script>
   </body>
 </html>

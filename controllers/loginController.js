@@ -29,7 +29,13 @@ const showSignIn = async (req, res, next, errors = []) => {
 };
 
 const showLogin = async (req, res, next, error = []) => {
-  res.render("login", { error, user: req.user });
+  const successMessage = req.session.successMessage;
+  delete req.session.successMessage;
+  res.render("login", {
+    error,
+    user: req.user,
+    successMessage,
+  });
 };
 
 const signIn = async (req, res) => {

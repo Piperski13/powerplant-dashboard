@@ -52,6 +52,7 @@ const verifyOtp = async (req, res) => {
     await registerPendingUser(pendingUser);
     delete req.session.pendingUser;
 
+    req.session.successMessage = "✅ Account created successfully!";
     res.redirect("/");
   } catch (err) {
     console.error(err);
