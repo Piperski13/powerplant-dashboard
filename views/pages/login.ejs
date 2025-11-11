@@ -65,7 +65,8 @@
         </form>
         <% } %>
       </section>
-      <%- include("../partials/footer.ejs") %>
+      <%- include("../partials/spinner.ejs") %> <%-
+      include("../partials/footer.ejs") %>
     </main>
 
     <% if (successMessage) { %>
@@ -73,5 +74,6 @@
     <% } %>
 
     <script src="/scripts/flashMessage.js"></script>
+    <script src="/scripts/spinner.js"></script>
   </body>
 </html>
