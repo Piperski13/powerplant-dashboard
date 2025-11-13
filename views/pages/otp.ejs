@@ -20,6 +20,7 @@
 
     <!-- Static CSS -->
     <link rel="stylesheet" href="/styles/login.css" />
+    <link rel="stylesheet" href="/styles/otp.css" />
     <title>Verify OTP</title>
   </head>
   <body>
@@ -47,14 +48,22 @@
           <% } %> <% if (errorMessage) { %>
           <p class="errorMessage-otp"><%= errorMessage %></p>
           <% } %>
-          <input id="otp" name="otp" type="text" placeholder="" />
+          <div id="inputs" class="inputs">
+            <input class="otp-input" name="otp" type="text" maxlength="1" />
+            <input class="otp-input" name="otp" type="text" maxlength="1" />
+            <input class="otp-input" name="otp" type="text" maxlength="1" />
+            <input class="otp-input" name="otp" type="text" maxlength="1" />
+            <input class="otp-input" name="otp" type="text" maxlength="1" />
+            <input class="otp-input" name="otp" type="text" maxlength="1" />
+          </div>
           <button type="submit" class="submit-btn">Verify</button>
         </form>
         <% } %>
       </section>
-      <%- include("../partials/spinner.ejs") %>
-      <%- include("../partials/footer.ejs") %>
+      <%- include("../partials/spinner.ejs") %> <%-
+      include("../partials/footer.ejs") %>
     </main>
     <script src="/scripts/spinner.js"></script>
+    <script src="/scripts/otp-input.js"></script>
   </body>
 </html>

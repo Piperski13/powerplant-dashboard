@@ -104,10 +104,6 @@ input::placeholder {
   text-decoration: underline;
 }
 
-.message-otp {
-  color: #2a36c4;
-}
-
 .login-error,
 .errorMessage-otp {
   color: red;

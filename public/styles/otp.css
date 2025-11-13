@@ -1,0 +1,36 @@
+#inputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.otp-input {
+  width: 10px;
+  padding: 10px;
+  border: none;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.5);
+  margin: 10px;
+  text-align: center;
+  font-size: 10px;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.otp-input:focus {
+  border-bottom: 3px solid orange;
+  outline: none;
+}
+
+.otp-input:nth-child(1) {
+  cursor: pointer;
+  pointer-events: all;
+}
+
+#form-section {
+  width: 30em;
+}
+
+.message-otp {
+  color: #4caf50;
+  font-weight: bold;
+}

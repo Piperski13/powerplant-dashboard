@@ -67,11 +67,12 @@ const generateOtp = async (req, res) => {
 
 const verifyOtp = async (req, res) => {
   const { otp } = req.body;
+  const otpString = otp.join("");
   const pendingUser = req.session.pendingUser;
 
   try {
     const { email } = pendingUser;
-    const result = await Otp.verifyOtp(email, otp);
+    const result = await Otp.verifyOtp(email, otpString);
 
     if (!result.valid) {
       const message =
