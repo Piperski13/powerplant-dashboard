@@ -20,7 +20,8 @@
 
     <!-- Static CSS -->
     <link rel="stylesheet" href="/styles/login.css" />
-    <title>Login</title>
+    <link rel="stylesheet" href="/styles/otp.css" />
+    <title>Verify OTP</title>
   </head>
   <body>
     <main>
@@ -40,40 +41,25 @@
           <button type="submit" class="submit-btn">LOGOUT</button>
         </form>
         <% } else { %>
-        <form class="login-form" action="/login" method="POST">
+        <form class="login-form" action="/otp/verify-otp" method="POST">
           <span class="material-symbols-outlined icon"> account_circle </span>
-          <p class="login-error"><%= error ? error : "" %></p>
-          <input
-            id="email"
-            name="email"
-            type="email"
-            class="<%= error.length>0 ? 'input-error' : '' %>"
-            placeholder="Email"
-          />
-
-          <input
-            id="password"
-            name="password"
-            type="password"
-            class="<%= error.length>0 ? 'input-error' : '' %>"
-            placeholder="Password"
-          />
-          <a href="/otp/sign-in" class="form-link"
-            >Don't have an account? Sign up</a
-          >
-          <button type="submit" class="submit-btn">LOGIN</button>
+          <%- include("../partials/otp-errors.ejs") %>
+          <div id="inputs" class="inputs">
+            <input class="otp-input" name="otp" type="text" maxlength="1" />
+            <input class="otp-input" name="otp" type="text" maxlength="1" />
+            <input class="otp-input" name="otp" type="text" maxlength="1" />
+            <input class="otp-input" name="otp" type="text" maxlength="1" />
+            <input class="otp-input" name="otp" type="text" maxlength="1" />
+            <input class="otp-input" name="otp" type="text" maxlength="1" />
+          </div>
+          <button type="submit" class="submit-btn">Verify</button>
         </form>
         <% } %>
       </section>
       <%- include("../partials/spinner.ejs") %> <%-
       include("../partials/footer.ejs") %>
     </main>
-
-    <% if (successMessage) { %>
-    <div id="flash-message" class="flash-success"><%= successMessage %></div>
-    <% } %>
-
-    <script src="/scripts/flashMessage.js"></script>
     <script src="/scripts/spinner.js"></script>
+    <script src="/scripts/otp-input.js"></script>
   </body>
 </html>
