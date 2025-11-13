@@ -43,11 +43,7 @@
         <% } else { %>
         <form class="login-form" action="/otp/verify-otp" method="POST">
           <span class="material-symbols-outlined icon"> account_circle </span>
-          <% if (message) { %>
-          <p class="message-otp"><%= message %></p>
-          <% } %> <% if (errorMessage) { %>
-          <p class="errorMessage-otp"><%= errorMessage %></p>
-          <% } %>
+          <%- include("../partials/otp-errors.ejs") %>
           <div id="inputs" class="inputs">
             <input class="otp-input" name="otp" type="text" maxlength="1" />
             <input class="otp-input" name="otp" type="text" maxlength="1" />
