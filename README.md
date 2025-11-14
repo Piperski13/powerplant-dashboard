@@ -300,9 +300,9 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 |------------|
 | ![Login Page](public/images/login.jpg)
 
-| Sign-in Page |
-| ----------   |
-| ![Login Page](public/images/sign-in.jpg)
+| Sign-in Page | Sign-in Validation |  Sign-in Spinner|
+|------------|-------------|-------------|
+| ![Sign-in Page](public/images/sign-in.jpg) | ![Sign-in Page](public/images/sign-in-validation.jpg) | ![Sign-in Spinner](public/images/loader-spinner.jpg)
 
 | Hashed Passwords |
 | ---------- |
