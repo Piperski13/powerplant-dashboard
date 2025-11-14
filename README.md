@@ -300,9 +300,13 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 |------------|
 | ![Login Page](public/images/login.jpg)
 
-| Sign-in Page | Sign-in Validation |  Sign-in Spinner|
+| Sign-in Page | Sign-in Validation |  Sign-in Spinner |
 |------------|-------------|-------------|
 | ![Sign-in Page](public/images/sign-in.jpg) | ![Sign-in Page](public/images/sign-in-validation.jpg) | ![Sign-in Spinner](public/images/loader-spinner.jpg)
+
+|  OTP Page | Sent Email - Unopened |  Sent Email - Opened |
+|------------|-------------|-------------|
+| ![OTP Page](public/images/otp-page.jpg) | ![Email-1](public/images/nodemailer-1.jpg) | ![Email-2](public/images/nodemailer-2.jpg)
 
 | Hashed Passwords |
 | ---------- |
