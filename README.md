@@ -1,4 +1,4 @@
-# Node.js Express PostgreSQL CRUD App with EJS Views & Passport Authentication
+# Node.js Express PostgreSQL CRUD App with EJS Views, Passport Authentication, Nodemailer & OTP Verification
 A refactored full-stack web application originally built in 2024, now rebuilt ( 2025 ) to use **EJS templating** for server-side rendering, simplified data handling, switched from JWT to Passport for session-based authentication, and removal of unnecessary frontend fetch calls. <br>
 **Passport.js session-based authentication with bcrypt password hashing**, **MVC architecture**, and an **automated database setup script** for easy initialization.
 
@@ -36,6 +36,10 @@ A refactored full-stack web application originally built in 2024, now rebuilt ( 
 - **Centralized Error Handling** - consistent error responses across the app
 
 - **MVC Architecture** - clean structure separating logic, views, and data access layers
+
+- **Email Sending via Nodemailer** - used for sending verification emails, OTP codes, and user notifications
+
+- **OTP Verification System** - 6-digit code sent to users during registration, with expiration, secure validation, and a custom multi-field OTP UI (auto-focus, delete navigation, paste support)
 
 - **Responsive Design** - layout optimized for both desktop and mobile
 
@@ -136,6 +140,16 @@ Ensure you have these installed:
 | GET    | `/`       | Renders the login page                                                                             |
 | POST   | `/login`  | Authenticates the user using Passport.js, establishes a session, and redirects to the welcome page |
 | GET    | `/logout` | Ends the user session and redirects to the login page                                              |
+
+## OTP router ('/otp')
+
+---
+
+| Method | Endpoint  | Description                                                                                                  |
+| ------ | --------- | ------------------------------------------------------------------------------------------------------------ |
+| GET    | `/sign-in`      | Renders the sign-in page where users start the registration process                                    |
+| POST   | `/generate-otp` | Validates user input, generates a 6-digit OTP, stores it, sends it via Nodemailer, then shows OTP page |
+| POST   | `/verify-otp`   | Verifies the submitted OTP and, if valid, creates the user account and redirects to the login page     |
 
 ## View router ('/viewPage')
 
