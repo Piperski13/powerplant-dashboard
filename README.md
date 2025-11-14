@@ -308,6 +308,10 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 |------------|-------------|-------------|
 | ![OTP Page](public/images/otp-page.jpg) | ![Email-1](public/images/nodemailer-1.jpg) | ![Email-2](public/images/nodemailer-2.jpg)
 
+|  Login Page - OTP verification sucessfull |
+|------------|
+| ![verification sucessfull](public/images/otp-verify-sucssess.jpg)
+
 | Hashed Passwords |
 | ---------- |
 | ![Login Page](public/images/hashed-passwrods.jpg)
