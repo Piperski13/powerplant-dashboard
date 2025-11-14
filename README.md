@@ -259,6 +259,23 @@ The `korisnici` table stores information about users of the application
 - Users must be created via the **Sign In / Register form** (`/sign-in`), which automatically hashes the password before storing it in the database. 
 - The `is_admin` field determines if a user has **administrative privileges** — administrators can access and manage all users and records.
 
+## Table: otps ( otps )
+
+The `otps` table stores temporary one-time passwords used during the account verification process before a user is fully registered.
+
+### Attributes:
+
+| Column Name | Data Type       | Constraints                | Description                                                           |
+|-------------|-----------------|----------------------------|-----------------------------------------------------------------------|
+| id          | SERIAL          | PRIMARY KEY                | Unique identifier for each OTP entry                                  |
+| email       | VARCHAR(255)    | NOT NULL                   | Email address the OTP was generated for                               |
+| otp         | VARCHAR(255)    | NOT NULL                   | **Hashed** OTP value (the 6-digit code is never stored in plain text) |
+| created_at  | TIMESTAMP       | DEFAULT CURRENT_TIMESTAMP  | Timestamp indicating when the OTP was generated                       |
+
+- OTPs are **hashed** before being saved to ensure secure temporary verification.  
+- This table is used only during **sign-up verification**; once the user confirms the OTP, the user is created and the OTP entry becomes unnecessary.  
+- An index on `email` improves lookup speed when verifying user-submitted OTP codes.
+
 
 # Middleware
 
