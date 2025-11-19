@@ -12,6 +12,17 @@ class Users {
       console.error("Error database query Users (getById): ", error.message);
     }
   }
+  static async getByEmail(email) {
+    try {
+      const query = `SELECT * FROM korisnici WHERE email=$1;`;
+      const value = [email];
+
+      const { rows } = await pool.query(query, value);
+      return rows[0] || null;
+    } catch (error) {
+      console.error("Error database query Users (getByEmail): ", error.message);
+    }
+  }
   static async deleteById(id) {
     try {
       const query = "DELETE FROM korisnici WHERE id=$1 RETURNING *";
