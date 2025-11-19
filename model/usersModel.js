@@ -37,6 +37,19 @@ class Users {
       console.error("Error database query Users (updateById): ", error.message);
     }
   }
+  static async updatePassword(password, email) {
+    try {
+      const query = "UPDATE korisnici SET password=$1 WHERE email=$2";
+      const values = [password, email];
+
+      await pool.query(query, values);
+    } catch (error) {
+      console.error(
+        "Error database query Users (updatePassword): ",
+        error.message
+      );
+    }
+  }
 }
 
 module.exports = Users;

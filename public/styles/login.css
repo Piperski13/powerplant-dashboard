@@ -63,6 +63,15 @@ input::placeholder {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
+}
+
+.submit-btn:hover {
+  opacity: 0.9;
+}
+
+.submit-btn:active {
+  opacity: 0.75;
 }
 
 .login-div {
@@ -110,6 +119,11 @@ input::placeholder {
 }
 .input-error {
   border: 2px solid red;
+}
+
+h3 {
+  color: #4caf50;
+  font-weight: bold;
 }
 
 /* start otp validation successes */
