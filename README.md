@@ -348,6 +348,18 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 |------------|
 | ![verification sucessfull](public/images/otp-verify-sucssess.jpg)
 
+|  Forgot password | Forgot password - loader |  Forgot password - Sucesses |
+|------------|-------------|-------------|
+| ![Forgot password Page](public/images/forgot-password.jpg) | ![Forgot password - loader](public/images/forgot-password-loading.jpg) | ![Forgot password - Sucesses](public/images/forgot-password-sucesses.jpg)
+
+|  Forgot password - Email | Forgot password - Email opened | Reset password - Page|
+|------------|-------------|-------------|
+| ![ Forgot password - Email](public/images/forgot-password-mail.jpg) | ![Forgot password - Email opened](public/images/forgot-password-opened-mail.jpg) | ![Reset password - Page](public/images/reset-password-page-validation.jpg)
+
+|  Login Page - Password change sucessfull |
+|------------|
+| ![verification sucessfull](public/images/passwrod-change-sucess.jpg)
+
 | Hashed Passwords |
 | ---------- |
 | ![Login Page](public/images/hashed-passwrods.jpg)
