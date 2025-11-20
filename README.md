@@ -331,11 +331,18 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 ## Screenshots
 
 [⬆ Back to Table of Contents](#table-of-contents)
+<br>
+<br>
+## 🔐 Login & Sign-In Flow
 
-|  Login Page |
+This section showcases the full authentication entry flow — from standard login, through the sign-in (registration) process, including validation and loading states.
+
+### **1. Login Page**
+| |
 |------------|
 | ![Login Page](public/images/login.jpg)
 
+### **2. Registration (Sign-In) Process**
 | Sign-in Page | Sign-in Validation |  Sign-in Spinner |
 |------------|-------------|-------------|
 | ![Sign-in Page](public/images/sign-in.jpg) | ![Sign-in Page](public/images/sign-in-validation.jpg) | ![Sign-in Spinner](public/images/loader-spinner.jpg)
@@ -355,9 +362,9 @@ This section shows the complete One-Time Password (OTP) verification process —
 |------------|
 | ![verification sucessfull](public/images/otp-verify-sucssess.jpg)
 
-## 🔄 Forgot Password Flow
+## 🔑 Forgot Password & Security Flow
 
-This section demonstrates the full password recovery process — from requesting a reset link, receiving the email, and submitting a new password, all the way to final confirmation.
+This section demonstrates the forgot password process, email delivery, password reset, and password security.
 
 ### **1. Requesting a Password Reset**
 |  Forgot password | Forgot password - loader |  Forgot password - Sucesses |
@@ -374,46 +381,69 @@ This section demonstrates the full password recovery process — from requesting
 |------------|
 | ![verification sucessfull](public/images/passwrod-change-sucess.jpg)
 
+### **4. Password Security**
 | Hashed Passwords |
 | ---------- |
 | ![Login Page](public/images/hashed-passwrods.jpg)
 
+## 📝 Main App Pages & Records Management
+
+This section showcases the core application pages and CRUD functionality for records.
+
+### **1. Welcome Pages**
 | Welcome Page |
 | ------------ |
 | ![Welcome Page](public/images/welcome.jpg)
 
-| Welcome Page Admin |
-| ------------ |
-| ![Welcome Page](public/images/welcome-admin.jpg)
-
+### **2. Viewing Records**
 | View Records Page |
 | ----------------- |
 | ![View Records Page](public/images/view-records.jpg)
 
+### **3. Adding Records**
 | Add Record Page | Add Record Page Validation |
 |---------------|-------------|
 | ![Add Record Page](public/images/add-record.jpg) | ![Add Record Page](public/images/add-record-validation.jpg)
 
+### **4. Updating Records**
 | Update Record Page |
 | ------------------ |
 | ![Update Record Page](public/images/update-recrod.jpg)
 
+## 🛠️ Admin Profile & User Management
+
+This section showcases the admin capabilities, including viewing all records, managing users, and updating user profiles.
+
+### **1. Admin Welcome Page**
+| Welcome Page Admin |
+| ------------ |
+| ![Welcome Page](public/images/welcome-admin.jpg)
+
+### **2. User Management**
 | Admin Users Page |
 | ------------------ |
 | ![Update Record Page](public/images/users-page.jpg)
 
+### **3. Updating User Profiles**
 | Admin User Update Page |
 | ------------------ |
 | ![Update Record Page](public/images/user-update-page.jpg)
 
+## ⚡ Miscellaneous Pages & Actions
+
+This section covers miscellaneous pages and UI elements that improve user experience, including error handling and session actions.
+
+### **1. Error Handling**
 | 404 Page - Displayed when a user accesses a non-existent route |
 | ------------------ |
 | ![Update Record Page](public/images/404.jpg)
 
+### **2. Authenticated User Restrictions**
 | Rendered when an authenticated user tries to access the login/sign in page |
 | ------------------ |
 | ![Update Record Page](public/images/login-user-true.jpg)
 
+### **3. Logout Action**
 | Logout Button |
 | ------------- |
 | ![Logout Button](public/images/logout.jpg)
