@@ -15,6 +15,18 @@ class Otp {
       console.error("Error database query storeOtp: ", error.message);
     }
   }
+  static async removeOtp(email) {
+    try {
+      const { rowCount } = await pool.query(
+        "DELETE FROM otps WHERE email = $1",
+        [email]
+      );
+
+      return rowCount > 0;
+    } catch (error) {
+      console.error("Error database query removeOtp:", error.message);
+    }
+  }
   static async verifyOtp(email, otp) {
     try {
       const { rows } = await pool.query(
