@@ -13,18 +13,24 @@ const validateUser = [
 const handleForgotPassword = async (req, res) => {
   const { email } = req.body;
 
-  const token = crypto.randomBytes(32).toString("hex");
-  const hashedToken = await bcrypt.hash(token, 10);
+  try {
+    const token = crypto.randomBytes(32).toString("hex");
+    const hashedToken = await bcrypt.hash(token, 10);
 
-  const expiresAt = new Date(Date.now() + 15 * 60 * 1000);
+    const expiresAt = new Date(Date.now() + 15 * 60 * 1000);
 
-  await ForgotPassword.addPasswordReset(email, hashedToken, expiresAt);
+    await ForgotPassword.addPasswordReset(email, hashedToken, expiresAt);
 
-  const resetLink = `${process.env.RESET_LINK_HOST}/forgot/reset-password/${token}`;
+    const resetLink = `${process.env.RESET_LINK_HOST}/forgot/reset-password/${token}`;
 
-  await sendResetPasswordEmail(email, resetLink);
+    await sendResetPasswordEmail(email, resetLink);
 
-  res.render("forgot-password-success");
+    res.render("forgot-password-success");
+  } catch (error) {
+    console.error("Error handling forgot password:", err);
+
+    res.status(500).json({ error: error.message });
+  }
 };
 
 const showResetForm = async (req, res, next, errors = []) => {
@@ -38,37 +44,51 @@ const showForgotPage = async (req, res) => {
 };
 
 const handleResetPassword = async (req, res) => {
-  const errors = validationResult(req);
   const { token } = req.params;
   const { password } = req.body;
 
-  let allErrors = errors.array();
+  let validationErrors = validationResult(req).array();
 
-  const result = await ForgotPassword.validPasswordResetToken();
+  try {
+    if (validationErrors.length > 0) {
+      return showResetForm(req, res, [], validationErrors);
+    }
 
-  if (result.length === 0) {
-    return res.send("Reset link invalid or expired.");
+    const result = await ForgotPassword.validPasswordResetToken();
+
+    if (result.length === 0) {
+      return showResetForm(
+        req,
+        res,
+        [],
+        [{ msg: "Reset link invalid or expired." }]
+      );
+    }
+
+    const resetEntry = result[0];
+    const tokenMatches = await bcrypt.compare(token, resetEntry.token);
+
+    if (!tokenMatches) {
+      return showResetForm(req, res, [], [{ msg: "Invalid token." }]);
+    }
+
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    await Users.updatePassword(hashedPassword, resetEntry.email);
+
+    await ForgotPassword.removeToken(resetEntry.email);
+
+    req.session.successMessage = "✅ Password changed successfully!";
+    res.redirect("/");
+  } catch (error) {
+    console.error("Error resetting password:", err);
+    return showResetForm(
+      req,
+      res,
+      [],
+      [{ msg: "An unexpected error occurred. Please try again." }]
+    );
   }
-
-  const resetEntry = result[0];
-  const tokenMatches = await bcrypt.compare(token, resetEntry.token);
-
-  if (!tokenMatches) {
-    return res.send("Invalid token.");
-  }
-
-  if (allErrors.length > 0) {
-    return showResetForm(req, res, [], allErrors);
-  }
-
-  const hashedPassword = await bcrypt.hash(password, 10);
-
-  await Users.updatePassword(hashedPassword, resetEntry.email);
-
-  await ForgotPassword.removeToken(resetEntry.email);
-
-  req.session.successMessage = "✅ Password changed successfully!";
-  res.redirect("/");
 };
 
 module.exports = {
