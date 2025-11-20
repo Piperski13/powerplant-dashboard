@@ -37,9 +37,13 @@ A refactored full-stack web application originally built in 2024, now rebuilt ( 
 
 - **MVC Architecture** - clean structure separating logic, views, and data access layers
 
-- **Email Sending via Nodemailer** - used for sending verification emails, OTP codes, and user notifications
+- **Email Sending via Nodemailer** - used for sending verification emails, OTP codes, and reset password link
 
 - **OTP Verification System** - 6-digit code sent to users during registration, with expiration, secure validation, and a custom multi-field OTP UI (auto-focus, delete navigation, paste support)
+
+- **Forgot Password Flow** – secure password reset system using one-time reset links sent to user email, including token hashing, expiration handling, and password update validation.
+
+- **Password Reset Tokens** – stored as hashed values in the database with expiration timestamps, ensuring safe and time-limited recovery access.
 
 - **Responsive Design** - layout optimized for both desktop and mobile
 
