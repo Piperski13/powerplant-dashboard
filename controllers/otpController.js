@@ -85,6 +85,8 @@ const verifyOtp = async (req, res) => {
     }
 
     await registerPendingUser(pendingUser);
+    await Otp.removeOtp(email);
+
     delete req.session.pendingUser;
 
     req.session.successMessage = "✅ Account created successfully!";
