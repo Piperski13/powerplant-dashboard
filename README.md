@@ -187,6 +187,19 @@ Ensure you have these installed:
 | POST   | `/update/:id`    | Updates the selected user's information                 |
 | POST   | `/delete/:id`    | Deletes the selected user from the system               |
 
+
+## Password Reset Router (`/forgot`)
+
+---
+
+| Method | Endpoint                     | Description                                            |
+| ------ | -----------------------------| ------------------------------------------------------ |
+| GET    | `/password`                  | Displays the "Forgot Password" page                    |
+| POST   | `/password`                  | Sends password reset email with secure token           |
+| GET    | `/reset-password/:token`     | Shows the password reset form for a valid token        |
+| POST   | `/reset-password/:token`     | Validates user input and updates the password          |
+
+
 # Database: energetika
 
 [⬆ Back to Table of Contents](#table-of-contents)
@@ -279,6 +292,25 @@ The `otps` table stores temporary one-time passwords used during the account ver
 - OTPs are **hashed** before being saved to ensure secure temporary verification.  
 - This table is used only during **sign-up verification**; once the user confirms the OTP, the user is created and the OTP entry becomes unnecessary.  
 - An index on `email` improves lookup speed when verifying user-submitted OTP codes.
+
+## Table: password_resets ( password_resets )
+
+The password_resets table stores secure password-reset tokens generated when a user initiates a password recovery process.
+
+### Attributes:
+
+| Column Name | Data Type    | Constraints               | Description                                                      |
+| ----------- | ------------ | ------------------------- | ---------------------------------------------------------------- |
+| id          | SERIAL       | PRIMARY KEY               | Unique identifier for each password reset entry                  |
+| email       | VARCHAR(255) | NOT NULL, UNIQUE          | Email address associated with the password reset request         |
+| token       | VARCHAR(255) | NOT NULL                  | **Hashed** reset token (raw token is never stored in plain text) |
+| expires_at  | TIMESTAMP    | NOT NULL                  | Exact time when the reset token expires and becomes invalid      |
+| created_at  | TIMESTAMP    | DEFAULT CURRENT_TIMESTAMP | Timestamp indicating when the reset entry was created            |
+
+- Tokens are always hashed before being stored, ensuring secure password recovery.
+- Each email can only have one active reset token, enforced via the UNIQUE(email) constraint.
+- expires_at ensures old or leaked tokens cannot be reused.
+- An index (idx_password_resets_email) speeds up lookups during reset validation.
 
 
 # Middleware
