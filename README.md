@@ -454,7 +454,6 @@ This section covers miscellaneous pages and UI elements that improve user experi
 
 [⬆ Back to Table of Contents](#table-of-contents)
 - **Deployment** - Host the application online after implementing all planned features.
-- **Password Reset Flow** - Implement “Forgot Password?”
 - **File Uploads** - Allow users to attach images or documents to records, stored on disk or cloud (e.g., Cloudinary or S3).
 - **Security Enhancements** - Add rate limiting, helmet middleware, and sanitize inputs against SQL/XSS attacks.
 - **API Layer (REST or GraphQL)** - Expose your data via a JSON API for future frontend integrations.
