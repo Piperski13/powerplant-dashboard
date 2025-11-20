@@ -4,6 +4,12 @@ const ForgotPassword = require("../model/forgotPasswordModel.js");
 const Users = require("../model/usersModel.js");
 const sendResetPasswordEmail = require("../utils/resetPasswordEmail.js");
 
+const { body, validationResult } = require("express-validator");
+
+const validateUser = [
+  body("password").isLength({ min: 2 }).withMessage("Password too short"),
+];
+
 const handleForgotPassword = async (req, res) => {
   const { email } = req.body;
 
@@ -21,10 +27,10 @@ const handleForgotPassword = async (req, res) => {
   res.render("forgot-password-success");
 };
 
-const showResetForm = async (req, res) => {
+const showResetForm = async (req, res, next, errors = []) => {
   const token = req.params.token;
 
-  return res.render("reset-password", { token });
+  return res.render("reset-password", { token, errors });
 };
 
 const showForgotPage = async (req, res) => {
@@ -32,8 +38,11 @@ const showForgotPage = async (req, res) => {
 };
 
 const handleResetPassword = async (req, res) => {
+  const errors = validationResult(req);
   const { token } = req.params;
   const { password } = req.body;
+
+  let allErrors = errors.array();
 
   const result = await ForgotPassword.validPasswordResetToken();
 
@@ -46,6 +55,10 @@ const handleResetPassword = async (req, res) => {
 
   if (!tokenMatches) {
     return res.send("Invalid token.");
+  }
+
+  if (allErrors.length > 0) {
+    return showResetForm(req, res, [], allErrors);
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -63,4 +76,5 @@ module.exports = {
   showResetForm,
   showForgotPage,
   handleResetPassword,
+  validateUser,
 };
