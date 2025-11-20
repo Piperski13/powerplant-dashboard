@@ -340,22 +340,36 @@ This middleware is applied globally to all `/viewPage` and `/records` routes to 
 |------------|-------------|-------------|
 | ![Sign-in Page](public/images/sign-in.jpg) | ![Sign-in Page](public/images/sign-in-validation.jpg) | ![Sign-in Spinner](public/images/loader-spinner.jpg)
 
+## 🔐 OTP Verification Flow
+
+This section shows the complete One-Time Password (OTP) verification process — from receiving the email to successfully activating the account.
+
+### **OTP Input & Email Delivery**
 |  OTP Page | Sent Email - Unopened |  Sent Email - Opened |
 |------------|-------------|-------------|
 | ![OTP Page](public/images/otp-page.jpg) | ![Email-1](public/images/nodemailer-1.jpg) | ![Email-2](public/images/nodemailer-2.jpg)
 
+
+### **Successful Verification**
 |  Login Page - OTP verification sucessfull |
 |------------|
 | ![verification sucessfull](public/images/otp-verify-sucssess.jpg)
 
+## 🔄 Forgot Password Flow
+
+This section demonstrates the full password recovery process — from requesting a reset link, receiving the email, and submitting a new password, all the way to final confirmation.
+
+### **1. Requesting a Password Reset**
 |  Forgot password | Forgot password - loader |  Forgot password - Sucesses |
 |------------|-------------|-------------|
 | ![Forgot password Page](public/images/forgot-password.jpg) | ![Forgot password - loader](public/images/forgot-password-loading.jpg) | ![Forgot password - Sucesses](public/images/forgot-password-sucesses.jpg)
 
+### **2. Email Delivery**
 |  Forgot password - Email | Forgot password - Email opened | Reset password - Page|
 |------------|-------------|-------------|
 | ![ Forgot password - Email](public/images/forgot-password-mail.jpg) | ![Forgot password - Email opened](public/images/forgot-password-opened-mail.jpg) | ![Reset password - Page](public/images/reset-password-page-validation.jpg)
 
+### **3. Password Successfully Updated**
 |  Login Page - Password change sucessfull |
 |------------|
 | ![verification sucessfull](public/images/passwrod-change-sucess.jpg)
