@@ -37,6 +37,9 @@ app.use(passport.session());
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
 
+// Serve uploaded files from disk
+app.use(process.env.UPLOADS_URL, express.static(process.env.UPLOADS_PATH));
+
 // EJS setup
 app.set("views", path.join(__dirname, "views/pages"));
 app.set("view engine", "ejs");

@@ -1,4 +1,5 @@
 const Record = require("../model/recordsModel.js");
+const File = require("../model/filesModel.js");
 const { body, validationResult } = require("express-validator");
 const { showAddRecord } = require("./viewController.js");
 
@@ -37,7 +38,7 @@ const addRecord = async (req, res) => {
 
     const user_id = req.user.id;
 
-    await Record.add({
+    const record = await Record.add({
       nazivelektrane,
       mesto,
       adresa,
@@ -45,6 +46,21 @@ const addRecord = async (req, res) => {
       sifravrstepogona,
       user_id,
     });
+
+    if (req.files && req.files.length > 0) {
+      const fileRows = req.files.map((file) => ({
+        record_id: record.id,
+        user_id,
+        filename: file.filename,
+        original_name: file.originalname,
+        path: file.path.replace(/\\/g, "/"),
+        mimetype: file.mimetype,
+        size: file.size,
+      }));
+
+      await File.addMany(fileRows);
+    }
+
     res.redirect("/viewPage/recordsViewPage");
   } catch (error) {
     res.status(500).json({ error: error.message });

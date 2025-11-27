@@ -27,6 +27,7 @@
         <form
           action="<%= record ? '/records/update/' + record.id : '/records/create/' %>"
           method="POST"
+          enctype="multipart/form-data"
           class="form-style"
         >
           <label for="nazivelektrane">Naziv Elektrane</label>
@@ -52,6 +53,10 @@
             value="<%= record ? record.datumpustanjaurad.toISOString().split('T')[0] : '' %>"
             required
           />
+
+          <label for="adresa">Dokument</label>
+          <input type="file" id="file-input" name="myFile" multiple />
+
           <div class="submit-row">
             <%- include("../partials/errors.ejs") %>
             <button type="submit" class="form-submit-button"><%= record ? "Update Record" : "Add Record" %></button>
