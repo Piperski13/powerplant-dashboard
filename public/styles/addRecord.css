@@ -18,7 +18,7 @@ header {
   justify-content: center;
 }
 label {
-  padding-bottom: 1.5em;
+  padding-bottom: 1em;
 }
 
 input,
@@ -94,6 +94,29 @@ a {
 }
 /* business rule end */
 
+#drop-zone {
+  width: 20%;
+  padding: 15px;
+  margin-bottom: 5px;
+  border: 3px dashed #777;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  color: #444;
+}
+
+#drop-zone.dragover {
+  background: #e6f7ff;
+  border-color: #06c;
+}
+
+.upload-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 /* responsive desing start  */
 @media (max-width: 768px) {
   h2 {
@@ -104,12 +127,15 @@ a {
     padding: 15px;
   }
   label {
-    padding-bottom: 1em;
+    padding-bottom: 0.75em;
   }
   input,
   select {
     width: 50%;
     padding: 8px 15px;
+  }
+  #drop-zone {
+    font-size: 14px;
   }
 }
 @media (max-width: 500px) {

@@ -54,9 +54,12 @@
             value="<%= record ? record.datumpustanjaurad.toISOString().split('T')[0] : '' %>"
             required
           />
-
-          <label for="adresa">Dokument</label>
-          <input type="file" id="file-input" name="myFile" multiple />
+          <label for="file">Dokument</label>
+          <div id="drop-zone">
+            Drag & Drop files here<br />
+            or click to select
+          </div>
+          <input type="file" id="file-input" name="myFile" multiple hidden />
 
           <div class="submit-row">
             <%- include("../partials/errors.ejs") %>
@@ -69,5 +72,6 @@
 
     <script src="/scripts/hamburger_menu/toggleMenu.js"></script>
     <script src="/scripts/todaysDate.js"></script>
+    <script src="/scripts/drag.js"></script>
   </body>
 </html>
