@@ -48,6 +48,7 @@
           <label for="datumpustanjaurad">Datum puštanja u rad</label>
           <input
             type="date"
+            id="datumpustanjaurad_input"
             name="datumpustanjaurad"
             placeholder="Select Date"
             value="<%= record ? record.datumpustanjaurad.toISOString().split('T')[0] : '' %>"
@@ -67,5 +68,6 @@
     <%- include("../partials/footer.ejs") %>
 
     <script src="/scripts/hamburger_menu/toggleMenu.js"></script>
+    <script src="/scripts/todaysDate.js"></script>
   </body>
 </html>
