@@ -51,7 +51,7 @@ class Record {
     }
   }
   static async updateById({
-    id,
+    recordId,
     nazivelektrane,
     mesto,
     adresa,
@@ -67,7 +67,7 @@ class Record {
         adresa,
         datumpustanjaurad,
         sifravrstepogona,
-        id,
+        recordId,
       ];
 
       await pool.query(query, values);

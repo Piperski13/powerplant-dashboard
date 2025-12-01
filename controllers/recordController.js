@@ -105,7 +105,8 @@ const updateRecord = async (req, res) => {
       return showAddRecord(req, res, [], errors.array());
     }
 
-    const id = parseInt(req.params.id);
+    const recordId = parseInt(req.params.id);
+    console.log("recordId: ", recordId);
     const {
       nazivelektrane,
       mesto,
@@ -115,13 +116,28 @@ const updateRecord = async (req, res) => {
     } = req.body;
 
     await Record.updateById({
-      id,
+      recordId,
       nazivelektrane,
       mesto,
       adresa,
       datumpustanjaurad,
       sifravrstepogona,
     });
+
+    const user_id = req.user.id;
+
+    if (req.files && req.files.length > 0) {
+      const fileRows = req.files.map((file) => ({
+        record_id: recordId,
+        user_id,
+        filename: file.filename,
+        original_name: file.originalname,
+        path: file.path.replace(/\\/g, "/"),
+        mimetype: file.mimetype,
+        size: file.size,
+      }));
+      await File.addMany(fileRows);
+    }
 
     res.redirect("/viewPage/recordsViewPage");
   } catch (error) {
