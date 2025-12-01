@@ -48,6 +48,15 @@ class File {
       throw error;
     }
   }
+  static async getByRecordId(recordId) {
+    const query = `SELECT * FROM files WHERE record_id = $1`;
+    const { rows } = await pool.query(query, [recordId]);
+    return rows;
+  }
+  static async deleteByRecordId(recordId) {
+    const query = `DELETE FROM files WHERE record_id = $1`;
+    return pool.query(query, [recordId]);
+  }
 }
 
 module.exports = File;

@@ -1,5 +1,7 @@
 const Record = require("../model/recordsModel.js");
 const File = require("../model/filesModel.js");
+const fs = require("fs");
+const path = require("path");
 const { body, validationResult } = require("express-validator");
 const { showAddRecord } = require("./viewController.js");
 
@@ -69,12 +71,26 @@ const addRecord = async (req, res) => {
 
 const deleteRecord = async (req, res) => {
   try {
-    const id = parseInt(req.params.id);
+    const recordId = parseInt(req.params.id);
 
-    const results = await Record.deleteById(id);
+    const files = await File.getByRecordId(recordId);
+
+    files.forEach((file) => {
+      const filePath = path.join(process.env.UPLOADS_PATH, file.filename);
+
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
+    });
+
+    await File.deleteByRecordId(recordId);
+
+    const results = await Record.deleteById(recordId);
 
     if (results.rowCount === 0) {
-      res.status(404).json({ message: `Record with ${id} was not found ` });
+      res
+        .status(404)
+        .json({ message: `Record with ${recordId} was not found ` });
     }
     res.redirect("/viewPage/recordsViewPage");
   } catch (error) {
