@@ -45,13 +45,13 @@ a {
   color: black;
 }
 #header-section-form {
-  width: 70%;
+  width: 80%;
+  margin-left: 180px;
 }
 #main-box {
   display: flex;
   align-items: center;
-  justify-content: right;
-  padding-right: 5em;
+  justify-content: center;
   position: relative;
 }
 .header-section-link {
@@ -95,7 +95,7 @@ a {
 /* business rule end */
 
 #drop-zone {
-  width: 20%;
+  width: 35%;
   padding: 15px;
   margin-bottom: 5px;
   border: 3px dashed #777;
@@ -118,6 +118,11 @@ a {
 }
 
 /* responsive desing start  */
+@media (max-height: 1280px) {
+  label {
+    padding-bottom: 0.5em;
+  }
+}
 @media (max-width: 768px) {
   h2 {
     font-size: 17px;
@@ -136,6 +141,9 @@ a {
   }
   #drop-zone {
     font-size: 14px;
+  }
+  #header-section-form {
+    margin-left: 0px;
   }
 }
 @media (max-width: 500px) {

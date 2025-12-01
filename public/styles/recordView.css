@@ -95,11 +95,7 @@ caption {
   color: #333;
 }
 #main-box {
-  display: flex;
-  align-items: flex-end;
-  justify-content: right;
   overflow: auto;
-  flex-direction: column;
 }
 
 .div-tables-section {

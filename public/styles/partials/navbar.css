@@ -1,4 +1,5 @@
 /* Sidebar container */
+/* .side bar is only used for navbar inside of a view records */
 .sidebar {
   width: 180px;
   height: 79.5%;
@@ -7,10 +8,27 @@
   flex-direction: column;
   position: fixed;
 }
+
+/* Sidebar links */
+#sidebar a {
+  padding: 15px 20px;
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  transition: 0.3s;
+  width: 100%;
+}
+
+#sidebar a:hover {
+  background-color: #00abed;
+}
 nav {
   position: absolute;
   top: 0;
   left: 0;
+  bottom: 0;
+  background-color: #3b49e6;
 }
 #main-box {
   width: 80%;
@@ -26,20 +44,6 @@ nav {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-}
-/* Sidebar links */
-.sidebar a {
-  padding: 15px 20px;
-  text-decoration: none;
-  color: white;
-  font-size: 18px;
-  text-align: center;
-  transition: 0.3s;
-  width: 100%;
-}
-
-.sidebar a:hover {
-  background-color: #00abed;
 }
 
 /* Main content */
@@ -130,14 +134,21 @@ nav {
 }
 .sidebar.hidden {
   width: 125px;
-  height: 79.5%;
   background-color: #3b49e6;
   display: flex;
   flex-direction: column;
   position: fixed;
 }
 /* hamburger menu end  */
-
+@media (max-height: 1280px) {
+  #main-box {
+    width: 95%;
+    height: 95%;
+  }
+  .sidebar {
+    height: 94.25%;
+  }
+}
 @media (max-width: 1439px) {
   .menu {
     display: none;
