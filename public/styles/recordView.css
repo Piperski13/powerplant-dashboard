@@ -136,8 +136,9 @@ caption {
   align-items: center;
   flex-direction: column;
   width: 300px;
+  background-color: #f9f9f9;
   box-shadow: 0 4px 8px rgba(4, 127, 20, 0.1);
-  padding: 10px;
+  padding: 0px 10px 10px 10px;
 }
 .filter-label {
   margin-bottom: 4px;
