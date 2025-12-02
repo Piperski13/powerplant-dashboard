@@ -54,12 +54,13 @@ nav {
 
 /* DROP DOWN START */
 .logout-style {
+  position: absolute;
+  bottom: 58px;
+
   display: flex;
   justify-content: left;
   align-items: center;
-  position: absolute;
 
-  bottom: 58px;
   width: 100%;
   height: 50px;
   text-align: center;
@@ -126,7 +127,8 @@ nav {
   color: #0e152f;
   cursor: pointer;
   position: absolute;
-  margin: 1.5% 0 0 3%;
+  left: 6.25%;
+  top: 5%;
   z-index: 1;
 }
 .menu.hidden {
@@ -138,6 +140,11 @@ nav {
   display: flex;
   flex-direction: column;
   position: fixed;
+}
+.sidebar-default.hidden {
+  width: 125px;
+  background-color: #3b49e6;
+  display: block;
 }
 /* hamburger menu end  */
 @media (max-height: 1280px) {
@@ -157,6 +164,10 @@ nav {
   .sidebar {
     display: none;
     position: fixed;
+  }
+  .sidebar-default {
+    display: none;
+    /* position: fixed; */
   }
   .hamburger {
     display: block;
