@@ -106,7 +106,6 @@ const updateRecord = async (req, res) => {
     }
 
     const recordId = parseInt(req.params.id);
-    console.log("recordId: ", recordId);
     const {
       nazivelektrane,
       mesto,
@@ -145,9 +144,35 @@ const updateRecord = async (req, res) => {
   }
 };
 
+const deleteFile = async (req, res) => {
+  try {
+    const fileId = req.params.fileId;
+
+    const file = await File.getByFileId(fileId);
+    if (!file) {
+      return res.status(404).send("File not found");
+    }
+
+    try {
+      fs.unlinkSync(file.path);
+    } catch (e) {
+      console.log("File already missing from disk, skipping");
+      console.error(e);
+    }
+
+    await File.deleteByFileId(fileId);
+
+    res.redirect(`/viewPage/addRecord/${file.record_id}`);
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("Internal server error");
+  }
+};
+
 module.exports = {
   addRecord,
   deleteRecord,
   updateRecord,
+  deleteFile,
   validateUser,
 };

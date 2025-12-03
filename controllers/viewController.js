@@ -50,16 +50,19 @@ const showUsers = async (req, res) => {
 
 const showAddRecord = async (req, res, next, errors = []) => {
   try {
-    const { id } = req.params;
+    const recordId = req.params.id;
     let record = null;
+    let files = null;
 
-    if (id) {
-      record = await Records.getById(id);
+    if (recordId) {
+      record = await Records.getById(recordId);
+      files = await File.getByRecordId(recordId);
     }
 
     res.render("addRecord", {
       user: req.user,
       record,
+      files,
       errors,
     });
   } catch (error) {
@@ -83,7 +86,7 @@ const showUpdateUser = async (req, res, next, errors = []) => {
       errors,
     });
   } catch (error) {
-    console.error("Error in showAddRecord:", error.message);
+    console.error("Error in showUpdateUser:", error.message);
     res.status(500).send("Internal Server Error");
   }
 };

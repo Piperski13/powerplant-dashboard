@@ -30,7 +30,7 @@ class File {
 
       return lastInserted;
     } catch (error) {
-      console.error("Database query failed (addMany):", error.message);
+      console.error("filesModel - Database query failed (addMany):", error.message);
     }
   }
   static async getAll(user_id) {
@@ -44,18 +44,47 @@ class File {
       const { rows } = await pool.query("SELECT * FROM files");
       return rows;
     } catch (error) {
-      console.error("Database error (getAll):", error.message);
+      console.error("filesModel - Database error (getAll):", error.message);
       throw error;
     }
   }
   static async getByRecordId(recordId) {
-    const query = `SELECT * FROM files WHERE record_id = $1`;
-    const { rows } = await pool.query(query, [recordId]);
-    return rows;
+    try {
+      const query = `SELECT * FROM files WHERE record_id = $1`;
+      const { rows } = await pool.query(query, [recordId]);
+      return rows;
+    } catch (error) {
+      console.error("filesModel - Database error (getByRecordId):", error.message);
+      throw error;
+    }
   }
   static async deleteByRecordId(recordId) {
-    const query = `DELETE FROM files WHERE record_id = $1`;
-    return pool.query(query, [recordId]);
+    try {
+      const query = `DELETE FROM files WHERE record_id = $1`;
+      return pool.query(query, [recordId]);
+    } catch (error) {
+      console.error("filesModel - Database error (deleteByRecordId):", error.message);
+      throw error;
+    }
+  }
+  static async getByFileId(fileId) {
+    try {
+      const query = `SELECT * FROM files WHERE id = $1`;
+      const { rows } = await pool.query(query, [fileId]);
+      return rows[0];
+    } catch (error) {
+      console.error("filesModel - Database error (getByFileId):", error.message);
+      throw error;
+    }
+  }
+  static async deleteByFileId(fileId) {
+    try {
+      const query = `DELETE FROM files WHERE id = $1`;
+      return pool.query(query, [fileId]);
+    } catch (error) {
+      console.error("filesModel - Database error (deleteByFileId):", error.message);
+      throw error;
+    }
   }
 }
 

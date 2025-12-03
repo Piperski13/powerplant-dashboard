@@ -13,7 +13,10 @@ class View {
       const { rows } = await pool.query(query, values);
       return rows;
     } catch (error) {
-      console.error("Database error (filterData):", error.message);
+      console.error(
+        "viewModel - Database error (filterRecords):",
+        error.message
+      );
       throw error;
     }
   }
@@ -52,7 +55,10 @@ class View {
       const { rows } = await pool.query(baseQuery, values);
       return rows;
     } catch (error) {
-      console.error("Database error (getPlants):", error.message);
+      console.error(
+        "viewModel - Database error (getAllPlants):",
+        error.message
+      );
       throw error;
     }
   }
@@ -62,7 +68,7 @@ class View {
 
       return rows;
     } catch (error) {
-      console.error("Database error (getUsers):", error.message);
+      console.error("viewModel - Database error (getUsers):", error.message);
       throw error;
     }
   }
@@ -74,7 +80,10 @@ class View {
       const { rows } = await pool.query(query, value);
       return rows;
     } catch (error) {
-      console.error("Error database query (filterUsers): ", error.message);
+      console.error(
+        "viewModel - Error database query (filterUsers): ",
+        error.message
+      );
     }
   }
 }

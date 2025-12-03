@@ -12,7 +12,10 @@ class Otp {
 
       return rows[0] || null;
     } catch (error) {
-      console.error("Error database query storeOtp: ", error.message);
+      console.error(
+        "otpModel - Error database query storeOtp: ",
+        error.message
+      );
     }
   }
   static async removeOtp(email) {
@@ -24,7 +27,10 @@ class Otp {
 
       return rowCount > 0;
     } catch (error) {
-      console.error("Error database query removeOtp:", error.message);
+      console.error(
+        "otpModel - Error database query removeOtp:",
+        error.message
+      );
     }
   }
   static async verifyOtp(email, otp) {
@@ -47,7 +53,10 @@ class Otp {
 
       return { valid: true };
     } catch (error) {
-      console.error("Error database query verifyOtp:", error.message);
+      console.error(
+        "otpModel - Error database query verifyOtp:",
+        error.message
+      );
       throw error;
     }
   }

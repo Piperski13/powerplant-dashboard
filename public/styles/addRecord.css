@@ -47,6 +47,10 @@ a {
 #header-section-form {
   width: 80%;
   margin-left: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 #main-box {
   display: flex;
@@ -62,7 +66,9 @@ a {
 }
 .form-style {
   display: flex;
+  justify-content: center;
   flex-direction: column;
+  width: 90%;
   align-items: center;
 }
 .form-style label {
@@ -96,8 +102,8 @@ a {
 
 #drop-zone {
   width: 35%;
-  padding: 15px;
   margin-bottom: 5px;
+  margin-top: 14px;
   border: 3px dashed #777;
   border-radius: 12px;
   text-align: center;
@@ -116,11 +122,69 @@ a {
   justify-content: center;
   flex-direction: column;
 }
+/*files ul style*/
+.files-ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.files-ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 8px 10px;
+  margin-bottom: 6px;
+
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fafafa;
+
+  transition: background-color 0.2s ease;
+}
+
+.files-ul li:hover {
+  background-color: #f0f0f0;
+}
+
+.files-ul a {
+  text-decoration: none;
+  color: #0074d9;
+  font-size: 14px;
+  word-break: break-all;
+}
+
+.delete-file-btn {
+  background: #e74c3c;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.delete-file-btn:hover {
+  background: #c0392b;
+}
+/*files ul style end*/
 
 /* responsive desing start  */
 @media (max-height: 1280px) {
   label {
     padding-bottom: 0.5em;
+  }
+  input,
+  select {
+    width: 50%;
+    padding: 5px 7.5px;
+    margin-bottom: 0.25rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
   }
 }
 @media (max-width: 768px) {

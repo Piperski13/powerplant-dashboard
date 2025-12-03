@@ -25,7 +25,10 @@ class Record {
 
       return rows[0]; // return new record
     } catch (error) {
-      console.error("Database query failed (add):", error.message);
+      console.error(
+        "recordsModel - Database query failed (add):",
+        error.message
+      );
     }
   }
   static async getById(id) {
@@ -36,7 +39,10 @@ class Record {
       const { rows } = await pool.query(query, value);
       return rows[0] || null;
     } catch (error) {
-      console.error("Error database query (getById): ", error.message);
+      console.error(
+        "recordsModel - Error database query (getById): ",
+        error.message
+      );
     }
   }
   static async deleteById(id) {
@@ -47,7 +53,10 @@ class Record {
       const { rows } = await pool.query(query, value);
       return rows;
     } catch (error) {
-      console.error("Error database query (deleteById): ", error.message);
+      console.error(
+        "recordsModel - Error database query (deleteById): ",
+        error.message
+      );
     }
   }
   static async updateById({
@@ -72,7 +81,10 @@ class Record {
 
       await pool.query(query, values);
     } catch (error) {
-      console.error("Error database query (updateById): ", error.message);
+      console.error(
+        "recordsModel - Error database query (updateById): ",
+        error.message
+      );
     }
   }
 }
