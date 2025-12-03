@@ -25,6 +25,10 @@ table {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+#big-table {
+  margin-bottom: 2em;
+}
+
 thead {
   background-color: #4caf50;
   color: #ffffff;
@@ -95,11 +99,7 @@ caption {
   color: #333;
 }
 #main-box {
-  display: flex;
-  align-items: flex-end;
-  justify-content: right;
   overflow: auto;
-  flex-direction: column;
 }
 
 .div-tables-section {
@@ -116,8 +116,8 @@ caption {
   width: 275px;
 }
 .table-text-bellow {
-  margin-top: 5px;
-  margin-bottom: 20px;
+  margin-top: 3px;
+  margin-bottom: 10px;
 }
 .small-table-caption {
   font-size: 23px;
@@ -130,11 +130,31 @@ caption {
   align-items: baseline;
   margin: 1em 0;
 }
+#filter-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 300px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(4, 127, 20, 0.1);
+  padding: 0px 10px 10px 10px;
+}
+.filter-label {
+  margin-bottom: 4px;
+  font-size: 18px;
+  background-color: #4caf50;
+  width: 300px;
+  padding: 15px 0;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
 input {
   width: 100%;
   padding: 10px 15px;
-  margin-right: 10px;
   margin-bottom: 0.75rem;
+  margin: 0.75rem 1rem;
   border: 1px solid #ddd;
   border-radius: 5px;
   outline: none;
@@ -168,10 +188,6 @@ input {
   .delete-record,
   .update-record {
     padding: 10px 3px;
-  }
-  .hamburger {
-    top: 5px;
-    left: 5px;
   }
 }
 @media (max-width: 509px) {

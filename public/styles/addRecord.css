@@ -18,7 +18,7 @@ header {
   justify-content: center;
 }
 label {
-  padding-bottom: 1.5em;
+  padding-bottom: 1em;
 }
 
 input,
@@ -45,13 +45,17 @@ a {
   color: black;
 }
 #header-section-form {
-  width: 70%;
+  width: 80%;
+  margin-left: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 #main-box {
   display: flex;
   align-items: center;
-  justify-content: right;
-  padding-right: 5em;
+  justify-content: center;
   position: relative;
 }
 .header-section-link {
@@ -62,7 +66,9 @@ a {
 }
 .form-style {
   display: flex;
+  justify-content: center;
   flex-direction: column;
+  width: 90%;
   align-items: center;
 }
 .form-style label {
@@ -94,7 +100,93 @@ a {
 }
 /* business rule end */
 
+#drop-zone {
+  width: 35%;
+  margin-bottom: 5px;
+  margin-top: 14px;
+  border: 3px dashed #777;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  color: #444;
+}
+
+#drop-zone.dragover {
+  background: #e6f7ff;
+  border-color: #06c;
+}
+
+.upload-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+/*files ul style*/
+.files-ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.files-ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 8px 10px;
+  margin-bottom: 6px;
+
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #fafafa;
+
+  transition: background-color 0.2s ease;
+}
+
+.files-ul li:hover {
+  background-color: #f0f0f0;
+}
+
+.files-ul a {
+  text-decoration: none;
+  color: #0074d9;
+  font-size: 14px;
+  word-break: break-all;
+}
+
+.delete-file-btn {
+  background: #e74c3c;
+  border: none;
+  color: white;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.delete-file-btn:hover {
+  background: #c0392b;
+}
+/*files ul style end*/
+
 /* responsive desing start  */
+@media (max-height: 1280px) {
+  label {
+    padding-bottom: 0.5em;
+  }
+  input,
+  select {
+    width: 50%;
+    padding: 5px 7.5px;
+    margin-bottom: 0.25rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    outline: none;
+  }
+}
 @media (max-width: 768px) {
   h2 {
     font-size: 17px;
@@ -104,22 +196,24 @@ a {
     padding: 15px;
   }
   label {
-    padding-bottom: 1em;
+    padding-bottom: 0.75em;
   }
   input,
   select {
     width: 50%;
     padding: 8px 15px;
   }
+  #drop-zone {
+    font-size: 14px;
+  }
+  #header-section-form {
+    margin-left: 0px;
+  }
 }
 @media (max-width: 500px) {
   input,
   select {
     width: 200px;
-  }
-  .hamburger {
-    top: 0;
-    left: 0;
   }
 }
 /* responsive desing end  */

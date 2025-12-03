@@ -14,17 +14,25 @@ class ForgotPassword {
     }
   }
   static async validPasswordResetToken() {
-    const { rows } = await pool.query(
-      `SELECT * FROM password_resets WHERE expires_at > NOW()`
-    );
-    return rows;
+    try {
+      const { rows } = await pool.query(
+        `SELECT * FROM password_resets WHERE expires_at > NOW()`
+      );
+      return rows;
+    } catch (error) {
+      console.error(error);
+    }
   }
   static async removeToken(email) {
-    const { rows } = await pool.query(
-      `DELETE FROM password_resets WHERE email=$1`,
-      [email]
-    );
-    return rows;
+    try {
+      const { rows } = await pool.query(
+        `DELETE FROM password_resets WHERE email=$1`,
+        [email]
+      );
+      return rows;
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 

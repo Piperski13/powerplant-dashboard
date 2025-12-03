@@ -20,7 +20,7 @@
 
   <body>
     <div id="main-box">
-      <%- include("../partials/navbar.ejs") %>
+      <%- include("../partials/navbarViewRecords.ejs") %>
       
       <div class="div-tables-section">
         <table id="small-table">
@@ -53,11 +53,12 @@
           </tbody>
         </table>
 
-        <p class="table-text-bellow">*max records per type = 10</p>
+        <p class="table-text-bellow">*tipovi elektrana</p>
 
         <div id="div-filter-form">
 
           <form action="/viewPage/recordsViewPage" method="GET" id="filter-form">
+            <label class="filter-label" for="name">Filter data by name</label>
             <input
               id="name"
               name="name"
@@ -77,7 +78,7 @@
           </form>
         </div>
 
-        <table>
+        <table id="big-table">
           <caption>
             Lista Evidencija Elektrana
           </caption>
@@ -89,12 +90,13 @@
               <th>Adresa</th>
               <th>Datum Puštanja u Rad</th>
               <th>Šifra Vrste Pogona</th>
+              <th>Dokumenti</th>
               <th>Ažuriraj</th>
               <th>Obriši</th>
             </tr>
           </thead>
           <tbody>
-            <% if (data && data.length > 0) { %> <% data.forEach(record => { %>
+            <% if (records && records.length > 0) { %> <% records.forEach(record => { %>
             <tr>
               <td><%= record.id %></td>
               <td><%= record.nazivelektrane %></td>
@@ -105,6 +107,21 @@
                 Date(record.datumpustanjaurad).toISOString().split('T')[0] %>
               </td>
               <td><%= record.sifravrstepogona %></td>
+
+              <td>
+                <% if (record.files && record.files.length > 0) { %>
+                   <% record.files.forEach(file => { %>
+                      <a href="<%= uploadsUrl %>/<%= file.filename %>" download>
+                        <%= file.original_name.slice(0, 10) + '...' %>
+                      </a>
+                      <br />
+                      <br />
+                    <% }) %>
+                <% } else { %>
+                <em>No files</em>
+                <% } %>
+              </td>
+
               <td>
                 <form
                   action="/viewPage/addRecord/<%= record.id %>"
@@ -133,7 +150,6 @@
         </table>
       </div>
     </div>
-    <%- include("../partials/footer.ejs") %>
     <script src="/scripts/hamburger_menu/toggleMenu.js"></script>
   </body>
 </html>

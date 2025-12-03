@@ -4,7 +4,11 @@ const logoutDiv = document.querySelector(".logout-style");
 
 const hamburgerIcon = document.querySelector(".hamburger");
 const menu = document.querySelector(".menu");
-const sidebar = document.querySelector(".sidebar");
+let sidebar = document.querySelector(".sidebar");
+
+if (!sidebar) {
+  sidebar = document.querySelector(".sidebar-default");
+}
 
 hamburgerIcon.addEventListener("click", () => {
   menu.classList.toggle("hidden");

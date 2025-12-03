@@ -9,7 +9,10 @@ class Users {
       const { rows } = await pool.query(query, value);
       return rows[0] || null;
     } catch (error) {
-      console.error("Error database query Users (getById): ", error.message);
+      console.error(
+        "usersModel - Error database query Users (getById): ",
+        error.message
+      );
     }
   }
   static async getByEmail(email) {
@@ -20,7 +23,10 @@ class Users {
       const { rows } = await pool.query(query, value);
       return rows[0] || null;
     } catch (error) {
-      console.error("Error database query Users (getByEmail): ", error.message);
+      console.error(
+        "usersModel - Error database query Users (getByEmail): ",
+        error.message
+      );
     }
   }
   static async deleteById(id) {
@@ -32,7 +38,7 @@ class Users {
       return rows;
     } catch (error) {
       console.error(
-        "Error database query (Users: deleteById): ",
+        "usersModel - Error database query (Users: deleteById): ",
         error.message
       );
     }
@@ -45,7 +51,10 @@ class Users {
 
       await pool.query(query, values);
     } catch (error) {
-      console.error("Error database query Users (updateById): ", error.message);
+      console.error(
+        "usersModel - Error database query Users (updateById): ",
+        error.message
+      );
     }
   }
   static async updatePassword(password, email) {
@@ -56,7 +65,7 @@ class Users {
       await pool.query(query, values);
     } catch (error) {
       console.error(
-        "Error database query Users (updatePassword): ",
+        "usersModel - Error database query Users (updatePassword): ",
         error.message
       );
     }

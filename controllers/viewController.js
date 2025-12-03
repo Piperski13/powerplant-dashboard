@@ -1,6 +1,7 @@
 const View = require("../model/viewModel.js");
 const Records = require("../model/recordsModel.js");
 const Users = require("../model/usersModel.js");
+const File = require("../model/filesModel.js");
 const path = require("path");
 
 const generateView = async (req, res) => {
@@ -10,14 +11,21 @@ const generateView = async (req, res) => {
 
     const effectiveUserId = is_admin ? null : user_id;
 
-    const data = await View.filterRecords(name, effectiveUserId);
+    const records = await View.filterRecords(name, effectiveUserId);
     const totalPlantsData = await View.getAllPlants(name, effectiveUserId);
+    const files = await File.getAll(effectiveUserId);
+
+    const recordsWithFiles = records.map((record) => {
+      const recordFiles = files.filter((f) => f.record_id === record.id);
+      return { ...record, files: recordFiles };
+    });
 
     res.render("recordsView", {
       name,
-      data,
+      records: recordsWithFiles,
       totalPlantsData,
       user: req.user,
+      uploadsUrl: process.env.UPLOADS_URL,
     });
   } catch (error) {
     console.error("Error processing request:", error.message);
@@ -42,16 +50,19 @@ const showUsers = async (req, res) => {
 
 const showAddRecord = async (req, res, next, errors = []) => {
   try {
-    const { id } = req.params;
+    const recordId = req.params.id;
     let record = null;
+    let files = null;
 
-    if (id) {
-      record = await Records.getById(id);
+    if (recordId) {
+      record = await Records.getById(recordId);
+      files = await File.getByRecordId(recordId);
     }
 
     res.render("addRecord", {
       user: req.user,
       record,
+      files,
       errors,
     });
   } catch (error) {
@@ -75,7 +86,7 @@ const showUpdateUser = async (req, res, next, errors = []) => {
       errors,
     });
   } catch (error) {
-    console.error("Error in showAddRecord:", error.message);
+    console.error("Error in showUpdateUser:", error.message);
     res.status(500).send("Internal Server Error");
   }
 };

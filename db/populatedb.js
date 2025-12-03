@@ -38,6 +38,21 @@ CREATE TABLE IF NOT EXISTS EvidencijaElektrana (
     ON UPDATE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS Files (
+  id SERIAL PRIMARY KEY,
+
+  user_id INTEGER REFERENCES Korisnici(id) ON DELETE CASCADE,
+  record_id INTEGER REFERENCES EvidencijaElektrana(id) ON DELETE CASCADE,
+
+  filename TEXT NOT NULL,         
+  original_name TEXT NOT NULL, 
+  path TEXT NOT NULL,        
+  mimetype TEXT NOT NULL,
+  size INTEGER NOT NULL,
+
+  created_at TIMESTAMP DEFAULT NOW()
+);
+
 CREATE TABLE IF NOT EXISTS otps (
   id SERIAL PRIMARY KEY,
   email VARCHAR(255) NOT NULL,
