@@ -104,6 +104,20 @@ Ensure you have these installed:
    DB_PORT=
    JWT_SECRET=
    DB_CONNECTION_STRING=
+   
+   ADMIN_EMAIL=
+   ADMIN_PASSWORD=
+   ADMIN_SURNAME=
+   ADMIN_LASTNAME=
+   
+   EMAIL_USER=
+   EMAIL_PASS=
+   EMAIL_FROM=
+
+   RESET_LINK_HOST=
+
+   UPLOADS_PATH=
+   UPLOADS_URL=
    ```
 
 ### Database Setup
