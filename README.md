@@ -188,11 +188,12 @@ Ensure you have these installed:
 
 ---
 
-| Method | Endpoint      | Description                                                      |
-| ------ | ------------- | ---------------------------------------------------------------- |
-| POST   | `/create/`    | Creates a new record linked to the logged-in user                |
-| POST   | `/update/:id` | Updates an existing record that it belongs to the logged-in user |
-| GET    | `/delete/:id` | Deletes a record that it belongs to the logged-in user           |
+| Method | Endpoint      | Description                                                                             |
+| ------ | ------------- | --------------------------------------------------------------------------------------- |
+| POST   | `/create/`    | Creates a new record linked to the logged-in user                                       |
+| POST   | `/update/:id` | Updates an existing record that it belongs to the logged-in user, supports file uploads |
+| GET    | `/delete/:id` | Deletes a record that it belongs to the logged-in user                                  |
+| POST   | /delete-file/:fileId | Deletes a specific file associated with a record                                 |
 
 ## Users router ('/users')
 
@@ -328,6 +329,30 @@ The password_resets table stores secure password-reset tokens generated when a u
 - expires_at ensures old or leaked tokens cannot be reused.
 - An index (idx_password_resets_email) speeds up lookups during reset validation.
 
+## Table: files (Files)
+
+The `files` table stores information about files uploaded by users and linked to specific records.
+
+### Attributes:
+
+| Column Name   | Data Type | Constraints                       | Description                                                      |
+| ------------- | --------- | --------------------------------- | ---------------------------------------------------------------- |
+| id            | integer   | PRIMARY KEY                       | Unique identifier of the file                                    |
+| user_id       | integer   | REFERENCES Korisnici(id) ON DELETE CASCADE | ID of the user who uploaded the file                    |
+| record_id     | integer   | REFERENCES EvidencijaElektrana(id) ON DELETE CASCADE | ID of the record this file is associated with |
+| filename      | text      | NOT NULL                          | Stored filename on the server                                    |
+| original_name | text      | NOT NULL                          | Original name of the uploaded file                               |
+| path          | text      | NOT NULL                          | File path or storage location                                    |
+| mimetype      | text      | NOT NULL                          | MIME type of the file (e.g., image/png, application/pdf)         |
+| size          | integer   | NOT NULL                          | File size in bytes                                               |
+| created_at    | timestamp | DEFAULT NOW()                     | Timestamp when the file was uploaded                             |
+
+- Files are linked to both a **user** and a **record**, and are automatically deleted if either the user or the record is removed (`ON DELETE CASCADE`).  
+- `filename` stores the actual file name on disk, while `original_name` preserves the name from the user upload.  
+- The `path` column defines where the file is stored, which can be a **local directory or configured storage location**.  
+- `mimetype` and `size` provide **metadata** for validation and display purposes.
+
+
 
 # Middleware
 
@@ -339,8 +364,11 @@ This project currently includes one custom middleware function:
   This middleware checks if the user is logged in using Passport.js.  
   It ensures that only authenticated users can access protected routes.  
   If the user is not authenticated, they are redirected to the login page.
+  This middleware is applied globally to all `/viewPage` and `/records` routes to protect access from unauthorized users.
 
-This middleware is applied globally to all `/viewPage` and `/records` routes to protect access from unauthorized users.
+- **upload.array("myFile", 3)**:  
+  This middleware handles file uploads using Multer.  
+  It allows users to upload up to 3 files per request and makes them available in `req.files` for further processing (e.g., saving metadata in the database or storing files on disk).
 
 ---
 
