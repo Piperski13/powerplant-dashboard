@@ -1,4 +1,4 @@
-# Node.js Express PostgreSQL CRUD App with EJS Views, Passport Authentication, Nodemailer & OTP Verification
+# Node.js Express PostgreSQL CRUD App with EJS Views, Passport Authentication, Multer File Upload, Nodemailer & OTP Verification
 A refactored full-stack web application originally built in 2024, now rebuilt ( 2025 ) to use **EJS templating** for server-side rendering, simplified data handling, switched from JWT to Passport for session-based authentication, and removal of unnecessary frontend fetch calls. <br>
 **Passport.js session-based authentication with bcrypt password hashing**, **MVC architecture**, and an **automated database setup script** for easy initialization.
 
@@ -44,6 +44,8 @@ A refactored full-stack web application originally built in 2024, now rebuilt ( 
 - **Forgot Password Flow** – secure password reset system using one-time reset links sent to user email, including token hashing, expiration handling, and password update validation.
 
 - **Password Reset Tokens** – stored as hashed values in the database with expiration timestamps, ensuring safe and time-limited recovery access.
+
+- **File Uploads** - handle user file uploads with Multer, storing files in a defined location and saving metadata in the database.
 
 - **Responsive Design** - layout optimized for both desktop and mobile
 
