@@ -86,6 +86,17 @@ class View {
       );
     }
   }
-}
+  static async getMessages() {
+    try {
+      const { rows } = await pool.query(
+        `SELECT username, message, created_at FROM chat_messages ORDER BY created_at ASC LIMIT 50`
+      );
 
+      return rows;
+    } catch (error) {
+      console.error("viewModel - Database error (getMessages):", error.message);
+      throw error;
+    }
+  }
+}
 module.exports = View;

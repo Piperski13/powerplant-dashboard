@@ -2,6 +2,9 @@ const View = require("../model/viewModel.js");
 const Records = require("../model/recordsModel.js");
 const Users = require("../model/usersModel.js");
 const File = require("../model/filesModel.js");
+const {
+  formatSimpleMessengerTime,
+} = require("../public/scripts/websocket/serverUtils.js");
 const path = require("path");
 
 const generateView = async (req, res) => {
@@ -38,7 +41,12 @@ const showWelcome = async (req, res) => {
 };
 
 const showChat = async (req, res) => {
-  res.render("chat", { user: req.user });
+  const messages = await View.getMessages();
+  res.render("chat", {
+    user: req.user,
+    messages,
+    formatDate: formatSimpleMessengerTime,
+  });
 };
 
 const showUsers = async (req, res) => {
