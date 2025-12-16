@@ -37,6 +37,10 @@ const showWelcome = async (req, res) => {
   res.render("welcome", { user: req.user });
 };
 
+const showChat = async (req, res) => {
+  res.render("chat", { user: req.user });
+};
+
 const showUsers = async (req, res) => {
   if (!req.user.is_admin) {
     return res.status(403).render("404");
@@ -94,6 +98,7 @@ const showUpdateUser = async (req, res, next, errors = []) => {
 module.exports = {
   generateView,
   showWelcome,
+  showChat,
   showUsers,
   showAddRecord,
   showUpdateUser,
