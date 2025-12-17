@@ -24,7 +24,7 @@
       <div id="chat-box">
         <h1 class="chat-title">Global Power Plant Chat</h1>
         <% if (messages.length>0) { %> <% messages.forEach(msg => { %>
-            
+
         <div class="single-message"><span class="username"><%= msg.username %>:</span> <%= msg.message %> (<%= formatDate(msg.created_at) %>)</div>
 
         <% }) %> <% } else { %>
@@ -33,14 +33,20 @@
       </div>
       <div class="test">
         <div class="send-msg-div">
-            <input id="msgInput" placeholder="Send message" type="text" />
-            <button
+          <input
+            id="msgInput"
+            data-surname="<%= user.surname %>"
+            data-id="<%= user.id %>"
+            placeholder="Send message"
+            type="text"
+          />
+          <button
             id="btnSend"
             data-surname="<%= user.surname %>"
             data-id="<%= user.id %>"
-            >
+          >
             Send
-            </button>
+          </button>
         </div>
       </div>
     </div>

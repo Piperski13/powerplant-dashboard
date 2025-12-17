@@ -12,13 +12,9 @@ function isUserNearBottom(threshold = 50) {
   );
 }
 
-window.addEventListener("load", () => {
-  chatBox.scrollTop = chatBox.scrollHeight;
-});
-
-button.addEventListener("click", function () {
-  const surname = this.dataset.surname;
-  const userId = this.dataset.id;
+function sendingMessage(buttonElement) {
+  const surname = buttonElement.dataset.surname;
+  const userId = buttonElement.dataset.id;
 
   socket.emit("newMessage", {
     userId: userId,
@@ -27,6 +23,20 @@ button.addEventListener("click", function () {
   });
   message.value = "";
   chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+window.addEventListener("load", () => {
+  chatBox.scrollTop = chatBox.scrollHeight;
+});
+
+message.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    sendingMessage(this);
+  }
+});
+
+button.addEventListener("click", function () {
+  sendingMessage(this);
 });
 
 socket.on("connect", () => {
