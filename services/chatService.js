@@ -1,7 +1,6 @@
 const pool = require("../db/pool");
 
 async function handleNewMessage(msg, io) {
-  console.log("chatService msg: ", msg);
   try {
     const result = await pool.query(
       "INSERT INTO chat_messages (user_id, username, message) VALUES ($1, $2, $3) RETURNING id, username, message, created_at",

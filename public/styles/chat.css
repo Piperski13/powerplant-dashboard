@@ -1,0 +1,121 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
+  background: #f4f6f8;
+  background-color: #0e152f;
+  color: #0e152f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+}
+#main-box {
+  display: flex;
+  flex-direction: column;
+}
+
+#chat-box {
+  flex: 1;
+  padding: 2% 0 5% 33%;
+  overflow-y: auto;
+  background: #ffffff;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.single-message {
+  max-width: 70%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 10px;
+  background: #f1f1f1;
+  color: #333;
+  font-size: 0.95rem;
+
+  /* 🔑 Wrapping rules */
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+
+  line-height: 1.4;
+}
+.single-message .username {
+  font-weight: bold;
+}
+
+.send-msg-div {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.75rem 0.75rem 0.75rem 1.5rem;
+  background: #fafafa;
+  border-top: 1px solid #ddd;
+}
+.test {
+  position: absolute;
+  left: 173px;
+  right: 0;
+  bottom: 0;
+}
+
+#msgInput {
+  flex: 1;
+  padding: 0.6rem 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
+
+#msgInput:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 0 1px rgba(74, 144, 226, 0.2);
+}
+
+#btnSend {
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 6px;
+  background: #4a90e2;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+#btnSend:hover {
+  background: #357abd;
+}
+
+#btnSend:active {
+  transform: scale(0.98);
+}
+
+.chat-title {
+  width: 70%;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 600;
+  background: #ffffff;
+  border-bottom: 1px solid #e0e0e0;
+  color: #222;
+}
+
+@media (max-width: 1439px) {
+  #chat-box {
+    padding: 2% 0 0 20%;
+  }
+  .test {
+    left: 0;
+  }
+}

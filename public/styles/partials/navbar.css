@@ -1,7 +1,7 @@
 /* Sidebar container */
 /* .side bar is only used for navbar inside of a view records */
 .sidebar {
-  width: 180px;
+  width: 11.25rem;
   height: 79.5%;
   background-color: #3b49e6;
   display: flex;
@@ -11,10 +11,10 @@
 
 /* Sidebar links */
 #sidebar a {
-  padding: 15px 20px;
+  padding: 0.9375rem 1.25rem;
   text-decoration: none;
   color: white;
-  font-size: 18px;
+  font-size: 1.125rem;
   text-align: center;
   transition: 0.3s;
   width: 100%;
