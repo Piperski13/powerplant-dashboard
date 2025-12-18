@@ -85,16 +85,29 @@ body {
 #btnSend {
   padding: 0.6rem 1rem;
   font-size: 0.95rem;
+  border: 1px solid gray;
+  border-radius: 6px;
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+#btnSend.enabled {
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
   border: none;
   border-radius: 6px;
-  background: #4a90e2;
+  opacity: 1;
+  background: #3b49e6;
   color: #fff;
   cursor: pointer;
+  pointer-events: auto;
   transition: background 0.2s ease;
 }
 
 #btnSend:hover {
-  background: #357abd;
+  background: #1c2bd4;
 }
 
 #btnSend:active {

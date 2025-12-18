@@ -13,6 +13,8 @@ function isUserNearBottom(threshold = 50) {
 }
 
 function sendingMessage(buttonElement) {
+  if (!message.value.trim()) return;
+
   const surname = buttonElement.dataset.surname;
   const userId = buttonElement.dataset.id;
 
@@ -23,6 +25,14 @@ function sendingMessage(buttonElement) {
   });
   message.value = "";
   chatBox.scrollTop = chatBox.scrollHeight;
+}
+
+function toggleSendButton() {
+  if (message.value.trim().length > 0) {
+    button.classList.add("enabled");
+  } else {
+    button.classList.remove("enabled");
+  }
 }
 
 window.addEventListener("load", () => {
@@ -64,3 +74,5 @@ socket.on("recieved-message", (data) => {
     chatBox.scrollTop = chatBox.scrollHeight;
   }
 });
+
+message.addEventListener("input", toggleSendButton);
