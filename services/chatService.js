@@ -15,10 +15,10 @@ async function handleNewMessage(socket, msg, io) {
 
     // Remove old timestamps
     const recentTimestamps = timestamps.filter(
-      (time) => now - time < process.env.TIME_WINDOW
+      (time) => now - time < Number(process.env.TIME_WINDOW)
     );
 
-    if (recentTimestamps.length >= process.env.MESSAGE_LIMIT) {
+    if (recentTimestamps.length >= Number(process.env.MESSAGE_LIMIT)) {
       socket.emit("rate-limit", {
         message: "Too many messages. Slow down.",
       });
@@ -42,4 +42,8 @@ async function handleNewMessage(socket, msg, io) {
   }
 }
 
-module.exports = { handleNewMessage };
+function clearSocket(socketId) {
+  socketMessageMap.delete(socketId);
+}
+
+module.exports = { handleNewMessage, clearSocket };

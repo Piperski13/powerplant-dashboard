@@ -62,7 +62,6 @@ socket.on("connect", () => {
 });
 
 socket.on("recieved-message", (data) => {
-  console.log("data: ", data);
   removeLimiter();
   const shouldAutoScroll = isUserNearBottom();
 
