@@ -1,13 +1,39 @@
 const pool = require("../db/pool");
+const Chat = require("../model/chatModel");
 
-async function handleNewMessage(msg, io) {
+const socketMessageMap = new Map();
+
+async function handleNewMessage(socket, msg, io) {
   try {
-    const result = await pool.query(
-      "INSERT INTO chat_messages (user_id, username, message) VALUES ($1, $2, $3) RETURNING id, username, message, created_at",
-      [msg.userId, msg.user, msg.text]
+    const now = Date.now();
+
+    if (!socketMessageMap.has(socket.id)) {
+      socketMessageMap.set(socket.id, []);
+    }
+
+    const timestamps = socketMessageMap.get(socket.id);
+
+    // Remove old timestamps
+    const recentTimestamps = timestamps.filter(
+      (time) => now - time < process.env.TIME_WINDOW
     );
 
-    const insertedMessage = result.rows[0];
+    if (recentTimestamps.length >= process.env.MESSAGE_LIMIT) {
+      socket.emit("rate-limit", {
+        message: "Too many messages. Slow down.",
+      });
+      return;
+    }
+
+    // Record this message
+    recentTimestamps.push(now);
+    socketMessageMap.set(socket.id, recentTimestamps);
+
+    const insertedMessage = await Chat.createMessage(
+      msg.userId,
+      msg.user,
+      msg.text
+    );
 
     // broadcast to clients
     io.emit("recieved-message", insertedMessage);

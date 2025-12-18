@@ -12,7 +12,7 @@ const io = new Server(httpServer, {});
 
 io.on("connection", (socket) => {
   socket.on("newMessage", async (message) => {
-    await handleNewMessage(message, io);
+    await handleNewMessage(socket, message, io);
   });
 });
 

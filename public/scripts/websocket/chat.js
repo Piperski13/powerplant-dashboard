@@ -5,6 +5,7 @@ const socket = io(); // connects to the same server
 const chatBox = document.getElementById("chat-box");
 const message = document.getElementById("msgInput");
 const button = document.getElementById("btnSend");
+const rateLimit = document.getElementById("rate-limit");
 
 function isUserNearBottom(threshold = 50) {
   return (
@@ -35,6 +36,11 @@ function toggleSendButton() {
   }
 }
 
+function removeLimiter() {
+  message.classList.remove("input-rate-limit");
+  rateLimit.classList.add("hidden");
+}
+
 window.addEventListener("load", () => {
   chatBox.scrollTop = chatBox.scrollHeight;
 });
@@ -49,11 +55,15 @@ button.addEventListener("click", function () {
   sendingMessage(this);
 });
 
+message.addEventListener("input", toggleSendButton);
+
 socket.on("connect", () => {
   console.log("Connected with socket id:", socket.id);
 });
 
 socket.on("recieved-message", (data) => {
+  console.log("data: ", data);
+  removeLimiter();
   const shouldAutoScroll = isUserNearBottom();
 
   const formattedTime = formatSimpleMessengerTime(data.created_at);
@@ -75,4 +85,8 @@ socket.on("recieved-message", (data) => {
   }
 });
 
-message.addEventListener("input", toggleSendButton);
+socket.on("rate-limit", (data) => {
+  rateLimit.classList.remove("hidden");
+  rateLimit.textContent = `${data.message}`;
+  message.classList.add("input-rate-limit");
+});
