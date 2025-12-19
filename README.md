@@ -490,7 +490,7 @@ This section showcases the core application pages and CRUD functionality for rec
 
 This section showcases the **global chat feature** with real-time messaging powered by WebSockets and **rate-limiting enforced with Redis** to prevent spam.  
 
-Redis acts as an **in-memory key-value store** to track how many messages a user sends within a configured time window, automatically expiring counts to allow future messages.
+Redis acts as an **in-memory key-value store** to track how many messages a user sends within a configured time window, automatically expiring counts to allow future messages. The chat also implements **smart scrolling**: if the user is near the bottom, new messages auto-scroll into view; if they are reading older messages, the view doesn’t jump, allowing uninterrupted reading.
 
 ### **1. Global Chat Empty State**
 | |
@@ -506,8 +506,8 @@ Redis acts as an **in-memory key-value store** to track how many messages a user
 - Each user has a Redis key representing their socket ID.  
 - Every message increments a counter in Redis.  
 - If the counter exceeds the configured **message limit within the time window**, the server prevents additional messages until the window resets.  
-- The counter automatically expires after the time window, allowing users to continue chatting without manual resets.
-
+- The counter automatically expires after the time window, allowing users to continue chatting without manual resets.  
+- Smart scroll logic ensures users **aren’t forcibly dragged** while reading older messages, improving usability for active chats.
 
 ## 🛠️ Admin Profile & User Management
 
