@@ -185,7 +185,7 @@ Ensure you have these installed:
 | POST   | `/verify-otp`   | Verifies the submitted OTP and, if valid, creates the user account and redirects to the login page     |
 
 ## View router ('/viewPage')
-
+router.route("/chat").get(viewController.showChat);
 ---
 
 | Method | Endpoint           | Description                                                                                  |
@@ -196,6 +196,7 @@ Ensure you have these installed:
 | GET    | `/addRecord/:id`   | Renders the update record page with pre-filled data for the selected record                  |
 | GET    | `/users`           | Renders the users page for admins, displaying all registered users                           |
 | GET    | `/updateUser/:id`  | Renders the update user page with pre-filled data for editing user details                   |
+| GET    | `/chat`            | Renders the global chat page with stored user messages                                       |
 
 ## Record router ('/records')
 
@@ -365,6 +366,24 @@ The `files` table stores information about files uploaded by users and linked to
 - The `path` column defines where the file is stored, which can be a **local directory or configured storage location**.  
 - `mimetype` and `size` provide **metadata** for validation and display purposes.
 
+## Table: chat_messages (Chat Messages)
+
+The `chat_messages` table stores individual messages sent by users in the chat system, along with basic metadata.
+
+### Attributes:
+
+| Column Name | Data Type   | Constraints   | Description                            |
+| ----------- | ----------- | ------------- | -------------------------------------- |
+| id          | serial      | PRIMARY KEY   | Unique identifier of the chat message  |
+| user_id     | integer     | NOT NULL      | ID of the user who sent the message    |
+| username    | varchar(50) | NOT NULL      | Username of the message sender         |
+| message     | text        | NOT NULL      | The content of the message             |
+| created_at  | timestamp   | DEFAULT NOW() | Timestamp when the message was created |
+
+- Each message is linked to a user through user_id.
+- username stores the sender’s name at the time of sending (for display in the chat).
+- message contains the actual text sent by the user.
+- created_at automatically records the date and time when the message was sent.
 
 
 # Middleware
@@ -467,6 +486,29 @@ This section showcases the core application pages and CRUD functionality for rec
 | ------------------ |
 | ![Update Record Page](public/images/update-recrod.jpg)
 
+## 💬 Global Chat & Rate-Limiting with Redis
+
+This section showcases the **global chat feature** with real-time messaging powered by WebSockets and **rate-limiting enforced with Redis** to prevent spam.  
+
+Redis acts as an **in-memory key-value store** to track how many messages a user sends within a configured time window, automatically expiring counts to allow future messages.
+
+### **1. Global Chat Empty State**
+| |
+|------------|
+| ![Global Chat Empty](public/images/global-chat-empty.jpg)
+
+### **2. Sending Messages / Normal Chat**
+| Chat Filled with Messages | Spam Protection Triggered |
+|------------|-------------|
+| ![Global Chat Filled](public/images/global-chat-filled.jpg) | ![Global Chat Spam](public/images/global-chat-spam.jpg)
+
+**Explanation of Redis Role:**  
+- Each user has a Redis key representing their socket ID.  
+- Every message increments a counter in Redis.  
+- If the counter exceeds the configured **message limit within the time window**, the server prevents additional messages until the window resets.  
+- The counter automatically expires after the time window, allowing users to continue chatting without manual resets.
+
+
 ## 🛠️ Admin Profile & User Management
 
 This section showcases the admin capabilities, including viewing all records, managing users, and updating user profiles.
@@ -511,6 +553,5 @@ This section covers miscellaneous pages and UI elements that improve user experi
 
 [⬆ Back to Table of Contents](#table-of-contents)
 - **Deployment** - Host the application online after implementing all planned features.
-- **File Uploads** - Allow users to attach images or documents to records, stored on disk or cloud (e.g., Cloudinary or S3).
 - **Security Enhancements** - Add rate limiting, helmet middleware, and sanitize inputs against SQL/XSS attacks.
 - **API Layer (REST or GraphQL)** - Expose your data via a JSON API for future frontend integrations.
