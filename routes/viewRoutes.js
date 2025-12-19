@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.route("/recordsViewPage").get(viewController.generateView);
 router.route("/welcome").get(viewController.showWelcome);
+router.route("/chat").get(viewController.showChat);
 router.route("/users").get(viewController.showUsers);
 router.route("/addRecord").get(viewController.showAddRecord);
 router.route("/addRecord/:id").get(viewController.showAddRecord);

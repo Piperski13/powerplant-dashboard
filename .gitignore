@@ -3,3 +3,4 @@ node_modules
 pssql.txt
 ejs.txt
 .vscode
+dump.rdb
