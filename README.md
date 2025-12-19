@@ -1,6 +1,7 @@
-# Node.js Express PostgreSQL CRUD App with EJS Views, Passport Authentication, Multer File Upload, Nodemailer & OTP Verification
-A refactored full-stack web application originally built in 2024, now rebuilt ( 2025 ) to use **EJS templating** for server-side rendering, simplified data handling, switched from JWT to Passport for session-based authentication, and removal of unnecessary frontend fetch calls. <br>
-**Passport.js session-based authentication with bcrypt password hashing**, **MVC architecture**, and an **automated database setup script** for easy initialization.
+# Node.js Express PostgreSQL CRUD App with EJS Views, Websocket, Redis, Passport Authentication, Multer File Upload, Nodemailer & OTP Verification
+
+A refactored full-stack web application originally built in 2024, now rebuilt (2025) to use **EJS templating** for server-side rendering, simplified data handling, switched from JWT to Passport for session-based authentication, removal of unnecessary frontend fetch calls, and integration of **real-time WebSocket chat** with **Redis-based rate-limiting** to prevent spamming. <br>
+**Passport.js session-based authentication with bcrypt password hashing**, **MVC architecture**, persistent chat messages in **PostgreSQL**, live updates broadcast to all connected clients, and an **automated database setup script** for easy initialization.
 
 ## Table of Contents
 
@@ -28,6 +29,12 @@ A refactored full-stack web application originally built in 2024, now rebuilt ( 
 - **Server-Side Rendering (EJS)** - real-time data updates and dynamic pages based on logged-in user data
 
 - **PostgreSQL Integration** - all data operations handled through RESTful-style controllers and models
+  
+- **Real-time WebSocket chat** for interactive communication between logged-in users.
+  
+- **Redis-based rate-limiting** for message sending to prevent spamming.
+  
+- Persistent chat messages stored in **PostgreSQL**, with live updates broadcast to all connected clients.
 
 - **Input Filtering** - filter and search records efficiently in the records view
 
