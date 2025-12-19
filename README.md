@@ -67,6 +67,8 @@ A refactored full-stack web application originally built in 2024, now rebuilt (2
 - **Express.js** - minimalist web framework for Node.js
 - **PostgreSQL** - relational database for data persistence
 - **pg** - official PostgreSQL client for Node.js
+- **Socket.IO** - real-time bidirectional communication between client and server
+- **Redis** - in-memory data store for caching and rate-limiting WebSocket messages
 
 ## Getting Started
 
@@ -78,6 +80,7 @@ Ensure you have these installed:
 
 - [Node.js](https://nodejs.org/) (version 14+)
 - [PostgreSQL](https://www.postgresql.org/) (version 12+)
+- [Redis](https://redis.io/) (version 6+)
 
 ### Installation
 
@@ -127,6 +130,9 @@ Ensure you have these installed:
 
    UPLOADS_PATH=
    UPLOADS_URL=
+
+   MESSAGE_LIMIT=
+   TIME_WINDOW=
    ```
 
 ### Database Setup
@@ -145,14 +151,14 @@ Ensure you have these installed:
    ```
 
 ### Running the app
-
-1. Start the server:
+1. Make sure Redis is running locally (default: `127.0.0.1:6379`) or accessible via your environment configuration.
+2. Start the server:
 
    ```bash
    npm start
    ```
 
-2. The server will start on `http://localhost:3000` by default.
+3. The server will start on `http://localhost:3000` by default.
 
 # API Endpoints
 
