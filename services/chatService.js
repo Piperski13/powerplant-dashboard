@@ -1,33 +1,29 @@
 const pool = require("../db/pool");
 const Chat = require("../model/chatModel");
+const Redis = require("redis");
 
-const socketMessageMap = new Map();
+const redisClient = require("../config/redisClient");
 
 async function handleNewMessage(socket, msg, io) {
   try {
-    const now = Date.now();
+    const TTL = Number(process.env.TIME_WINDOW) || 5;
+    const key = socket.id;
+    const currentCount = await redisClient.get(key);
 
-    if (!socketMessageMap.has(socket.id)) {
-      socketMessageMap.set(socket.id, []);
+    if (!currentCount) {
+      redisClient.setEx(key, TTL, "1");
+    } else {
+      await redisClient.incr(key);
     }
 
-    const timestamps = socketMessageMap.get(socket.id);
+    const count = currentCount ? Number(currentCount) : 0;
 
-    // Remove old timestamps
-    const recentTimestamps = timestamps.filter(
-      (time) => now - time < Number(process.env.TIME_WINDOW)
-    );
-
-    if (recentTimestamps.length >= Number(process.env.MESSAGE_LIMIT)) {
+    if (count >= Number(process.env.MESSAGE_LIMIT)) {
       socket.emit("rate-limit", {
         message: "Too many messages. Slow down.",
       });
       return;
     }
-
-    // Record this message
-    recentTimestamps.push(now);
-    socketMessageMap.set(socket.id, recentTimestamps);
 
     const insertedMessage = await Chat.createMessage(
       msg.userId,
@@ -41,9 +37,4 @@ async function handleNewMessage(socket, msg, io) {
     console.error(error);
   }
 }
-
-function clearSocket(socketId) {
-  socketMessageMap.delete(socketId);
-}
-
-module.exports = { handleNewMessage, clearSocket };
+module.exports = { handleNewMessage };
