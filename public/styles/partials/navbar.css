@@ -1,8 +1,8 @@
 /* Sidebar container */
 /* .side bar is only used for navbar inside of a view records */
 .sidebar {
-  width: 11.25rem;
-  height: 79.5%;
+  /* width: 11.25rem;
+  height: 79.5%; */
   background-color: #3b49e6;
   display: flex;
   flex-direction: column;
@@ -29,6 +29,7 @@ nav {
   left: 0;
   bottom: 0;
   background-color: #3b49e6;
+  z-index: 999;
 }
 #main-box {
   width: 80%;
@@ -87,7 +88,6 @@ nav {
   background-color: #3b49e6d8;
   border: 2px solid rgb(228, 228, 228);
   margin-top: 2px;
-  /* min-width: 160px; */
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
@@ -130,6 +130,10 @@ nav {
   left: 6.25%;
   top: 5%;
   z-index: 1;
+}
+
+.hamburger.active {
+  left: 15%;
 }
 .menu.hidden {
   display: flex;
