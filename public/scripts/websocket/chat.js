@@ -6,6 +6,7 @@ const chatBox = document.getElementById("chat-box");
 const message = document.getElementById("msgInput");
 const button = document.getElementById("btnSend");
 const rateLimit = document.getElementById("rate-limit");
+const noMessage = document.getElementById("noMsg");
 
 function isUserNearBottom(threshold = 50) {
   return (
@@ -41,8 +42,18 @@ function removeLimiter() {
   rateLimit.classList.add("hidden");
 }
 
+function noChatMessage() {
+  const messageCount = chatBox.childElementCount;
+  if (messageCount > 2) {
+    noMessage.classList.add("hidden");
+  } else {
+    noMessage.classList.remove("hidden");
+  }
+}
+
 window.addEventListener("load", () => {
   chatBox.scrollTop = chatBox.scrollHeight;
+  noChatMessage();
 });
 
 message.addEventListener("keydown", function (event) {
@@ -82,6 +93,7 @@ socket.on("recieved-message", (data) => {
   if (shouldAutoScroll) {
     chatBox.scrollTop = chatBox.scrollHeight;
   }
+  noChatMessage();
 });
 
 socket.on("rate-limit", (data) => {

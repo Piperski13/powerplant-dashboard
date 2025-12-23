@@ -27,11 +27,11 @@
 
         <div class="single-message"><span class="username"><%= msg.username %>:</span> <%= msg.message %> (<%= formatDate(msg.created_at) %>)</div>
 
-        <% }) %> <% } else { %>
-        <p>No messages.</p>
+        <% }) %>
         <% } %>
+        <p id="noMsg" class="hidden">No messages</p>
       </div>
-      <div class="test">
+      <div class="input-div">
         <div class="send-msg-div">
             <p id="rate-limit"></p>
           <input
