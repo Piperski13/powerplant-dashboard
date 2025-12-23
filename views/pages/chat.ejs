@@ -33,7 +33,7 @@
       </div>
       <div class="input-div">
         <div class="send-msg-div">
-            <p id="rate-limit"></p>
+          <p id="rate-limit"></p>
           <input
             id="msgInput"
             data-surname="<%= user.surname %>"
@@ -42,6 +42,9 @@
             type="text"
             maxlength="500"
           />
+          <% if (user.is_admin) { %>
+            <button id="btnDeleteAll">Clear Chat</button>
+          <% } %>
           <button
             id="btnSend"
             data-surname="<%= user.surname %>"

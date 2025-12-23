@@ -4,7 +4,8 @@ const socket = io(); // connects to the same server
 
 const chatBox = document.getElementById("chat-box");
 const message = document.getElementById("msgInput");
-const button = document.getElementById("btnSend");
+const buttonSend = document.getElementById("btnSend");
+const buttonDeleteAll = document.getElementById("btnDeleteAll");
 const rateLimit = document.getElementById("rate-limit");
 const noMessage = document.getElementById("noMsg");
 
@@ -31,9 +32,9 @@ function sendingMessage(buttonElement) {
 
 function toggleSendButton() {
   if (message.value.trim().length > 0) {
-    button.classList.add("enabled");
+    buttonSend.classList.add("enabled");
   } else {
-    button.classList.remove("enabled");
+    buttonSend.classList.remove("enabled");
   }
 }
 
@@ -62,11 +63,38 @@ message.addEventListener("keydown", function (event) {
   }
 });
 
-button.addEventListener("click", function () {
+buttonSend.addEventListener("click", function () {
   sendingMessage(this);
 });
 
 message.addEventListener("input", toggleSendButton);
+
+if (buttonDeleteAll) {
+  buttonDeleteAll.addEventListener("click", async function () {
+    if (!confirm("Are you sure you want to clear all messages?")) return;
+
+    try {
+      const response = await fetch("/chat/deleteAll");
+
+      if (response.ok) {
+        socket.emit("DeleteAllMessages");
+      } else {
+        console.error(
+          `Server Error: ${response.status} ${response.statusText}`
+        );
+        alert("Failed to delete messages.");
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+    }
+  });
+}
+
+socket.on("MessagesDeleted", () => {
+  const messages = chatBox.querySelectorAll(".single-message");
+  messages.forEach((msg) => msg.remove());
+  noChatMessage();
+});
 
 socket.on("connect", () => {
   console.log("Connected with socket id:", socket.id);

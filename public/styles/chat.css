@@ -102,6 +102,20 @@ body {
   transition: opacity 0.2s ease;
 }
 
+#btnDeleteAll {
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  color: white;
+  background-color: #f44336;
+  border: 1px solid gray;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#btnDeleteAll:hover {
+  background-color: #d32f2f;
+}
 #btnSend.enabled {
   padding: 0.6rem 1rem;
   font-size: 0.95rem;

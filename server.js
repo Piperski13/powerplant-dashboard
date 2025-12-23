@@ -14,6 +14,9 @@ io.on("connection", (socket) => {
   socket.on("newMessage", async (message) => {
     await handleNewMessage(socket, message, io);
   });
+  socket.on("DeleteAllMessages", async () => {
+    io.emit("MessagesDeleted");
+  });
 });
 
 httpServer.listen(port, () => {

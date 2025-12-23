@@ -2,6 +2,7 @@ const View = require("../model/viewModel.js");
 const Records = require("../model/recordsModel.js");
 const Users = require("../model/usersModel.js");
 const File = require("../model/filesModel.js");
+const Chat = require("../model/chatModel.js");
 const {
   formatSimpleMessengerTime,
 } = require("../public/scripts/websocket/serverUtils.js");
@@ -41,7 +42,7 @@ const showWelcome = async (req, res) => {
 };
 
 const showChat = async (req, res) => {
-  const messages = await View.getMessages();
+  const messages = await Chat.getMessages();
   res.render("chat", {
     user: req.user,
     messages,
