@@ -412,7 +412,7 @@ This project currently includes one custom middleware function:
   It allows users to upload up to 3 files per request and makes them available in `req.files` for further processing (e.g., saving metadata in the database or storing files on disk).
 
 - **isAdmin**"
-  This middleware checks if user is admin. If the user is not Admin, they are redirected to the login page.
+  This middleware checks if user is admin. If the user is not Admin, they are redirected to the 404 page.
 
 ---
 
