@@ -51,10 +51,6 @@ const showChat = async (req, res) => {
 };
 
 const showUsers = async (req, res) => {
-  if (!req.user.is_admin) {
-    return res.status(403).render("404");
-  }
-
   const email = req.query.email || "";
   const data = await View.filterUsers(email);
 
