@@ -64,7 +64,7 @@ body {
 }
 .input-div {
   position: absolute;
-  left: 173px;
+  left: 251px;
   right: 0;
   bottom: 0;
 }
@@ -171,8 +171,18 @@ body {
     font-size: 0.45rem;
   }
   #msgInput {
-    flex: 1;
     padding: 0.6rem 0.35rem;
     font-size: 1rem;
+  }
+}
+@media (max-width: 475px) {
+  #rate-limit {
+    font-size: 10px;
+  }
+  .send-msg-div {
+    padding: 0.75rem;
+  }
+  #msgInput {
+    width: 100px;
   }
 }
