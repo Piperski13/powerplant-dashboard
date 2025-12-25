@@ -15,7 +15,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
+  height: 100dvh;
 }
 #main-box {
   display: flex;
@@ -24,7 +24,7 @@ body {
 
 #chat-box {
   flex: 1;
-  padding: 2% 0 5% 33%;
+  padding: 2% 0 1% 33%;
   overflow-y: auto;
   background: #ffffff;
   border-top: 1px solid #e0e0e0;
@@ -63,7 +63,7 @@ body {
   border-top: 1px solid #ddd;
 }
 .input-div {
-  position: absolute;
+  position: sticky;
   left: 251px;
   right: 0;
   bottom: 0;
@@ -153,7 +153,7 @@ body {
 
 @media (max-width: 1439px) {
   #chat-box {
-    padding: 2% 0 0 20%;
+    padding: 2% 0 1% 20%;
   }
   .input-div {
     left: 0;

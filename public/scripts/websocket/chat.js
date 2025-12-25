@@ -28,6 +28,7 @@ function sendingMessage(buttonElement) {
   });
   message.value = "";
   chatBox.scrollTop = chatBox.scrollHeight;
+  toggleSendButton();
 }
 
 function toggleSendButton() {
