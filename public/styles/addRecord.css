@@ -189,6 +189,11 @@ a {
     outline: none;
   }
 }
+@media (max-width: 1439px) {
+  #header-section-form {
+    margin-left: 0px;
+  }
+}
 @media (max-width: 768px) {
   h2 {
     font-size: 17px;
