@@ -231,6 +231,15 @@ router.route("/chat").get(viewController.showChat);
 | POST   | `/reset-password/:token`     | Validates user input and updates the password          |
 
 
+## Chat Router (`/chat`)
+
+---
+
+| Method | Endpoint                     | Description                                            |
+| ------ | -----------------------------| ------------------------------------------------------ |
+| GET    | `/deleteAll`                 | Admin route for deleting all messages for  global chat |
+
+
 # Database: energetika
 
 [⬆ Back to Table of Contents](#table-of-contents)
@@ -402,6 +411,9 @@ This project currently includes one custom middleware function:
   This middleware handles file uploads using Multer.  
   It allows users to upload up to 3 files per request and makes them available in `req.files` for further processing (e.g., saving metadata in the database or storing files on disk).
 
+- **isAdmin**"
+  This middleware checks if user is admin. If the user is not Admin, they are redirected to the login page.
+
 ---
 
 ## Screenshots
@@ -527,6 +539,11 @@ This section showcases the admin capabilities, including viewing all records, ma
 | Admin User Update Page |
 | ------------------ |
 | ![Update Record Page](public/images/user-update-page.jpg)
+
+### **4. Deleting global chat**
+| Admin Chat Page Before | Admin Chat Page After
+| ------------------ | -------------|
+| ![Admin Chat Page Before](public/images/delete-all-msg.jpg) | ![Admin Chat Page After](public/images/delete-all-msg-empty.jpg)
 
 ## ⚡ Miscellaneous Pages & Actions
 
