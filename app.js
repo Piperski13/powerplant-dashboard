@@ -52,7 +52,7 @@ app.use("/records", isAuthenticated, recordRouter);
 app.use("/users", isAuthenticated, usersRouter);
 app.use("/otp", otpRouter);
 app.use("/forgot", forgotPassword);
-app.use("/chat", chatRouter);
+app.use("/chat", isAuthenticated, chatRouter);
 
 app.use((req, res) => {
   res.status(404).render("404");
