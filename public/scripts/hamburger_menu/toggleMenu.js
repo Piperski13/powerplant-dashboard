@@ -11,8 +11,8 @@ if (!sidebar) {
 }
 
 hamburgerIcon.addEventListener("click", () => {
-  menu.classList.toggle("hidden");
-  sidebar.classList.toggle("hidden");
+  hamburgerIcon.classList.toggle("active");
+  sidebar.classList.toggle("is-open");
 });
 
 userDropdown.addEventListener("click", (e) => {

@@ -4,8 +4,10 @@ const socket = io(); // connects to the same server
 
 const chatBox = document.getElementById("chat-box");
 const message = document.getElementById("msgInput");
-const button = document.getElementById("btnSend");
+const buttonSend = document.getElementById("btnSend");
+const buttonDeleteAll = document.getElementById("btnDeleteAll");
 const rateLimit = document.getElementById("rate-limit");
+const noMessage = document.getElementById("noMsg");
 
 function isUserNearBottom(threshold = 50) {
   return (
@@ -26,13 +28,14 @@ function sendingMessage(buttonElement) {
   });
   message.value = "";
   chatBox.scrollTop = chatBox.scrollHeight;
+  toggleSendButton();
 }
 
 function toggleSendButton() {
   if (message.value.trim().length > 0) {
-    button.classList.add("enabled");
+    buttonSend.classList.add("enabled");
   } else {
-    button.classList.remove("enabled");
+    buttonSend.classList.remove("enabled");
   }
 }
 
@@ -41,8 +44,18 @@ function removeLimiter() {
   rateLimit.classList.add("hidden");
 }
 
+function noChatMessage() {
+  const messageCount = chatBox.childElementCount;
+  if (messageCount > 2) {
+    noMessage.classList.add("hidden");
+  } else {
+    noMessage.classList.remove("hidden");
+  }
+}
+
 window.addEventListener("load", () => {
   chatBox.scrollTop = chatBox.scrollHeight;
+  noChatMessage();
 });
 
 message.addEventListener("keydown", function (event) {
@@ -51,11 +64,38 @@ message.addEventListener("keydown", function (event) {
   }
 });
 
-button.addEventListener("click", function () {
+buttonSend.addEventListener("click", function () {
   sendingMessage(this);
 });
 
 message.addEventListener("input", toggleSendButton);
+
+if (buttonDeleteAll) {
+  buttonDeleteAll.addEventListener("click", async function () {
+    if (!confirm("Are you sure you want to clear all messages?")) return;
+
+    try {
+      const response = await fetch("/chat/deleteAll");
+
+      if (response.ok) {
+        socket.emit("DeleteAllMessages");
+      } else {
+        console.error(
+          `Server Error: ${response.status} ${response.statusText}`
+        );
+        alert("Failed to delete messages.");
+      }
+    } catch (error) {
+      console.error("Network error:", error);
+    }
+  });
+}
+
+socket.on("MessagesDeleted", () => {
+  const messages = chatBox.querySelectorAll(".single-message");
+  messages.forEach((msg) => msg.remove());
+  noChatMessage();
+});
 
 socket.on("connect", () => {
   console.log("Connected with socket id:", socket.id);
@@ -82,6 +122,7 @@ socket.on("recieved-message", (data) => {
   if (shouldAutoScroll) {
     chatBox.scrollTop = chatBox.scrollHeight;
   }
+  noChatMessage();
 });
 
 socket.on("rate-limit", (data) => {

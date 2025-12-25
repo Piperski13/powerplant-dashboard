@@ -4,6 +4,8 @@
   box-sizing: border-box;
 }
 body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    sans-serif;
   background-color: #0e152f;
   color: #0e152f;
   display: flex;
@@ -185,6 +187,11 @@ a {
     border: 1px solid #ddd;
     border-radius: 5px;
     outline: none;
+  }
+}
+@media (max-width: 1439px) {
+  #header-section-form {
+    margin-left: 0px;
   }
 }
 @media (max-width: 768px) {

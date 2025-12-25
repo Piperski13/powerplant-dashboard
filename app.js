@@ -11,6 +11,7 @@ const loginRouter = require("./routes/loginRoutes.js");
 const viewRouter = require("./routes/viewRoutes.js");
 const otpRouter = require("./routes/otpRoutes.js");
 const forgotPassword = require("./routes/forgotPassword.js");
+const chatRouter = require("./routes/chatRoutes.js");
 
 require("./config/passportConfig");
 require("dotenv").config("./.env");
@@ -51,6 +52,7 @@ app.use("/records", isAuthenticated, recordRouter);
 app.use("/users", isAuthenticated, usersRouter);
 app.use("/otp", otpRouter);
 app.use("/forgot", forgotPassword);
+app.use("/chat", chatRouter);
 
 app.use((req, res) => {
   res.status(404).render("404");

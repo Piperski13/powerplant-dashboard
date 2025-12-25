@@ -15,7 +15,7 @@ body {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  height: 100vh;
+  height: 100dvh;
 }
 #main-box {
   display: flex;
@@ -24,7 +24,7 @@ body {
 
 #chat-box {
   flex: 1;
-  padding: 2% 0 5% 33%;
+  padding: 2% 0 1% 33%;
   overflow-y: auto;
   background: #ffffff;
   border-top: 1px solid #e0e0e0;
@@ -62,9 +62,9 @@ body {
   background: #fafafa;
   border-top: 1px solid #ddd;
 }
-.test {
-  position: absolute;
-  left: 173px;
+.input-div {
+  position: sticky;
+  left: 251px;
   right: 0;
   bottom: 0;
 }
@@ -102,6 +102,20 @@ body {
   transition: opacity 0.2s ease;
 }
 
+#btnDeleteAll {
+  padding: 0.6rem 1rem;
+  font-size: 0.95rem;
+  color: white;
+  background-color: #f44336;
+  border: 1px solid gray;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#btnDeleteAll:hover {
+  background-color: #d32f2f;
+}
 #btnSend.enabled {
   padding: 0.6rem 1rem;
   font-size: 0.95rem;
@@ -139,9 +153,36 @@ body {
 
 @media (max-width: 1439px) {
   #chat-box {
-    padding: 2% 0 0 20%;
+    padding: 2% 0 1% 20%;
   }
-  .test {
+  .input-div {
     left: 0;
+  }
+  #btnDeleteAll {
+    padding: 0.8rem 0.5rem;
+    font-size: 0.45rem;
+  }
+  #btnSend {
+    padding: 0.8rem 0.6rem;
+    font-size: 0.45rem;
+  }
+  #btnSend.enabled {
+    padding: 0.8rem 0.6rem;
+    font-size: 0.45rem;
+  }
+  #msgInput {
+    padding: 0.6rem 0.35rem;
+    font-size: 1rem;
+  }
+}
+@media (max-width: 475px) {
+  #rate-limit {
+    font-size: 10px;
+  }
+  .send-msg-div {
+    padding: 0.75rem;
+  }
+  #msgInput {
+    width: 100px;
   }
 }
