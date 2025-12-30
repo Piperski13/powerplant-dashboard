@@ -3,6 +3,8 @@ const path = require("node:path");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const passport = require("passport");
+const { RedisStore } = require("connect-redis");
+const { createClient } = require("redis");
 
 const isAuthenticated = require("./middleware/isAuthenticated.js");
 const recordRouter = require("./routes/recordRoutes.js");
@@ -16,6 +18,16 @@ const chatRouter = require("./routes/chatRoutes.js");
 require("./config/passportConfig");
 require("dotenv").config("./.env");
 
+// Initialize client.
+let redisClient = createClient();
+redisClient.connect().catch(console.error);
+
+// Initialize store.
+let redisStore = new RedisStore({
+  client: redisClient,
+  prefix: "myapp:",
+});
+
 const app = express();
 
 // Built-in body parser
@@ -26,9 +38,13 @@ app.use(cookieParser());
 
 app.use(
   session({
+    store: redisStore,
     secret: process.env.AUTH_SECRET,
     resave: false,
     saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60, // 1 hour
+    },
   })
 );
 
