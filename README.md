@@ -1,7 +1,6 @@
 # Node.js Express PostgreSQL CRUD App with EJS Views, Websocket, Redis, Passport Authentication, Multer File Upload, Nodemailer & OTP Verification
 
-A refactored full-stack web application originally built in 2024, now rebuilt (2025) to use **EJS templating** for server-side rendering, simplified data handling, switched from JWT to Passport for session-based authentication, removal of unnecessary frontend fetch calls, and integration of **real-time WebSocket chat** with **Redis-based rate-limiting** to prevent spamming. <br>
-**Passport.js session-based authentication with bcrypt password hashing**, **MVC architecture**, persistent chat messages in **PostgreSQL**, live updates broadcast to all connected clients, and an **automated database setup script** for easy initialization.
+A full-stack web application for managing powerplant data, rebuilt (2025) with **EJS server-side rendering**, session-based **Passport.js authentication**, real-time **WebSocket chat with Redis rate-limiting**, and enhanced UX flows including **email verification (OTP)** and **file uploads**. MVC architecture, persistent PostgreSQL storage, and automated DB setup script make the app easy to deploy and extend.
 
 ## Table of Contents
 
