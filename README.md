@@ -20,41 +20,43 @@ A refactored full-stack web application originally built in 2024, now rebuilt (2
 
 [⬆ Back to Table of Contents](#table-of-contents)
 
-- **Full CRUD Functionality** - create, read, update, and delete records directly through EJS-rendered views
+### 🏗Architecture & Core
+- **MVC Architecture** – clean structure separating logic, views, and data access layers  
+- **Server-Side Rendering (EJS)** – dynamic pages based on logged-in user data  
+- **PostgreSQL Integration** – all data operations handled through RESTful-style controllers and models  
+- **Centralized Error Handling** – consistent error responses across the app  
 
-- **User Authentication via Passport.js** - session-based authentication with bcrypt password hashing
+---
 
-- **Per-User Data Views** - each user only sees records they created; all records are linked to the user's profile
+### 🔐 Authentication & Security
+- **User Authentication via Passport.js** – session-based authentication with bcrypt password hashing  
+- **Per-User Data Views** – each user only sees records they created; data is linked to user profiles  
+- **OTP Verification System** – 6-digit email verification with expiration and secure validation  
+- **Email Sending via Nodemailer** – verification emails, OTP codes, and password reset links  
+- **Forgot Password Flow** – secure password reset via one-time email links  
+- **Password Reset Tokens** – hashed tokens with expiration timestamps  
 
-- **Server-Side Rendering (EJS)** - real-time data updates and dynamic pages based on logged-in user data
+---
 
-- **PostgreSQL Integration** - all data operations handled through RESTful-style controllers and models
-  
-- **Real-time WebSocket chat** for interactive communication between logged-in users.
-  
-- **Redis-based rate-limiting** for message sending to prevent spamming.
-  
-- Persistent chat messages stored in **PostgreSQL**, with live updates broadcast to all connected clients.
+### 📊 CRUD & Admin Features
+- **Full CRUD Functionality** – create, read, update, and delete records via EJS-rendered views  
+- **Input Filtering** – efficient filtering and searching of records  
+- **Admin Dashboard** – manage users and permissions through an admin interface  
 
-- **Input Filtering** - filter and search records efficiently in the records view
+---
 
-- **Admin Dashboard** - manage users and their permissions through an intuitive admin interface
+### 💬 Real-Time & Performance
+- **Real-time WebSocket Chat** – interactive communication between logged-in users  
+- **Persistent Chat Messages** – stored in PostgreSQL with live broadcasts to connected clients  
+- **Redis-based Rate Limiting** – prevents chat spamming and abuse  
 
-- **Centralized Error Handling** - consistent error responses across the app
+---
 
-- **MVC Architecture** - clean structure separating logic, views, and data access layers
+### 📎 UX & Extras
+- **File Uploads** – Multer-based uploads with metadata stored in the database  
+- **Responsive Design** – optimized layout for both desktop and mobile  
 
-- **Email Sending via Nodemailer** - used for sending verification emails, OTP codes, and reset password link
-
-- **OTP Verification System** - 6-digit code sent to users during registration, with expiration, secure validation, and a custom multi-field OTP UI (auto-focus, delete navigation, paste support)
-
-- **Forgot Password Flow** – secure password reset system using one-time reset links sent to user email, including token hashing, expiration handling, and password update validation.
-
-- **Password Reset Tokens** – stored as hashed values in the database with expiration timestamps, ensuring safe and time-limited recovery access.
-
-- **File Uploads** - handle user file uploads with Multer, storing files in a defined location and saving metadata in the database.
-
-- **Responsive Design** - layout optimized for both desktop and mobile
+---
 
 ## 🧩 Technologies
 
@@ -87,7 +89,7 @@ Ensure you have these installed:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/Piperski13/node-fullstack-postgres
+   git clone git clone https://github.com/Piperski13/powerplant-dashboard
 
    ```
 
