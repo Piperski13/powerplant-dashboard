@@ -59,7 +59,7 @@ const logout = asyncHandler(async (req, res) => {
   return res.redirect("/auth/login");
 });
 
-const generateOtp = asyncHandler(async (req, res) => {
+const generateOtp = asyncHandler(async (req, res, next) => {
   try {
     const { email, first_name, last_name, password } = req.body;
 
@@ -84,7 +84,7 @@ const generateOtp = asyncHandler(async (req, res) => {
         fieldErrors: [],
       });
     }
-    next(err);
+    next(error);
   }
 });
 
