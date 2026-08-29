@@ -4,6 +4,8 @@ DataSpace is a full-stack SaaS-style application for managing workspaces, collec
 
 The project focuses on practical backend engineering concepts including layered architecture, authentication, authorization, PostgreSQL, real-time communication, Redis, and automated testing.
 
+🌐 Live Demo: https://dataspace.onrender.com
+
 ## Features
 
 - User registration and authentication
