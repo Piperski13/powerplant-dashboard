@@ -27,6 +27,8 @@ const redisStore = new RedisStore({
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 // Built-in body parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
