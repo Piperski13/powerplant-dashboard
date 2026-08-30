@@ -44,7 +44,7 @@ class WorkspaceService {
       throw new NotFoundError("Workspace not found");
     }
 
-    await FileService.unlink(files);
+    await FileService.deleteFromStorage(files);
 
     return removedWorkspace;
   }

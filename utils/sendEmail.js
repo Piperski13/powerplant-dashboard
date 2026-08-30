@@ -1,16 +1,10 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const sendOTPEmail = async (email, otp) => {
-  const transporter = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
+  const { data, error } = await resend.emails.send({
+    from: process.env.EMAIL_FROM,
     to: email,
     subject: "Your Verification Code",
     text: `Your verification code is ${otp}. This code will expire in 5 minutes.`,
@@ -21,16 +15,13 @@ const sendOTPEmail = async (email, otp) => {
     <p>This code will expire in 5 minutes.</p> 
     <p>If you did not request this code, you can safely ignore this email.</p>
     <p> Best regards,<br> <strong>Support Team</strong> </p> </div> `,
-    attachments: [
-      {
-        filename: "logo.png",
-        path: "./public/images/nodemailor/mailBanner.jpeg",
-        cid: "logo",
-      },
-    ],
-  };
+  });
 
-  return transporter.sendMail(mailOptions);
+  if (error) {
+    throw new Error(`Failed to send OTP email: ${error.message}`);
+  }
+
+  return data;
 };
 
 module.exports = sendOTPEmail;

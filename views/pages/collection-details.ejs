@@ -127,7 +127,11 @@
                   <td>
                     <% if (record.files && record.files.length > 0) { %> <%
                     record.files.forEach(file => { %>
-                    <a href="<%= uploadsUrl %>/<%= file.filename %>" download>
+                    <a
+                      class="file-link"
+                      href="<%= file.downloadUrl %>"
+                      download
+                    >
                       <%= file.original_name.slice(0, 10) + '...' %>
                     </a>
                     <br />

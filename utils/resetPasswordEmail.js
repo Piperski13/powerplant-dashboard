@@ -1,16 +1,10 @@
-const nodemailer = require("nodemailer");
+const { Resend } = require("resend");
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 const sendResetPasswordEmail = async (email, resetLink) => {
-  const transporter = nodemailer.createTransport({
-    service: "Gmail",
-    auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS,
-    },
-  });
-
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
+  const { data, error } = await resend.emails.send({
+    from: process.env.EMAIL_FROM,
     to: email,
     subject: "Reset Your Password",
     text: `You requested a password reset. Use the following link to set a new password: ${resetLink}`,
@@ -25,16 +19,13 @@ const sendResetPasswordEmail = async (email, resetLink) => {
     <p> If you did not request a password reset, you can safely ignore this email. </p>
     <p> Best regards,<br> <strong>Support Team</strong> </p> 
     </div> `,
-    attachments: [
-      {
-        filename: "logo.png",
-        path: "./public/images/nodemailor/mailBanner.jpeg",
-        cid: "logo",
-      },
-    ],
-  };
+  });
 
-  return transporter.sendMail(mailOptions);
+  if (error) {
+    throw new Error(`Failed to send password reset email: ${error.message}`);
+  }
+
+  return data;
 };
 
 module.exports = sendResetPasswordEmail;

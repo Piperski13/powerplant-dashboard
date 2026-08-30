@@ -74,12 +74,8 @@
             <div class="detail-value">
               <% if (record.files && record.files.length > 0) { %> <%
               record.files.forEach(file => { %>
-              <a
-                class="file-link"
-                href="<%= uploadsUrl %>/<%= file.filename %>"
-                download
-              >
-                <%= file.original_name%>
+              <a class="file-link" href="<%= file.downloadUrl %>" download>
+                <%= file.original_name %>
               </a>
               <br />
               <br />
