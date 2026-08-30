@@ -5,7 +5,6 @@ const session = require("express-session");
 const passport = require("passport");
 const { RedisStore } = require("connect-redis");
 const { redisClient } = require("./config/redisClient");
-const { uploadsPath } = require("./config/uploads.js");
 
 const usersRouter = require("./routes/user.routes.js");
 const authRouter = require("./routes/auth.routes.js");
@@ -55,14 +54,6 @@ app.use(passport.session());
 
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
-
-// Serve uploaded files from disk
-app.use(process.env.UPLOADS_URL, express.static(uploadsPath));
-
-app.use((req, res, next) => {
-  res.locals.uploadsUrl = process.env.UPLOADS_URL;
-  next();
-});
 
 // EJS setup
 app.set("views", path.join(__dirname, "views/pages"));

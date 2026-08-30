@@ -47,7 +47,7 @@ class FileService {
 
     const removedFiles = await File.removeMany(deletedFiles);
 
-    await this.unlink(removedFiles);
+    await this.deleteFromStorage(removedFiles);
 
     return removedFiles;
   }
@@ -64,7 +64,7 @@ class FileService {
     return File.getByWorkspaceId(workspaceId);
   }
 
-  static async unlink(files) {
+  static async deleteFromStorage(files) {
     if (!files || files.length === 0) {
       return;
     }

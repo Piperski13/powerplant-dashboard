@@ -59,7 +59,7 @@ class RecordService {
       throw new NotFoundError("Record not found");
     }
 
-    await FileService.unlink(files);
+    await FileService.deleteFromStorage(files);
     return record;
   }
 }

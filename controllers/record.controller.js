@@ -64,25 +64,19 @@ const create = asyncHandler(async (req, res) => {
   const { title, description } = req.body;
   const { files } = req;
 
-  try {
-    await WorkspaceService.requireOwnerWorkspace({
-      workspaceId,
-      user,
-    });
-    await RecordService.create({
-      workspaceId,
-      collectionId,
-      title,
-      description,
-      files,
-    });
+  await WorkspaceService.requireOwnerWorkspace({
+    workspaceId,
+    user,
+  });
+  await RecordService.create({
+    workspaceId,
+    collectionId,
+    title,
+    description,
+    files,
+  });
 
-    res.redirect(`/workspaces/${workspaceId}/collections/${collectionId}`);
-  } catch (error) {
-    await FileService.unlink(files);
-
-    throw error;
-  }
+  res.redirect(`/workspaces/${workspaceId}/collections/${collectionId}`);
 });
 
 const edit = asyncHandler(async (req, res) => {
@@ -100,6 +94,10 @@ const edit = asyncHandler(async (req, res) => {
     recordId,
   });
 
+  for (const file of details.record.files) {
+    file.downloadUrl = await FileService.getDownloadUrl(file.path);
+  }
+
   res.render("record-form", {
     user: req.user,
     collection: details.collection,
@@ -116,27 +114,21 @@ const update = asyncHandler(async (req, res) => {
   const { title, description, deletedFiles } = req.body;
   const { files } = req;
 
-  try {
-    await WorkspaceService.requireOwnerWorkspace({
-      workspaceId,
-      user,
-    });
-    await RecordService.update({
-      title,
-      description,
-      deletedFiles,
-      workspaceId,
-      collectionId,
-      recordId,
-      files,
-    });
+  await WorkspaceService.requireOwnerWorkspace({
+    workspaceId,
+    user,
+  });
+  await RecordService.update({
+    title,
+    description,
+    deletedFiles,
+    workspaceId,
+    collectionId,
+    recordId,
+    files,
+  });
 
-    res.redirect(`/workspaces/${workspaceId}/collections/${collectionId}`);
-  } catch (error) {
-    await FileService.unlink(files);
-
-    throw error;
-  }
+  res.redirect(`/workspaces/${workspaceId}/collections/${collectionId}`);
 });
 
 const remove = asyncHandler(async (req, res) => {
