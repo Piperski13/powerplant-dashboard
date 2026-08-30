@@ -51,7 +51,7 @@ class CollectionService {
       throw new NotFoundError("Collection not found");
     }
 
-    await FileService.unlink(files);
+    await FileService.deleteFromStorage(files);
 
     return collection;
   }

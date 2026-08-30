@@ -51,7 +51,8 @@
                 name="description"
                 placeholder="Short description about this record..."
                 class="<%= locals.fieldErrors.length>0 ? 'input-error' : '' %>"
-              ><%= record ? record.description : '' %></textarea>
+              >
+<%= record ? record.description : '' %></textarea>
 
               <input
                 type="hidden"
@@ -65,10 +66,7 @@
               <ul class="file-list">
                 <% record.files.forEach(file => { %>
                 <li class="file-list__item" data-file-id="<%= file.id %>">
-                  <a
-                    href="<%= uploadsUrl %>/<%= file.filename %>"
-                    target="_blank"
-                  >
+                  <a class="file-link" href="<%= file.downloadUrl %>" download>
                     <%= file.original_name %>
                   </a>
                   <button type="button" class="file-list__delete">X</button>

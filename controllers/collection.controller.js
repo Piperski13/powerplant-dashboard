@@ -1,5 +1,6 @@
 const WorkspaceService = require("../services/workspace/workspace.service.js");
 const CollectionService = require("../services/collection/collection.service.js");
+const FileService = require("../services/record/file.service.js");
 
 const asyncHandler = require("../middleware/errors/asyncHandler.js");
 
@@ -18,6 +19,14 @@ const show = asyncHandler(async (req, res) => {
     collectionId,
     filter: title,
   });
+
+  for (const record of details.records) {
+    if (record.files && record.files.length > 0) {
+      for (const file of record.files) {
+        file.downloadUrl = await FileService.getDownloadUrl(file.path);
+      }
+    }
+  }
 
   res.render("collection-details", {
     workspace,
