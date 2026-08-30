@@ -21,6 +21,10 @@ const show = asyncHandler(async (req, res) => {
     recordId,
   });
 
+  for (const file of details.record.files) {
+    file.downloadUrl = await FileService.getDownloadUrl(file.path);
+  }
+
   res.render("record-details", {
     workspace,
     collection: details.collection,
