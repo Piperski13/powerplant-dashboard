@@ -6,6 +6,19 @@ The project focuses on practical backend engineering concepts including layered 
 
 🌐 Live Demo: https://dataspace.onrender.com
 
+## Deployment
+
+The application is deployed on **Render**.
+
+Production services:
+
+* **Render** - Application hosting, PostgreSQL database, and Redis
+* **Supabase** - File storage
+* **Resend** - Email delivery for registration OTPs and password resets
+
+The application uses environment variables for all production credentials and service configuration.
+
+
 ## Features
 
 - User registration and authentication
