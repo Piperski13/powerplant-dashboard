@@ -99,6 +99,12 @@ caption {
   margin-left: 10em;
   margin-top: 1em;
 }
+.documents-list {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+}
 
 /* Small table start */
 #small-table {
@@ -193,7 +199,7 @@ input {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-bottom: 20px;
+  margin: 38px 0px 20px 0px;
   font-size: 0.9rem;
   color: #6b7280;
 }
@@ -292,65 +298,54 @@ input {
 @media (max-width: 509px) {
   table {
     width: 100%;
-  }
-  table,
-  thead,
-  tbody,
-  th,
-  td,
-  tr {
-    display: block;
+    border: none;
   }
 
   thead {
     display: none;
   }
 
-  tr {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 10px;
+  tbody {
+    display: block;
+    width: 100%;
   }
 
-  td {
+  tbody tr {
+    display: block;
+    width: 100%;
+    padding: 10px 15px;
+    box-sizing: border-box;
+  }
+
+  tbody td {
     display: flex;
+    align-items: center;
     justify-content: space-between;
+    width: 100%;
     padding: 8px 0;
     border: none;
+    box-sizing: border-box;
   }
 
-  table {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  tbody td::before {
+    content: attr(data-label);
+    display: block;
+    font-weight: 600;
+    flex-shrink: 0;
   }
-  #main-box {
-    align-items: center;
-    justify-content: space-evenly;
+
+  tbody td form {
+    margin: 0;
   }
-  #small-table {
-    margin-top: 25px;
-    width: 55%;
+
+  .update-record,
+  .delete-record {
+    padding: 8px 12px;
   }
-  caption,
-  .small-table-caption {
+
+  caption {
     font-size: 20px;
   }
-  th,
-  td {
-    font-size: 1.5em;
-    padding: 3px;
-  }
-  .delete-record,
-  .update-record {
-    padding: 10px 3px;
-  }
 }
+
 /* responsive design finish */

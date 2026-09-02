@@ -86,12 +86,14 @@
                   class="clickable-row"
                   data-href="/workspaces/<%= workspace.id %>"
                 >
-                  <td><%= workspace.id %></td>
-                  <td><%= workspace.name %></td>
-                  <td><%= workspace.collections_count || 0 %></td>
+                  <td data-label="ID"><%= workspace.id %></td>
+                  <td data-label="Name"><%= workspace.name %></td>
+                  <td data-label="Collections">
+                    <%= workspace.collections_count || 0 %>
+                  </td>
 
                   <% if (user.id === workspace.owner_id) { %>
-                  <td>
+                  <td data-label="Update">
                     <form
                       action="/workspaces/<%= workspace.id %>/edit"
                       method="GET"
@@ -102,7 +104,7 @@
                       </button>
                     </form>
                   </td>
-                  <td>
+                  <td data-label="Delete">
                     <form
                       action="/workspaces/<%= workspace.id %>/delete"
                       method="POST"

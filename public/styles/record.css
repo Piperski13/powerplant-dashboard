@@ -16,7 +16,13 @@
   grid-template-columns: 140px 1fr;
   gap: 16px;
   padding: 12px 0;
-  border-bottom: 1px solid #f3f4f6;
+}
+
+.detail-row .file-link {
+  display: inline-block;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .detail-row:first-child {
@@ -33,11 +39,8 @@
 }
 
 .detail-value {
+  min-width: 0;
   color: #6b7280;
-}
-
-.detail-files {
-  align-items: start;
 }
 
 .file-link {
