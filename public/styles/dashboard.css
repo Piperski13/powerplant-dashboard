@@ -11,7 +11,8 @@
   background: white;
   border-radius: 12px;
 
-  min-width: 320px;
+  width: 100%;
+  max-width: 320px;
 }
 
 .dashboard-actions {
@@ -33,4 +34,13 @@
 
 .btn.secondary {
   background: #1f2a44;
+}
+
+@media (max-width: 291px) {
+  .dashboard-actions {
+    flex-wrap: wrap;
+  }
+  .title {
+    flex-wrap: wrap;
+  }
 }
