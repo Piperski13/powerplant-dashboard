@@ -114,13 +114,15 @@
                   class="clickable-row"
                   data-href="/workspaces/<%= workspace.id %>/collections/<%= collection.id %>"
                 >
-                  <td><%= collection.id %></td>
-                  <td><%= collection.name %></td>
+                  <td data-label="ID"><%= collection.id %></td>
+                  <td data-label="Name"><%= collection.name %></td>
 
-                  <td><%= collection.records_count || 0 %></td>
+                  <td data-label="Records">
+                    <%= collection.records_count || 0 %>
+                  </td>
 
                   <% if (user.id === workspace.owner_id) { %>
-                  <td>
+                  <td data-label="Update">
                     <form
                       action="/workspaces/<%= workspace.id %>/collections/<%= collection.id %>/edit"
                       method="GET"
@@ -132,7 +134,7 @@
                     </form>
                   </td>
 
-                  <td>
+                  <td data-label="Delete">
                     <form
                       action="/workspaces/<%= workspace.id %>/collections/<%= collection.id %>/delete"
                       method="POST"
@@ -158,9 +160,11 @@
               ← Back to Workspaces
             </a>
           </div>
+          <%- include("../partials/spinner.ejs") %>
         </main>
       </div>
     </div>
+    <script src="/scripts/spinner.js"></script>
     <script src="/scripts/table-row-navigation.js"></script>
   </body>
 </html>
