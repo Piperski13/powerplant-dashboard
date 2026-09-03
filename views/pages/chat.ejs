@@ -32,8 +32,7 @@
             <% if (messages.length>0) { %> <% messages.forEach(msg => { %>
 
             <div class="single-message">
-              <span class="username"><%= msg.username %>:</span> <%= msg.message
-              %> (<%= formatDate(msg.created_at) %>)
+              <span class="username"><%= msg.username %>:</span> <%= msg.message %> (<%= formatDate(msg.created_at) %>)
             </div>
 
             <% }) %> <% } %>
