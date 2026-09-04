@@ -5,6 +5,8 @@ const {
 } = require("../middleware/validators/workspace/workspace.validator");
 const handleWorkspaceValidation = require("../middleware/validators/workspace/handleWorkspaceValidation");
 
+const isAuthenticated = require("../middleware/auth/isAuthenticated");
+
 const {
   index,
   show,
@@ -18,27 +20,39 @@ const {
 
 const router = express.Router();
 
-router.get("/dashboard", showDashboard);
+router.get("/dashboard", isAuthenticated, showDashboard);
 router.get("/", index);
-router.get("/new", newWorkspace);
+router.get("/new", isAuthenticated, newWorkspace);
 
 router.post(
   "/create",
+  isAuthenticated,
   validateWorkspaceBody,
   handleWorkspaceValidation,
   create,
 );
 
 router.get("/:workspaceId", validateWorkspaceIdParam, show);
-router.get("/:workspaceId/edit", validateWorkspaceIdParam, edit);
+router.get(
+  "/:workspaceId/edit",
+  isAuthenticated,
+  validateWorkspaceIdParam,
+  edit,
+);
 
 router.post(
   "/:workspaceId/update",
+  isAuthenticated,
   validateWorkspaceIdParam,
   validateWorkspaceBody,
   handleWorkspaceValidation,
   update,
 );
-router.post("/:workspaceId/delete", validateWorkspaceIdParam, remove);
+router.post(
+  "/:workspaceId/delete",
+  isAuthenticated,
+  validateWorkspaceIdParam,
+  remove,
+);
 
 module.exports = router;

@@ -66,7 +66,7 @@ app.get("/", (req, res) => {
 
 app.use("/auth", authRouter);
 
-app.use("/workspaces", isAuthenticated, workspaceRouter);
+app.use("/workspaces", workspaceRouter);
 
 app.use("/workspaces/:workspaceId", isAuthenticated, collectionRouter);
 

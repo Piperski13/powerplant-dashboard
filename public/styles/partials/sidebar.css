@@ -124,6 +124,31 @@
   display: flex;
 }
 
+.logout {
+  display: flex;
+  position: absolute;
+
+  bottom: 60px; /* logout above */
+  left: 47px;
+
+  min-width: 160px;
+
+  background: #2f3fb8;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+
+  flex-direction: column;
+}
+.logout a {
+  padding: 10px 12px;
+  color: white;
+  text-decoration: none;
+}
+
+.logout a:hover {
+  background: #00abed;
+}
+
 /* hamburger menu end  */
 
 @media (max-width: 1439px) {

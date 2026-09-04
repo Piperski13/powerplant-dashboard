@@ -78,7 +78,7 @@
               </form>
             </div>
 
-            <% if (user.id === workspace.owner_id) { %>
+            <% if (user && user.id === workspace.owner_id) { %>
             <div class="entity-actions">
               <form
                 action="/workspaces/<%= workspace.id %>/collections/new"
@@ -101,7 +101,7 @@
                   <th>Name</th>
                   <th>Records</th>
 
-                  <% if (user.id === workspace.owner_id) { %>
+                  <% if (user && user.id === workspace.owner_id) { %>
                   <th>Update</th>
                   <th>Delete</th>
                   <% } %>
@@ -121,7 +121,7 @@
                     <%= collection.records_count || 0 %>
                   </td>
 
-                  <% if (user.id === workspace.owner_id) { %>
+                  <% if (user && user.id === workspace.owner_id) { %>
                   <td data-label="Update">
                     <form
                       action="/workspaces/<%= workspace.id %>/collections/<%= collection.id %>/edit"

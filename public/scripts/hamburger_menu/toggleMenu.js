@@ -9,11 +9,13 @@ hamburgerIcon.addEventListener("click", () => {
 const userMenu = document.querySelector(".user-menu");
 const trigger = document.querySelector(".user-menu-trigger");
 
-trigger.addEventListener("click", (e) => {
-  e.stopPropagation();
-  userMenu.classList.toggle("open");
-});
+if (trigger) {
+  trigger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    userMenu.classList.toggle("open");
+  });
 
-document.addEventListener("click", () => {
-  userMenu.classList.remove("open");
-});
+  document.addEventListener("click", () => {
+    userMenu.classList.remove("open");
+  });
+}

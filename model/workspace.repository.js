@@ -45,6 +45,34 @@ class Workspace {
       throw error;
     }
   }
+  static async showPublicList({ filter }) {
+    try {
+      const query = `
+      SELECT
+        w.*,
+        COUNT(c.id) AS collections_count
+      FROM workspaces w
+      LEFT JOIN collections c
+        ON c.workspace_id = w.id
+      WHERE w.visibility = $1
+      AND w.name ILIKE $2
+      GROUP BY w.id
+      ORDER BY w.id;
+    `;
+
+      const values = ["public", `${filter}%`];
+
+      const { rows } = await pool.query(query, values);
+
+      return rows;
+    } catch (error) {
+      console.error(
+        "workspace.repository - Database error (showPublicList):",
+        error.message,
+      );
+      throw error;
+    }
+  }
   static async get({ workspaceId }) {
     try {
       const query = `SELECT * FROM workspaces WHERE id=$1;`;

@@ -7,7 +7,11 @@ const NotFoundError = require("../../errors/not-found.error.js");
 
 class WorkspaceService {
   static async list({ filter, user }) {
-    return Workspace.showList({ filter, user });
+    if (user) {
+      return Workspace.showList({ filter, user });
+    }
+
+    return Workspace.showPublicList({ filter });
   }
   static async requireWorkspace(data) {
     const workspace = await Workspace.get(data);
