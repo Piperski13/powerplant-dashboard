@@ -32,26 +32,15 @@
               ]
             },
             "url": {
-              "raw": "http://localhost:3000/login",
+              "raw": "http://localhost:3000/auth/login",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["login"]
-            }
-          },
-          "response": []
-        },
-        {
-          "name": "Index",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "http://localhost:3000/workspaces/",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "3000",
-              "path": ["workspaces", ""]
+              "path": [
+                "auth/login"
+              ]
             }
           },
           "response": []
@@ -64,9 +53,14 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/new",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["workspaces", "new"]
+              "path": [
+                "workspaces",
+                "new"
+              ]
             }
           },
           "response": []
@@ -77,7 +71,9 @@
             {
               "listen": "test",
               "script": {
-                "exec": [""],
+                "exec": [
+                  ""
+                ],
                 "type": "text/javascript",
                 "packages": {},
                 "requests": {}
@@ -90,9 +86,14 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["workspaces", "{{workspaceId}}"]
+              "path": [
+                "workspaces",
+                "{{workspaceId}}"
+              ]
             }
           },
           "response": []
@@ -105,9 +106,15 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}/edit",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["workspaces", "{{workspaceId}}", "edit"]
+              "path": [
+                "workspaces",
+                "{{workspaceId}}",
+                "edit"
+              ]
             }
           },
           "response": []
@@ -118,7 +125,9 @@
             {
               "listen": "test",
               "script": {
-                "exec": [""],
+                "exec": [
+                  ""
+                ],
                 "type": "text/javascript",
                 "packages": {},
                 "requests": {}
@@ -160,9 +169,14 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/create",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["workspaces", "create"]
+              "path": [
+                "workspaces",
+                "create"
+              ]
             }
           },
           "response": []
@@ -173,7 +187,9 @@
             {
               "listen": "test",
               "script": {
-                "exec": [""],
+                "exec": [
+                  ""
+                ],
                 "type": "text/javascript",
                 "packages": {},
                 "requests": {}
@@ -195,9 +211,15 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}/update",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["workspaces", "{{workspaceId}}", "update"]
+              "path": [
+                "workspaces",
+                "{{workspaceId}}",
+                "update"
+              ]
             }
           },
           "response": []
@@ -215,9 +237,16 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}/collections/new",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["workspaces", "{{workspaceId}}", "collections", "new"]
+              "path": [
+                "workspaces",
+                "{{workspaceId}}",
+                "collections",
+                "new"
+              ]
             }
           },
           "response": []
@@ -237,7 +266,9 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}/collections/{{collectionId}}",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
               "path": [
                 "workspaces",
@@ -264,7 +295,9 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}/collections/{{collectionId}}/edit",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
               "path": [
                 "workspaces",
@@ -294,9 +327,16 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}/collections/create",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["workspaces", "{{workspaceId}}", "collections", "create"]
+              "path": [
+                "workspaces",
+                "{{workspaceId}}",
+                "collections",
+                "create"
+              ]
             }
           },
           "response": []
@@ -318,7 +358,9 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}/collections/{{collectionId}}/update",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
               "path": [
                 "workspaces",
@@ -344,7 +386,9 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}/collections/{{collectionId}}/records/new",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
               "path": [
                 "workspaces",
@@ -366,7 +410,9 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}/collections/{{collectionId}}/records/{{recordId}}",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
               "path": [
                 "workspaces",
@@ -388,7 +434,9 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}/collections/{{collectionId}}/records/{{recordId}}/edit",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
               "path": [
                 "workspaces",
@@ -434,7 +482,9 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}/collections/{{collectionId}}/records/create",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
               "path": [
                 "workspaces",
@@ -485,7 +535,9 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}/collections/{{collectionId}}/records/{{recordId}}/update",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
               "path": [
                 "workspaces",
@@ -513,7 +565,9 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}/collections/{{collectionId}}/records/{{recordId}}/delete",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
               "path": [
                 "workspaces",
@@ -536,7 +590,9 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}/collections/{{collectionId}}/delete",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
               "path": [
                 "workspaces",
@@ -555,7 +611,9 @@
             {
               "listen": "test",
               "script": {
-                "exec": [""],
+                "exec": [
+                  ""
+                ],
                 "type": "text/javascript",
                 "packages": {},
                 "requests": {}
@@ -564,7 +622,13 @@
           ],
           "request": {
             "method": "POST",
-            "header": [],
+            "header": [
+              {
+                "key": "connect.sid",
+                "value": "s%3Acofj_GrZn9Xy5w_r1-54bYF7FUVzA-3O.UP8xASRfbLEbNGXX81cYzqFccyhhXVrbkGyrIfE3Jdk",
+                "type": "text"
+              }
+            ],
             "body": {
               "mode": "urlencoded",
               "urlencoded": [
@@ -585,9 +649,15 @@
             "url": {
               "raw": "http://localhost:3000/workspaces/{{workspaceId}}/delete",
               "protocol": "http",
-              "host": ["localhost"],
+              "host": [
+                "localhost"
+              ],
               "port": "3000",
-              "path": ["workspaces", "{{workspaceId}}", "delete"]
+              "path": [
+                "workspaces",
+                "{{workspaceId}}",
+                "delete"
+              ]
             }
           },
           "response": []
@@ -602,7 +672,9 @@
         "type": "text/javascript",
         "packages": {},
         "requests": {},
-        "exec": [""]
+        "exec": [
+          ""
+        ]
       }
     },
     {
@@ -616,20 +688,19 @@
           "console.log(\"REQUEST:\", pm.request.method, pm.request.url.toString());\r",
           "console.log(\"STATUS:\", pm.response.code);\r",
           "\r",
-          "\r",
-          "if(pm.response.code >= 400){\r",
-          "\r",
+          "if (pm.response.code >= 400) {\r",
           "    console.log(\"FAILED RESPONSE:\");\r",
           "    console.log(pm.response.text());\r",
-          "\r",
           "}\r",
           "\r",
+          "const isLoginPage = pm.response.text().includes('action=\"/auth/login\"');\r",
           "\r",
-          "pm.test(\"No server error\", function(){\r",
+          "if (isLoginPage) {\r",
+          "    console.log(\"🔒 REDIRECTED TO LOGIN — user was not authorized for this route\");\r",
+          "}\r",
           "\r",
-          "    pm.expect(pm.response.code)\r",
-          "    .to.be.below(500);\r",
-          "\r",
+          "pm.test(\"No server error\", function () {\r",
+          "    pm.expect(pm.response.code).to.be.below(500);\r",
           "});"
         ]
       }
