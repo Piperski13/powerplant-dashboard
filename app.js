@@ -68,13 +68,9 @@ app.use("/auth", authRouter);
 
 app.use("/workspaces", workspaceRouter);
 
-app.use("/workspaces/:workspaceId", isAuthenticated, collectionRouter);
+app.use("/workspaces/:workspaceId", collectionRouter);
 
-app.use(
-  "/workspaces/:workspaceId/collections/:collectionId",
-  isAuthenticated,
-  recordRouter,
-);
+app.use("/workspaces/:workspaceId/collections/:collectionId", recordRouter);
 
 app.use("/users", isAuthenticated, usersRouter);
 

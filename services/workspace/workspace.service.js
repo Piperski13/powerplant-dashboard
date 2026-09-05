@@ -53,7 +53,11 @@ class WorkspaceService {
     return removedWorkspace;
   }
   static assertCanView({ workspace, user }) {
-    if (workspace.visibility === "private" && workspace.owner_id !== user.id) {
+    if (workspace.visibility === "public") {
+      return;
+    }
+
+    if (!user || workspace.owner_id !== user.id) {
       throw new NotFoundError("Workspace not found");
     }
   }

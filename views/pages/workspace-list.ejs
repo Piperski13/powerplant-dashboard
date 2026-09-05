@@ -77,8 +77,11 @@
                   <th>ID</th>
                   <th>Name</th>
                   <th>Collections</th>
+                  <% if (user && workspaces.some(workspace => user.id ===
+                  workspace.owner_id)) { %>
                   <th>Update</th>
                   <th>Delete</th>
+                  <% } %>
                 </tr>
               </thead>
               <tbody>
