@@ -7,4 +7,11 @@ document.addEventListener("DOMContentLoaded", () => {
       loader.classList.remove("hidden");
     });
   });
+
+  const sidebarLinks = document.querySelectorAll("#menu a");
+  sidebarLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      loader.classList.remove("hidden");
+    });
+  });
 });

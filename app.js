@@ -61,7 +61,7 @@ app.set("view engine", "ejs");
 
 // Routes
 app.get("/", (req, res) => {
-  res.redirect("/auth/login");
+  res.redirect("workspaces");
 });
 
 app.use("/auth", authRouter);

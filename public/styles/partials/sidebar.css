@@ -172,9 +172,6 @@
   .hamburger {
     display: flex;
   }
-  .icon {
-    margin-left: 37px;
-  }
   .dropdown-content {
     min-width: 95px;
     left: 14.5px;
