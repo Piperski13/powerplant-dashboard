@@ -272,30 +272,7 @@ input {
     margin-left: 3em;
   }
 }
-@media (max-width: 1100px) {
-  th {
-    font-size: 0.9em;
-  }
-  th,
-  td {
-    padding: 3px 6px;
-  }
-  .div-tables-section {
-    margin-left: 0;
-  }
-}
-@media (max-width: 716px) {
-  th,
-  td {
-    font-size: 0.7em;
-    padding: 3px;
-  }
-  .delete-record,
-  .update-record {
-    padding: 10px 3px;
-  }
-}
-@media (max-width: 509px) {
+@media (max-width: 700px) {
   table {
     width: 100%;
     border: none;
