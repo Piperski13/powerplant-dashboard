@@ -145,15 +145,6 @@ caption {
   color: white;
   font-weight: bold;
 }
-input {
-  width: 100%;
-  padding: 10px 15px;
-  margin-bottom: 0.75rem;
-  margin: 0.75rem 1rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  outline: none;
-}
 /* Filter form End */
 
 /* Details table start */
@@ -229,7 +220,6 @@ input {
 .entity-actions {
   display: flex;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .entity-actions .button {
@@ -322,6 +312,14 @@ input {
 
   caption {
     font-size: 20px;
+  }
+  .entity-actions .button {
+    padding: 9px 7px;
+  }
+  @media (max-width: 300px) {
+    .entity-actions .button {
+      padding: 2px 7px;
+    }
   }
 }
 

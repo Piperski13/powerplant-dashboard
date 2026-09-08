@@ -7,7 +7,7 @@
     <!-- account, menu icons -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle,menu"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle,menu,search,filter_list"
     />
 
     <link rel="icon" href="/assets/icons/favicon.png" type="image/svg+xml" />
@@ -55,48 +55,15 @@
               <dd><%= collection.updated_at %></dd>
             </dl>
           </section>
+          <%- include("../partials/_filter-toolbar", { searchRoute:
+          `/workspaces/${workspace.id}/collections/${collection.id}`,
+          searchParam: "title", searchPlaceholder: "Search records...",
+          searchValue: title, createRoute:
+          `/workspaces/${workspace.id}/collections/${collection.id}/records/new`,
+          createLabel: "New Record", ownerId: workspace.owner_id, user: user,
+          visibility: workspace.visibility }) %>
+
           <div class="div-tables-section">
-            <div id="div-filter-form">
-              <form
-                action="/workspaces/<%= workspace.id %>/collections/<%= collection.id %>"
-                method="GET"
-                id="filter-form"
-              >
-                <label class="filter-label" for="title"
-                  >Filter data by title</label
-                >
-                <input
-                  id="title"
-                  name="title"
-                  type="text"
-                  placeholder="Search by Title"
-                  value="<%= title || '' %>"
-                />
-                <div class="filter-submit">
-                  <button
-                    type="submit"
-                    id="submit-filter"
-                    class="form-submit-filter"
-                  >
-                    Filter
-                  </button>
-                </div>
-              </form>
-            </div>
-
-            <% if (user && user.id === workspace.owner_id) { %>
-            <div class="entity-actions">
-              <form
-                action="/workspaces/<%= workspace.id %>/collections/<%= collection.id %>/records/new"
-                method="GET"
-              >
-                <button type="submit" class="button button--primary">
-                  + New Record
-                </button>
-              </form>
-            </div>
-            <% } %>
-
             <table id="big-table">
               <caption>
                 List of Records

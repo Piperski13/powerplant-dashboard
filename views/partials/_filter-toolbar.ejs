@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="/styles/partials/filter-section.css" />
+<div class="collection-toolbar">
+  <form action="<%= searchRoute %>" method="GET" class="collection-search">
+    <span class="material-symbols-outlined"> search </span>
+
+    <input
+      id="<%= searchParam %>"
+      name="<%= searchParam %>"
+      type="search"
+      placeholder="<%= searchPlaceholder %>"
+      value="<%= searchValue || '' %>"
+    />
+  </form>
+
+  <div class="collection-toolbar__actions">
+    <button type="button" class="button filter-button" id="filter-button">
+      <span class="material-symbols-outlined">filter_list</span>
+      Filter
+    </button>
+
+    <div class="filter-popover" id="filter-popover" hidden>
+      <div class="filter-popover__title">Filters</div>
+      <p class="filter-popover__message">No additional filters available.</p>
+    </div>
+
+    <% if (user && ownerId && user.id === ownerId) { %>
+    <div class="entity-actions">
+      <form action="<%= createRoute %>" method="GET">
+        <button type="submit" class="button button--primary">
+          + <%= createLabel %>
+        </button>
+      </form>
+    </div>
+    <% } %>
+  </div>
+</div>
+
+<div class="active-filters">
+  <% if (visibility) { %>
+  <span class="active-filter"> Visibility: <%= workspace.visibility %> </span>
+  <% } %> <% if (searchValue) { %>
+  <span class="active-filter">
+    Search: <%= searchValue %>
+
+    <form
+      action="<%= searchRoute %>"
+      method="GET"
+      class="active-filter__remove-form"
+    >
+      <button
+        type="submit"
+        class="active-filter__remove"
+        aria-label="Remove search filter"
+      >
+        ×
+      </button>
+    </form>
+  </span>
+  <% } %>
+</div>
+<script src="/scripts/filter-popover.js"></script>
