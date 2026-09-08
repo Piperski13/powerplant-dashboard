@@ -34,21 +34,14 @@
 
             <span> <%= workspace.name %> </span>
           </nav>
-          <section class="entity-details">
-            <h2>Workspace: <%= workspace.name %></h2>
-
-            <p class="entity-details__description">
-              <%= workspace.description %>
-            </p>
-
-            <dl class="entity-details__meta">
-              <dt>Created</dt>
-              <dd><%= workspace.created_at %></dd>
-
-              <dt>Updated</dt>
-              <dd><%= workspace.updated_at %></dd>
-            </dl>
-          </section>
+          <%- include("../partials/_entity-details", {
+            entityType: "Workspace",
+            entityName: workspace.name,
+            entityDescription: workspace.description,
+            createdAt: workspace.created_at,
+            updatedAt: workspace.updated_at
+          }) %>
+          
           <%- include("../partials/_filter-toolbar", { searchRoute:
             `/workspaces/${workspace.id}`, searchParam: "name",
             searchPlaceholder: "Search collections...", searchValue: name,
