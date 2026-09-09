@@ -117,6 +117,28 @@ class Workspace {
       );
     }
   }
+  static async count({ user }) {
+    try {
+      let query = `
+      SELECT COUNT(w.id) as workspace_count 
+      FROM workspaces w 
+      WHERE w.owner_id = $1;
+      ;
+    `;
+
+      const values = [user.id];
+
+      const { rows } = await pool.query(query, values);
+
+      return rows[0].workspace_count;
+    } catch (error) {
+      console.error(
+        "workspace.repository - Database error (count):",
+        error.message,
+      );
+      throw error;
+    }
+  }
 }
 
 module.exports = Workspace;

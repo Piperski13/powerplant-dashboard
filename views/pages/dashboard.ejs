@@ -7,7 +7,7 @@
     <!-- Google Material Icons -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle,menu"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle,menu,folder,table_rows,description,arrow_forward,add"
     />
 
     <link rel="icon" href="/assets/icons/favicon.png" type="image/svg+xml" />
@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="/styles/global.css" />
     <link rel="stylesheet" href="/styles/dashboard.css" />
 
-    <title class="title">Welcome <%= user.first_name %></title>
+    <title>Dashboard | DataSpace</title>
   </head>
 
   <body>
@@ -27,16 +27,152 @@
 
       <div class="app-main">
         <main class="app-content dashboard">
-          <div class="dashboard-card">
-            <h1>Welcome <%= user.first_name %></h1>
+          <!-- Welcome -->
+          <section class="dashboard-header">
+            <div>
+              <p class="dashboard-eyebrow">Dashboard</p>
 
-            <div class="dashboard-actions">
-              <a href="/workspaces" class="btn">Choose Workspace</a>
-              <a href="/workspaces/new" class="btn secondary"
-                >Create Workspace</a
-              >
+              <h1 class="dashboard-title">
+                Welcome back, <%= user.first_name %>
+              </h1>
+
+              <p class="dashboard-subtitle">
+                Manage your workspaces, collections, records and files.
+              </p>
             </div>
-          </div>
+
+            <div class="dashboard-header__action">
+              <a
+                href="/workspaces/new"
+                class="dashboard-button dashboard-button--primary"
+              >
+                <span class="material-symbols-outlined">add</span>
+                New Workspace
+              </a>
+            </div>
+          </section>
+
+          <!-- Overview -->
+          <section class="dashboard-overview">
+            <div class="dashboard-stat">
+              <div class="dashboard-stat__icon">
+                <span class="material-symbols-outlined">folder</span>
+              </div>
+
+              <div>
+                <span class="dashboard-stat__label">Workspaces</span>
+                <strong class="dashboard-stat__value">
+                  <%= workspaceCount %>
+                </strong>
+              </div>
+            </div>
+
+            <div class="dashboard-stat">
+              <div class="dashboard-stat__icon">
+                <span class="material-symbols-outlined">table_rows</span>
+              </div>
+
+              <div>
+                <span class="dashboard-stat__label">Collections</span>
+                <strong class="dashboard-stat__value">
+                  <%= collectionCount %>
+                </strong>
+              </div>
+            </div>
+
+            <div class="dashboard-stat">
+              <div class="dashboard-stat__icon">
+                <span class="material-symbols-outlined">description</span>
+              </div>
+
+              <div>
+                <span class="dashboard-stat__label">Records</span>
+                <strong class="dashboard-stat__value">
+                  <%= recordCount %>
+                </strong>
+              </div>
+            </div>
+          </section>
+
+          <!-- Workspaces -->
+          <section class="dashboard-section">
+            <div class="dashboard-section__header">
+              <div>
+                <h2>Your Workspaces</h2>
+                <p>Recently available workspaces.</p>
+              </div>
+
+              <a href="/workspaces" class="dashboard-section__link">
+                View all
+                <span class="material-symbols-outlined">arrow_forward</span>
+              </a>
+            </div>
+
+            <% if (workspaces && workspaces.length > 0) { %>
+            <div class="dashboard-workspaces">
+              <% workspaces.forEach(workspace => { %>
+
+              <a
+                href="/workspaces/<%= workspace.id %>"
+                class="dashboard-workspace"
+              >
+                <div class="dashboard-workspace__main">
+                  <div class="dashboard-workspace__icon">
+                    <span class="material-symbols-outlined">folder</span>
+                  </div>
+
+                  <div>
+                    <h3><%= workspace.name %></h3>
+
+                    <% if (workspace.description) { %>
+                    <p><%= workspace.description %></p>
+                    <% } else { %>
+                    <p>No description provided.</p>
+                    <% } %>
+                  </div>
+                </div>
+
+                <div class="dashboard-workspace__meta">
+                  <span>
+                    <%= workspace.collections_count || 0 %> <%=
+                    workspace.collections_count === 1 ? "collection" :
+                    "collections" %>
+                  </span>
+
+                  <span class="workspace-visibility">
+                    <%= workspace.visibility %>
+                  </span>
+                </div>
+              </a>
+
+              <% }) %>
+            </div>
+
+            <% } else { %>
+
+            <div class="dashboard-empty">
+              <div class="dashboard-empty__icon">
+                <span class="material-symbols-outlined">folder</span>
+              </div>
+
+              <h3>No workspaces yet</h3>
+
+              <p>
+                Create your first workspace to start organizing collections,
+                records and files.
+              </p>
+
+              <a
+                href="/workspaces/new"
+                class="dashboard-button dashboard-button--primary"
+              >
+                <span class="material-symbols-outlined">add</span>
+                Create Workspace
+              </a>
+            </div>
+
+            <% } %>
+          </section>
         </main>
       </div>
     </div>

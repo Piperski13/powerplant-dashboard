@@ -89,5 +89,10 @@ class WorkspaceService {
 
     return workspace;
   }
+  static async workspaceCount({ user }) {
+    if (user) {
+      return Workspace.count({ user });
+    }
+  }
 }
 module.exports = WorkspaceService;
