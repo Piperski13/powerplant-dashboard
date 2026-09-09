@@ -7,7 +7,7 @@
     <!-- account, menu icons -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle,menu"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle,menu,search,filter_list,edit,delete"
     />
 
     <link rel="icon" href="/assets/icons/favicon.png" type="image/svg+xml" />
@@ -28,79 +28,82 @@
       <div class="app-main">
         <main class="app-content users-page">
           <div class="div-tables-section">
-            <h1>Lista Korisnika</h1>
-            <p>Filter users by email:</p>
-            <div id="div-filter-form">
-              <form action="/users/" method="GET" id="filter-form">
-                <input
-                  id="email"
-                  name="email"
-                  type="text"
-                  placeholder="Search by Email"
-                  value="<%= email || '' %>"
-                />
-                <div class="filter-submit">
-                  <button
-                    type="submit"
-                    id="submit-filter"
-                    class="form-submit-filter"
-                  >
-                    Filter
-                  </button>
-                </div>
-              </form>
-            </div>
+            <%- include("../partials/_filter-toolbar", { searchRoute:
+            `/users/`, searchParam: "email",
+            searchPlaceholder: "Search by Email...", searchValue: email,
+            createRoute: ``,
+            createLabel: "", ownerId: user ? user.id : null , user:
+            user, visibility:null  }) %>
 
-            <table>
-              <thead>
-                <tr>
-                  <th>ID</th>
-                  <th>Email</th>
-                  <th>Firstname</th>
-                  <th>Lastname</th>
-                  <th>Admin Status</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <% if (profiles && profiles.length > 0) { %> <%
-                profiles.forEach(user => { %>
-                <tr>
-                  <td><%= user.id %></td>
-                  <td><%= user.email %></td>
-                  <td><%= user.first_name %></td>
-                  <td><%= user.last_name %></td>
-                  <td><%= user.is_admin %></td>
-                  <td>
-                    <form
-                      action="/users/<%= user.id %>/edit"
-                      method="GET"
-                      style="display: inline"
-                    >
-                      <button type="submit" class="update-record">
-                        Update
-                      </button>
-                    </form>
-                  </td>
-                  <td>
-                    <form
-                      action="/users/<%= user.id %>/delete"
-                      method="POST"
-                      style="display: inline"
-                    >
-                      <button type="submit" class="delete-record">
-                        Delete
-                      </button>
-                    </form>
-                  </td>
-                </tr>
-                <% }) %> <% } else { %>
-                <tr>
-                  <td colspan="8">No records found.</td>
-                </tr>
-                <% } %>
-              </tbody>
+            <div class="div-tables-section">
+              <table id="big-table">
+                <caption>
+                List of Users
+                </caption>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Admin Status</th>
+                    <th class="table-actions-header">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (profiles && profiles.length > 0) { %> <%
+                  profiles.forEach(user => { %>
+                  <tr>
+                    <td><%= user.id %></td>
+                    <td>
+                      <div class="table-primary">
+                        <%= user.email %>
+                      </div>
+                    </td>
+                    <td><%= user.first_name %></td>
+                    <td><%= user.last_name %></td>
+                    <td>
+                      <div class="table-primary">
+                      <%= user.is_admin %>
+                      </div>
+                    </td>
+                    <td data-label="Actions" class="table-actions">
+                      <div class="table-actions__group">
+                        <form
+                          action="/users/<%= user.id %>/edit"
+                          method="GET"
+                        >
+                          <button
+                            type="submit"
+                            class="table-action table-action--edit"
+                          >
+                            <span class="material-symbols-outlined">edit</span>
+                            Edit
+                          </button>
+                        </form>
+
+                        <form
+                          action="/users/<%= user.id %>/delete"
+                          method="POST"
+                        >
+                          <button
+                            type="submit"
+                            class="table-action table-action--delete"
+                          >
+                            <span class="material-symbols-outlined">delete</span>
+                            Delete
+                          </button>
+                        </form>
+                      </div>
+                    </td>
+                  </tr>
+                  <% }) %> <% } else { %>
+                  <tr>
+                    <td colspan="8">No records found.</td>
+                  </tr>
+                  <% } %>
+                </tbody>
+              </div>
             </table>
           </div>
         </main>
