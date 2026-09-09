@@ -1,5 +1,6 @@
 const WorkspaceService = require("../services/workspace/workspace.service.js");
 const asyncHandler = require("../middleware/errors/asyncHandler.js");
+const { formatDate } = require("../public/scripts/formatDate.js");
 
 const index = asyncHandler(async (req, res) => {
   const name = req.query.name || "";
@@ -36,6 +37,7 @@ const show = asyncHandler(async (req, res) => {
     collections,
     user,
     name,
+    formatDate,
   });
 });
 

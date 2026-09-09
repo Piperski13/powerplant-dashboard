@@ -7,11 +7,12 @@
 
     <a href="/chat/">Global Chat</a>
 
-    <% if (user.is_admin) { %>
+    <% if (user && user.is_admin) { %>
     <a href="/users/">Users</a>
     <% } %>
   </div>
 
+  <% if (user) { %>
   <div class="user-menu">
     <button class="user-menu-trigger" type="button">
       <span class="material-symbols-outlined icon user-menu-icon"
@@ -26,5 +27,10 @@
       <a href="/auth/logout">Logout</a>
     </div>
   </div>
+  <% } else { %>
+  <div class="logout">
+    <a href="/auth/logout">Login</a>
+  </div>
+  <% } %>
 </aside>
 <script src="/scripts/hamburger_menu/toggleMenu.js"></script>

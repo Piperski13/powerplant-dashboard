@@ -1,0 +1,24 @@
+<section class="entity-details">
+  <div class="entity-details__header">
+    <div>
+      <p class="entity-details__eyebrow"><%= entityType %></p>
+      <h1 class="entity-details__title"><%= entityName %></h1>
+    </div>
+  </div>
+
+  <% if (entityDescription) { %>
+  <p class="entity-details__description"><%= entityDescription %></p>
+  <% } %>
+
+  <dl class="entity-details__meta">
+    <div class="entity-details__meta-item">
+      <dt>Created</dt>
+      <dd><%= formatDate(createdAt) %></dd>
+    </div>
+
+    <div class="entity-details__meta-item">
+      <dt>Updated</dt>
+      <dd><%= formatDate(updatedAt) %></dd>
+    </div>
+  </dl>
+</section>

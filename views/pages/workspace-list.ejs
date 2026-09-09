@@ -7,7 +7,7 @@
     <!-- account, menu icons -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle,menu"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle,menu,search,filter_list,edit,delete"
     />
 
     <link rel="icon" href="/assets/icons/favicon.png" type="image/svg+xml" />
@@ -34,93 +34,94 @@
 
             <span>Workspaces</span>
           </nav>
+          <%- include("../partials/_filter-toolbar", {
+              searchRoute: "/workspaces/",
+              searchParam: "name",
+              searchPlaceholder: "Search by Name...",
+              searchValue: name,
+              createRoute: "/workspaces/new",
+              createLabel: "New Workspace",
+              user: user,
+              ownerId: user ? user.id : null,
+              visibility: null
+            }) %>
           <div class="div-tables-section">
-            <div id="div-filter-form">
-              <form action="/workspaces/" method="GET" id="filter-form">
-                <label class="filter-label" for="name"
-                  >Filter data by name</label
-                >
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="Search by Name"
-                  value="<%= name || '' %>"
-                />
-                <div class="filter-submit">
-                  <button
-                    type="submit"
-                    id="submit-filter"
-                    class="form-submit-filter"
-                  >
-                    Filter
-                  </button>
-                </div>
-              </form>
-            </div>
-            <div class="entity-actions">
-              <form action="/workspaces/new" method="GET">
-                <button type="submit" class="button button--primary">
-                  + New Workspace
-                </button>
-              </form>
-            </div>
-
             <table id="big-table">
               <caption>
                 List of Workspaces
               </caption>
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>Name</th>
                   <th>Collections</th>
-                  <th>Update</th>
-                  <th>Delete</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% if (workspaces && workspaces.length > 0) { %> <%
-                workspaces.forEach(workspace => { %>
-                <tr
-                  class="clickable-row"
-                  data-href="/workspaces/<%= workspace.id %>"
-                >
-                  <td data-label="ID"><%= workspace.id %></td>
-                  <td data-label="Name"><%= workspace.name %></td>
-                  <td data-label="Collections">
-                    <%= workspace.collections_count || 0 %>
-                  </td>
 
-                  <% if (user.id === workspace.owner_id) { %>
-                  <td data-label="Update">
-                    <form
-                      action="/workspaces/<%= workspace.id %>/edit"
-                      method="GET"
-                      style="display: inline"
-                    >
-                      <button type="submit" class="update-record">
-                        Update
-                      </button>
-                    </form>
-                  </td>
-                  <td data-label="Delete">
-                    <form
-                      action="/workspaces/<%= workspace.id %>/delete"
-                      method="POST"
-                      style="display: inline"
-                    >
-                      <button type="submit" class="delete-record">
-                        Delete
-                      </button>
-                    </form>
-                  </td>
+                  <% if (user && workspaces.some(workspace => user.id === workspace.owner_id)) { %>
+                    <th class="table-actions-header">Actions</th>
                   <% } %>
                 </tr>
-                <% }) %> <% } else { %>
-                <tr>
-                  <td colspan="8">No records found.</td>
-                </tr>
+              </thead>
+
+              <tbody>
+                <% if (workspaces && workspaces.length > 0) { %>
+                  <% workspaces.forEach(workspace => { %>
+                    <tr
+                      class="clickable-row"
+                      data-href="/workspaces/<%= workspace.id %>"
+                    >
+                      <td data-label="Name">
+                        <div class="table-primary">
+                          <%= workspace.name %>
+                        </div>
+                      </td>
+
+                      <td data-label="Collections">
+                        <span class="table-count">
+                          <%= workspace.collections_count || 0 %>
+                        </span>
+                      </td>
+
+                      <% if (user && user.id === workspace.owner_id) { %>
+                        <td data-label="Actions" class="table-actions">
+                          <div class="table-actions__group">
+                            <form
+                              action="/workspaces/<%= workspace.id %>/edit"
+                              method="GET"
+                            >
+                              <button
+                                type="submit"
+                                class="table-action table-action--edit"
+                              >
+                                <span class="material-symbols-outlined">edit</span>
+                                Edit
+                              </button>
+                            </form>
+
+                            <form
+                              action="/workspaces/<%= workspace.id %>/delete"
+                              method="POST"
+                            >
+                              <button
+                                type="submit"
+                                class="table-action table-action--delete"
+                              >
+                                <span class="material-symbols-outlined">delete</span>
+                                Delete
+                              </button>
+                            </form>
+                          </div>
+                        </td>
+                      <% } %>
+                    </tr>
+                  <% }) %>
+                <% } else { %>
+                  <tr>
+                    <td
+                      colspan="<%= user ? 3 : 2 %>"
+                      class="table-empty"
+                    >
+                      No workspaces found.
+                    </td>
+                  </tr>
                 <% } %>
               </tbody>
             </table>

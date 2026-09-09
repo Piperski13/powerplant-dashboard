@@ -153,6 +153,10 @@ h3 {
   animation: fadeOut 4s forwards;
 }
 
+.hamburger {
+  color: #3b49e6;
+}
+
 @keyframes fadeOut {
   0% {
     opacity: 1;
