@@ -42,7 +42,7 @@
               createRoute: "/workspaces/new",
               createLabel: "New Workspace",
               user: user,
-              ownerId: user.id,
+              ownerId: user ? user.id : null,
               visibility: null
             }) %>
           <div class="div-tables-section">
