@@ -7,7 +7,7 @@
     <!-- account, menu icons -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle,menu,search,filter_list"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle,menu,search,filter_list,edit,delete"
     />
 
     <link rel="icon" href="/assets/icons/favicon.png" type="image/svg+xml" />
@@ -55,13 +55,11 @@
               </caption>
               <thead>
                 <tr>
-                  <th>ID</th>
                   <th>Name</th>
                   <th>Records</th>
 
                   <% if (user && user.id === workspace.owner_id) { %>
-                  <th>Update</th>
-                  <th>Delete</th>
+                  <th class="table-actions-header">Actions</th>
                   <% } %>
                 </tr>
               </thead>
@@ -72,37 +70,47 @@
                   class="clickable-row"
                   data-href="/workspaces/<%= workspace.id %>/collections/<%= collection.id %>"
                 >
-                  <td data-label="ID"><%= collection.id %></td>
-                  <td data-label="Name"><%= collection.name %></td>
+                  <td data-label="Name">
+                    <div class="table-primary">
+                      <%= collection.name %>
+                    </div>
+                  </td>
 
                   <td data-label="Records">
-                    <%= collection.records_count || 0 %>
+                    <span lass="table-count">
+                      <%= collection.records_count || 0 %>
+                    </span>
                   </td>
-
                   <% if (user && user.id === workspace.owner_id) { %>
-                  <td data-label="Update">
-                    <form
-                      action="/workspaces/<%= workspace.id %>/collections/<%= collection.id %>/edit"
-                      method="GET"
-                      style="display: inline"
-                    >
-                      <button type="submit" class="update-record">
-                        Update
-                      </button>
-                    </form>
-                  </td>
+                    <td data-label="Actions" class="table-actions">
+                      <div class="table-actions__group">
+                        <form
+                          action="/workspaces/<%= workspace.id %>/collections/<%= collection.id %>/edit"
+                          method="GET"
+                        >
+                          <button
+                            type="submit"
+                            class="table-action table-action--edit"
+                          >
+                            <span class="material-symbols-outlined">edit</span>
+                            Edit
+                          </button>
+                        </form>
 
-                  <td data-label="Delete">
-                    <form
-                      action="/workspaces/<%= workspace.id %>/collections/<%= collection.id %>/delete"
-                      method="POST"
-                      style="display: inline"
-                    >
-                      <button type="submit" class="delete-record">
-                        Delete
-                      </button>
-                    </form>
-                  </td>
+                        <form
+                          action="/workspaces/<%= workspace.id %>/collections/<%= collection.id %>/delete"
+                          method="POST"
+                        >
+                          <button
+                            type="submit"
+                            class="table-action table-action--delete"
+                          >
+                            <span class="material-symbols-outlined">delete</span>
+                            Delete
+                          </button>
+                        </form>
+                      </div>
+                    </td>
                   <% } %>
                 </tr>
                 <% }) %> <% } else { %>
