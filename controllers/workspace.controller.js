@@ -42,15 +42,16 @@ const show = asyncHandler(async (req, res) => {
 });
 
 const showDashboard = async (req, res) => {
-  const workspaceCount = await WorkspaceService.workspaceCount({
+  const dashboardData = await WorkspaceService.dashboardData({
     user: req.user,
   });
+
   res.render("dashboard", {
     user: req.user,
-    workspaceCount: workspaceCount,
-    collectionCount: null,
-    recordCount: null,
-    workspaces: null,
+    workspaceCount: dashboardData.workspaceCount,
+    collectionCount: dashboardData.collectionCount,
+    recordCount: dashboardData.recordCount,
+    workspaces: dashboardData.workspaces,
   });
 };
 

@@ -119,7 +119,7 @@ class Workspace {
   }
   static async count({ user }) {
     try {
-      let query = `
+      const query = `
       SELECT COUNT(w.id) as workspace_count 
       FROM workspaces w 
       WHERE w.owner_id = $1;
