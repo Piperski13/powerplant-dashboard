@@ -134,6 +134,31 @@ class Record {
       throw error;
     }
   }
+  static async countByOwner(ownerId) {
+    try {
+      const query = `
+      SELECT COUNT(r.id) AS record_count
+      FROM records r
+      INNER JOIN collections c
+        ON c.id = r.collection_id
+      INNER JOIN workspaces w
+        ON w.id = c.workspace_id
+      WHERE w.owner_id = $1;
+    `;
+
+      const values = [ownerId];
+
+      const { rows } = await pool.query(query, values);
+
+      return Number(rows[0].record_count);
+    } catch (error) {
+      console.error(
+        "record.repository - Database error (countByOwner):",
+        error.message,
+      );
+      throw error;
+    }
+  }
 }
 
 module.exports = Record;

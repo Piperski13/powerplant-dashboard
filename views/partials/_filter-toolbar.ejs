@@ -24,13 +24,15 @@
     </div>
 
     <% if (user && ownerId && user.id === ownerId) { %>
-    <div class="entity-actions">
-      <form action="<%= createRoute %>" method="GET">
-        <button type="submit" class="button button--primary">
-          + <%= createLabel %>
-        </button>
-      </form>
-    </div>
+      <% if (!usersListPage) { %>
+      <div class="entity-actions">
+        <form action="<%= createRoute %>" method="GET">
+          <button type="submit" class="button button--primary">
+            <span class="material-symbols-outlined">add</span> <%= createLabel %>
+          </button>
+        </form>
+      </div>
+      <% } %>
     <% } %>
   </div>
 </div>

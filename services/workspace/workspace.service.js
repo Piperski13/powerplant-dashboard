@@ -4,6 +4,7 @@ const Collection = require("../../model/collection.repository.js");
 const FileService = require("../record/file.service.js");
 
 const NotFoundError = require("../../errors/not-found.error.js");
+const Record = require("../../model/record.repository.js");
 
 class WorkspaceService {
   static async list({ filter, user }) {
@@ -88,6 +89,24 @@ class WorkspaceService {
     });
 
     return workspace;
+  }
+  static async dashboardData({ user }) {
+    if (!user) {
+      return {};
+    }
+    let filter = "";
+
+    const workspaceCount = await Workspace.count({ user });
+    const collectionCount = await Collection.countByOwner(user.id);
+    const recordCount = await Record.countByOwner(user.id);
+    const workspaces = await Workspace.showList({ filter, user });
+
+    return {
+      workspaceCount,
+      collectionCount,
+      recordCount,
+      workspaces,
+    };
   }
 }
 module.exports = WorkspaceService;

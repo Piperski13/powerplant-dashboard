@@ -7,7 +7,7 @@
     <!-- account, menu icons -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle,menu,search,filter_list,edit,delete"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=account_circle,menu,search,filter_list,edit,delete,add"
     />
 
     <link rel="icon" href="/assets/icons/favicon.png" type="image/svg+xml" />
@@ -47,7 +47,7 @@
             searchPlaceholder: "Search collections...", searchValue: name,
             createRoute: `/workspaces/${workspace.id}/collections/new`,
             createLabel: "New Collection", ownerId: workspace.owner_id, user:
-            user, visibility:workspace.visibility  }) %>
+            user, visibility:workspace.visibility, usersListPage:false  }) %>
           <div class="div-tables-section">
             <table id="big-table">
               <caption>
@@ -130,7 +130,7 @@
         </main>
       </div>
     </div>
-    <script src="/scripts/spinner.js"></script>
+
     <script src="/scripts/table-row-navigation.js"></script>
   </body>
 </html>
