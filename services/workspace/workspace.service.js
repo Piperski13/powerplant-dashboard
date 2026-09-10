@@ -4,10 +4,15 @@ const Collection = require("../../model/collection.repository.js");
 const FileService = require("../record/file.service.js");
 
 const NotFoundError = require("../../errors/not-found.error.js");
+const Record = require("../../model/record.repository.js");
 
 class WorkspaceService {
   static async list({ filter, user }) {
-    return Workspace.showList({ filter, user });
+    if (user) {
+      return Workspace.showList({ filter, user });
+    }
+
+    return Workspace.showPublicList({ filter });
   }
   static async requireWorkspace(data) {
     const workspace = await Workspace.get(data);
@@ -49,7 +54,11 @@ class WorkspaceService {
     return removedWorkspace;
   }
   static assertCanView({ workspace, user }) {
-    if (workspace.visibility === "private" && workspace.owner_id !== user.id) {
+    if (workspace.visibility === "public") {
+      return;
+    }
+
+    if (!user || workspace.owner_id !== user.id) {
       throw new NotFoundError("Workspace not found");
     }
   }
@@ -80,6 +89,24 @@ class WorkspaceService {
     });
 
     return workspace;
+  }
+  static async dashboardData({ user }) {
+    if (!user) {
+      return {};
+    }
+    let filter = "";
+
+    const workspaceCount = await Workspace.count({ user });
+    const collectionCount = await Collection.countByOwner(user.id);
+    const recordCount = await Record.countByOwner(user.id);
+    const workspaces = await Workspace.showList({ filter, user });
+
+    return {
+      workspaceCount,
+      collectionCount,
+      recordCount,
+      workspaces,
+    };
   }
 }
 module.exports = WorkspaceService;

@@ -18,13 +18,16 @@
   padding: 12px 0;
 }
 
-.detail-row .file-link {
+.file-link {
   display: inline-block;
   max-width: 100%;
   overflow-wrap: anywhere;
   word-break: break-word;
-}
+} 
 
+.file-link__name {
+  white-space: wrap;
+}
 .detail-row:first-child {
   padding-top: 0;
 }
@@ -43,16 +46,6 @@
   color: #6b7280;
 }
 
-.file-link {
-  display: block;
-  margin-bottom: 6px;
-  color: #2563eb;
-  text-decoration: none;
-}
-
-.file-link:hover {
-  text-decoration: underline;
-}
 
 .detail-value em {
   color: #9ca3af;

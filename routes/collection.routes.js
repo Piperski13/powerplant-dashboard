@@ -8,6 +8,8 @@ const {
 } = require("../middleware/validators/collection/collection.validator");
 const handleCollectionValidation = require("../middleware/validators/collection/handleCollectionValidation");
 
+const isAuthenticated = require("../middleware/auth/isAuthenticated");
+
 const {
   show,
   newCollection,
@@ -21,10 +23,11 @@ const router = express.Router({
   mergeParams: true,
 });
 
-router.get("/collections/new", newCollection);
+router.get("/collections/new", isAuthenticated, newCollection);
 
 router.post(
   "/collections/create",
+  isAuthenticated,
   validateWorkspaceIdParam,
   validateCollectionBody,
   handleCollectionValidation,
@@ -40,6 +43,7 @@ router.get(
 
 router.get(
   "/collections/:collectionId/edit",
+  isAuthenticated,
   validateWorkspaceIdParam,
   validateCollectionIdParam,
   edit,
@@ -47,6 +51,7 @@ router.get(
 
 router.post(
   "/collections/:collectionId/update",
+  isAuthenticated,
   validateWorkspaceIdParam,
   validateCollectionIdParam,
   validateCollectionBody,
@@ -55,6 +60,7 @@ router.post(
 );
 router.post(
   "/collections/:collectionId/delete",
+  isAuthenticated,
   validateWorkspaceIdParam,
   validateCollectionIdParam,
   remove,

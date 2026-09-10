@@ -97,6 +97,29 @@ class Collection {
       throw error;
     }
   }
+  static async countByOwner(ownerId) {
+    try {
+      const query = `
+      SELECT COUNT(c.id) AS collection_count
+      FROM collections c
+      INNER JOIN workspaces w
+        ON w.id = c.workspace_id
+      WHERE w.owner_id = $1;
+    `;
+
+      const values = [ownerId];
+
+      const { rows } = await pool.query(query, values);
+
+      return Number(rows[0].collection_count);
+    } catch (error) {
+      console.error(
+        "collection.repository - Database error (countByOwner):",
+        error.message,
+      );
+      throw error;
+    }
+  }
 }
 
 module.exports = Collection;

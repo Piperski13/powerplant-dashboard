@@ -45,6 +45,34 @@ class Workspace {
       throw error;
     }
   }
+  static async showPublicList({ filter }) {
+    try {
+      const query = `
+      SELECT
+        w.*,
+        COUNT(c.id) AS collections_count
+      FROM workspaces w
+      LEFT JOIN collections c
+        ON c.workspace_id = w.id
+      WHERE w.visibility = $1
+      AND w.name ILIKE $2
+      GROUP BY w.id
+      ORDER BY w.id;
+    `;
+
+      const values = ["public", `${filter}%`];
+
+      const { rows } = await pool.query(query, values);
+
+      return rows;
+    } catch (error) {
+      console.error(
+        "workspace.repository - Database error (showPublicList):",
+        error.message,
+      );
+      throw error;
+    }
+  }
   static async get({ workspaceId }) {
     try {
       const query = `SELECT * FROM workspaces WHERE id=$1;`;
@@ -87,6 +115,28 @@ class Workspace {
         "workspace.repository - Error database query (remove): ",
         error.message,
       );
+    }
+  }
+  static async count({ user }) {
+    try {
+      const query = `
+      SELECT COUNT(w.id) as workspace_count 
+      FROM workspaces w 
+      WHERE w.owner_id = $1;
+      ;
+    `;
+
+      const values = [user.id];
+
+      const { rows } = await pool.query(query, values);
+
+      return rows[0].workspace_count;
+    } catch (error) {
+      console.error(
+        "workspace.repository - Database error (count):",
+        error.message,
+      );
+      throw error;
     }
   }
 }

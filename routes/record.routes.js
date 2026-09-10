@@ -18,6 +18,8 @@ const { upload } = require("../config/multer");
 
 const handleRecordValidation = require("../middleware/validators/record/handleRecordValidation");
 
+const isAuthenticated = require("../middleware/auth/isAuthenticated");
+
 const {
   show,
   newRecord,
@@ -31,10 +33,11 @@ const router = express.Router({
   mergeParams: true,
 });
 
-router.get("/records/new", newRecord);
+router.get("/records/new", isAuthenticated, newRecord);
 
 router.post(
   "/records/create",
+  isAuthenticated,
   upload.array("files", 3),
   validateWorkspaceIdParam,
   validateCollectionIdParam,
@@ -53,6 +56,7 @@ router.get(
 
 router.get(
   "/records/:recordId/edit",
+  isAuthenticated,
   validateWorkspaceIdParam,
   validateCollectionIdParam,
   validateRecordIdParam,
@@ -62,6 +66,7 @@ router.get(
 router.post(
   "/records/:recordId/update",
   upload.array("files", 3),
+  isAuthenticated,
   validateWorkspaceIdParam,
   validateCollectionIdParam,
   validateRecordIdParam,
@@ -72,6 +77,7 @@ router.post(
 );
 router.post(
   "/records/:recordId/delete",
+  isAuthenticated,
   validateWorkspaceIdParam,
   validateCollectionIdParam,
   validateRecordIdParam,
