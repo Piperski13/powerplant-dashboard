@@ -262,14 +262,16 @@ caption {
 .entity-actions .button {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 9px 15px;
+  gap: 7px;
+  height: 40px;
+  padding: 0 12px;
   border: 1px solid #2563eb;
   border-radius: 6px;
   background: #2563eb;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   font-weight: 500;
+  line-height: 1;
   text-decoration: none;
   cursor: pointer;
   transition:
@@ -294,10 +296,7 @@ caption {
 /* Add new button end
 
 /* responsive design finish */
-@media (max-width: 1250px) {
-  .div-tables-section {
-    margin-left: 3em;
-  }
+@media (max-width: 1439px) {
 }
 @media (max-width: 700px) {
   table {
@@ -350,14 +349,14 @@ caption {
   caption {
     font-size: 20px;
   }
-  .entity-actions .button {
+  /* .entity-actions .button {
     padding: 9px 7px;
   }
-  @media (max-width: 300px) {
+  @media (max-width: 500px) {
     .entity-actions .button {
       padding: 2px 7px;
     }
-  }
+  } */
 }
 
 /* responsive design finish */
