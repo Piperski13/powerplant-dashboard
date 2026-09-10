@@ -42,13 +42,15 @@
             </div>
 
             <div class="dashboard-header__action">
-              <a
-                href="/workspaces/new"
-                class="dashboard-button dashboard-button--primary"
-              >
-                <span class="material-symbols-outlined">add</span>
-                New Workspace
-              </a>
+              <form action="/workspaces/new" method="GET">
+                <button
+                  type="submit"
+                  class="dashboard-button dashboard-button--primary"
+                >
+                  <span class="material-symbols-outlined">add</span> New
+                  Workspace
+                </button>
+              </form>
             </div>
           </section>
 
@@ -173,6 +175,7 @@
 
             <% } %>
           </section>
+          <%- include("../partials/spinner.ejs") %>
         </main>
       </div>
     </div>

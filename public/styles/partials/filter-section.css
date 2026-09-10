@@ -177,6 +177,10 @@
   color: #6b7280;
 }
 
+button .material-symbols-outlined {
+    font-size: 18px;
+}
+
 @media (max-width: 768px) {
   .collection-toolbar {
     align-items: stretch;
