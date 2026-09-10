@@ -2,35 +2,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-direction: row;
 }
+
 .otp-input {
-  width: 10px;
-  padding: 10px;
+  width: 35px;
+  height: 39px;
+  padding: 0;
+  margin: 10px;
   border: none;
   border-bottom: 3px solid rgba(0, 0, 0, 0.5);
-  margin: 10px;
   text-align: center;
-  font-size: 10px;
-  cursor: not-allowed;
-  pointer-events: none;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: text;
+  pointer-events: auto;
 }
 
 .otp-input:focus {
-  border-bottom: 3px solid orange;
+  border-bottom-color: orange;
   outline: none;
-}
-
-.otp-input:nth-child(1) {
-  cursor: pointer;
-  pointer-events: all;
-}
-
-#form-section {
-  width: 30em;
 }
 
 .message-otp {
   color: #4caf50;
   font-weight: bold;
+}
+
+@media (max-width: 430px) {
+  .otp-input {
+    width: 24px;
+    height: 28px;
+    margin: 7px;
+  }
 }
