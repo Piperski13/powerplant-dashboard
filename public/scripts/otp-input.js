@@ -1,42 +1,52 @@
-const inputs = document.getElementById("inputs");
+const inputs = document.querySelectorAll("#inputs .otp-input");
 
-inputs.addEventListener("input", function (e) {
-  const target = e.target;
-  const val = target.value;
+inputs.forEach((input, index) => {
+  input.addEventListener("input", () => {
+    // Keep only the first character entered.
+    input.value = input.value.slice(0, 1);
 
-  if (val != "") {
-    const next = target.nextElementSibling;
-    if (next) {
-      next.focus();
+    if (input.value && index < inputs.length - 1) {
+      inputs[index + 1].focus();
     }
-  }
-});
-
-inputs.addEventListener("keyup", function (e) {
-  const target = e.target;
-  const key = e.key.toLowerCase();
-
-  if (key == "backspace" || key == "delete") {
-    target.value = "";
-    const prev = target.previousElementSibling;
-    if (prev) {
-      prev.focus();
-    }
-    return;
-  }
-});
-
-inputs.addEventListener("paste", function (e) {
-  e.preventDefault();
-
-  const pastedData = e.clipboardData.getData("text").trim();
-  const inputElements = inputs.querySelectorAll("input");
-
-  inputElements.forEach((input, index) => {
-    input.value = pastedData[index] || "";
   });
 
-  const lastFilled =
-    inputElements[Math.min(pastedData.length, inputElements.length) - 1];
-  if (lastFilled) lastFilled.focus();
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Backspace") {
+      if (!input.value && index > 0) {
+        inputs[index - 1].focus();
+      }
+
+      return;
+    }
+
+    if (event.key === "ArrowLeft" && index > 0) {
+      event.preventDefault();
+      inputs[index - 1].focus();
+    }
+
+    if (event.key === "ArrowRight" && index < inputs.length - 1) {
+      event.preventDefault();
+      inputs[index + 1].focus();
+    }
+  });
+
+  input.addEventListener("paste", (event) => {
+    event.preventDefault();
+
+    const pastedData = event.clipboardData.getData("text").trim();
+
+    const characters = pastedData.slice(0, inputs.length).split("");
+
+    characters.forEach((character, offset) => {
+      const targetIndex = index + offset;
+
+      if (targetIndex < inputs.length) {
+        inputs[targetIndex].value = character;
+      }
+    });
+
+    const lastIndex = Math.min(index + characters.length, inputs.length - 1);
+
+    inputs[lastIndex].focus();
+  });
 });
